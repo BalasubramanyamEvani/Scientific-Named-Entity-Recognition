@@ -1,0 +1,5 @@
+acl-anthology==0.1.6
+arxiv==1.4.2
+beautifulsoup4==4.11.1
+pdfminer.six==20220524
+spacy==3.4.1

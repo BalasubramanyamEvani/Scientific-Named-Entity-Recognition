@@ -1,0 +1,1373 @@
+,from,title,authors,published,journal_ref,summary,pdf_url
+0,arxiv,A Survey on Model Compression for Natural Language Processing,"Canwen Xu,Julian McAuley",2022-02-15 00:18:47+00:00,,"With recent developments in new architectures like Transformer and
+pretraining techniques, significant progress has been made in applications of
+natural language processing (NLP). However, the high energy cost and long
+inference delay of Transformer is preventing NLP from entering broader
+scenarios including edge and mobile computing. Efficient NLP research aims to
+comprehensively consider computation, time and carbon emission for the entire
+life-cycle of NLP, including data preparation, model training and inference. In
+this survey, we focus on the inference stage and review the current state of
+model compression for NLP, including the benchmarks, metrics and methodology.
+We outline the current obstacles and future research directions.",http://arxiv.org/pdf/2202.07105v1
+1,arxiv,Noisy Text Data: Achilles' Heel of popular transformer based NLP models,"Kartikay Bagla,Ankit Kumar,Shivam Gupta,Anuj Gupta",2021-10-07 11:45:31+00:00,,"In the last few years, the ML community has created a number of new NLP
+models based on transformer architecture. These models have shown great
+performance for various NLP tasks on benchmark datasets, often surpassing SOTA
+results. Buoyed with this success, one often finds industry practitioners
+actively experimenting with fine-tuning these models to build NLP applications
+for industry use cases. However, for most datasets that are used by
+practitioners to build industrial NLP applications, it is hard to guarantee the
+presence of any noise in the data. While most transformer based NLP models have
+performed exceedingly well in transferring the learnings from one dataset to
+another, it remains unclear how these models perform when fine-tuned on noisy
+text. We address the open question by Kumar et al. (2020) to explore the
+sensitivity of popular transformer based NLP models to noise in the text data.
+We continue working with the noise as defined by them -- spelling mistakes &
+typos (which are the most commonly occurring noise). We show (via experimental
+results) that these models perform badly on most common NLP tasks namely text
+classification, textual similarity, NER, question answering, text summarization
+on benchmark datasets. We further show that as the noise in data increases, the
+performance degrades. Our findings suggest that one must be vary of the
+presence of noise in their datasets while fine-tuning popular transformer based
+NLP models.",http://arxiv.org/pdf/2110.03353v1
+2,arxiv,Improving the robustness and accuracy of biomedical language models through adversarial training,"Milad Moradi,Matthias Samwald",2021-11-16 14:58:05+00:00,,"Deep transformer neural network models have improved the predictive accuracy
+of intelligent text processing systems in the biomedical domain. They have
+obtained state-of-the-art performance scores on a wide variety of biomedical
+and clinical Natural Language Processing (NLP) benchmarks. However, the
+robustness and reliability of these models has been less explored so far.
+Neural NLP models can be easily fooled by adversarial samples, i.e. minor
+changes to input that preserve the meaning and understandability of the text
+but force the NLP system to make erroneous decisions. This raises serious
+concerns about the security and trust-worthiness of biomedical NLP systems,
+especially when they are intended to be deployed in real-world use cases. We
+investigated the robustness of several transformer neural language models, i.e.
+BioBERT, SciBERT, BioMed-RoBERTa, and Bio-ClinicalBERT, on a wide range of
+biomedical and clinical text processing tasks. We implemented various
+adversarial attack methods to test the NLP systems in different attack
+scenarios. Experimental results showed that the biomedical NLP models are
+sensitive to adversarial samples; their performance dropped in average by 21
+and 18.9 absolute percent on character-level and word-level adversarial noise,
+respectively. Conducting extensive adversarial training experiments, we
+fine-tuned the NLP models on a mixture of clean samples and adversarial inputs.
+Results showed that adversarial training is an effective defense mechanism
+against adversarial noise; the models robustness improved in average by 11.3
+absolute percent. In addition, the models performance on clean data increased
+in average by 2.4 absolute present, demonstrating that adversarial training can
+boost generalization abilities of biomedical NLP systems.",http://arxiv.org/pdf/2111.08529v1
+3,arxiv,Automated essay scoring using efficient transformer-based language models,"Christopher M Ormerod,Akanksha Malhotra,Amir Jafari",2021-02-25 19:28:39+00:00,,"Automated Essay Scoring (AES) is a cross-disciplinary effort involving
+Education, Linguistics, and Natural Language Processing (NLP). The efficacy of
+an NLP model in AES tests it ability to evaluate long-term dependencies and
+extrapolate meaning even when text is poorly written. Large pretrained
+transformer-based language models have dominated the current state-of-the-art
+in many NLP tasks, however, the computational requirements of these models make
+them expensive to deploy in practice. The goal of this paper is to challenge
+the paradigm in NLP that bigger is better when it comes to AES. To do this, we
+evaluate the performance of several fine-tuned pretrained NLP models with a
+modest number of parameters on an AES dataset. By ensembling our models, we
+achieve excellent results with fewer parameters than most pretrained
+transformer-based models.",http://arxiv.org/pdf/2102.13136v1
+4,arxiv,Annotating the Tweebank Corpus on Named Entity Recognition and Building NLP Models for Social Media Analysis,"Hang Jiang,Yining Hua,Doug Beeferman,Deb Roy",2022-01-18 19:34:23+00:00,,"Social media data such as Twitter messages (""tweets"") pose a particular
+challenge to NLP systems because of their short, noisy, and colloquial nature.
+Tasks such as Named Entity Recognition (NER) and syntactic parsing require
+highly domain-matched training data for good performance. To date, there is no
+complete training corpus for both NER and syntactic analysis (e.g., part of
+speech tagging, dependency parsing) of tweets. While there are some publicly
+available annotated NLP datasets of tweets, they are only designed for
+individual tasks. In this study, we aim to create Tweebank-NER, an English NER
+corpus based on Tweebank V2 (TB2), train state-of-the-art (SOTA) Tweet NLP
+models on TB2, and release an NLP pipeline called Twitter-Stanza. We annotate
+named entities in TB2 using Amazon Mechanical Turk and measure the quality of
+our annotations. We train the Stanza pipeline on TB2 and compare with
+alternative NLP frameworks (e.g., FLAIR, spaCy) and transformer-based models.
+The Stanza tokenizer and lemmatizer achieve SOTA performance on TB2, while the
+Stanza NER tagger, part-of-speech (POS) tagger, and dependency parser achieve
+competitive performance against non-transformer models. The transformer-based
+models establish a strong baseline in Tweebank-NER and achieve the new SOTA
+performance in POS tagging and dependency parsing on TB2. We release the
+dataset and make both the Stanza pipeline and BERTweet-based models available
+""off-the-shelf"" for use in future Tweet NLP research. Our source code, data,
+and pre-trained models are available at:
+\url{https://github.com/social-machines/TweebankNLP}.",http://arxiv.org/pdf/2201.07281v2
+5,arxiv,Deep Learning Models for Automatic Summarization,Pirmin Lemberger,2020-05-25 09:12:37+00:00,,"Text summarization is an NLP task which aims to convert a textual document
+into a shorter one while keeping as much meaning as possible. This pedagogical
+article reviews a number of recent Deep Learning architectures that have helped
+to advance research in this field. We will discuss in particular applications
+of pointer networks, hierarchical Transformers and Reinforcement Learning. We
+assume basic knowledge of Seq2Seq architecture and Transformer networks within
+NLP.",http://arxiv.org/pdf/2005.11988v1
+6,arxiv,A Review of Bangla Natural Language Processing Tasks and the Utility of Transformer Models,"Firoj Alam,Arid Hasan,Tanvirul Alam,Akib Khan,Janntatul Tajrin,Naira Khan,Shammur Absar Chowdhury",2021-07-08 13:49:46+00:00,,"Bangla -- ranked as the 6th most widely spoken language across the world
+(https://www.ethnologue.com/guides/ethnologue200), with 230 million native
+speakers -- is still considered as a low-resource language in the natural
+language processing (NLP) community. With three decades of research, Bangla NLP
+(BNLP) is still lagging behind mainly due to the scarcity of resources and the
+challenges that come with it. There is sparse work in different areas of BNLP;
+however, a thorough survey reporting previous work and recent advances is yet
+to be done. In this study, we first provide a review of Bangla NLP tasks,
+resources, and tools available to the research community; we benchmark datasets
+collected from various platforms for nine NLP tasks using current
+state-of-the-art algorithms (i.e., transformer-based models). We provide
+comparative results for the studied NLP tasks by comparing monolingual vs.
+multilingual models of varying sizes. We report our results using both
+individual and consolidated datasets and provide data splits for future
+research. We reviewed a total of 108 papers and conducted 175 sets of
+experiments. Our results show promising performance using transformer-based
+models while highlighting the trade-off with computational costs. We hope that
+such a comprehensive survey will motivate the community to build on and further
+advance the research on Bangla NLP.",http://arxiv.org/pdf/2107.03844v3
+7,arxiv,The NLP Cookbook: Modern Recipes for Transformer based Deep Learning Architectures,"Sushant Singh,Ausif Mahmood",2021-03-23 22:38:20+00:00,"IEEE Access (Volume: 9), 2021","In recent years, Natural Language Processing (NLP) models have achieved
+phenomenal success in linguistic and semantic tasks like text classification,
+machine translation, cognitive dialogue systems, information retrieval via
+Natural Language Understanding (NLU), and Natural Language Generation (NLG).
+This feat is primarily attributed due to the seminal Transformer architecture,
+leading to designs such as BERT, GPT (I, II, III), etc. Although these
+large-size models have achieved unprecedented performances, they come at high
+computational costs. Consequently, some of the recent NLP architectures have
+utilized concepts of transfer learning, pruning, quantization, and knowledge
+distillation to achieve moderate model sizes while keeping nearly similar
+performances as achieved by their predecessors. Additionally, to mitigate the
+data size challenge raised by language models from a knowledge extraction
+perspective, Knowledge Retrievers have been built to extricate explicit data
+documents from a large corpus of databases with greater efficiency and
+accuracy. Recent research has also focused on superior inference by providing
+efficient attention to longer input sequences. In this paper, we summarize and
+examine the current state-of-the-art (SOTA) NLP models that have been employed
+for numerous NLP tasks for optimal performance and efficiency. We provide a
+detailed understanding and functioning of the different architectures, a
+taxonomy of NLP designs, comparative evaluations, and future directions in NLP.",http://arxiv.org/pdf/2104.10640v3
+8,arxiv,Lite Transformer with Long-Short Range Attention,"Zhanghao Wu,Zhijian Liu,Ji Lin,Yujun Lin,Song Han",2020-04-24 17:52:25+00:00,,"Transformer has become ubiquitous in natural language processing (e.g.,
+machine translation, question answering); however, it requires enormous amount
+of computations to achieve high performance, which makes it not suitable for
+mobile applications that are tightly constrained by the hardware resources and
+battery. In this paper, we present an efficient mobile NLP architecture, Lite
+Transformer to facilitate deploying mobile NLP applications on edge devices.
+The key primitive is the Long-Short Range Attention (LSRA), where one group of
+heads specializes in the local context modeling (by convolution) while another
+group specializes in the long-distance relationship modeling (by attention).
+Such specialization brings consistent improvement over the vanilla transformer
+on three well-established language tasks: machine translation, abstractive
+summarization, and language modeling. Under constrained resources (500M/100M
+MACs), Lite Transformer outperforms transformer on WMT'14 English-French by
+1.2/1.7 BLEU, respectively. Lite Transformer reduces the computation of
+transformer base model by 2.5x with 0.3 BLEU score degradation. Combining with
+pruning and quantization, we further compressed the model size of Lite
+Transformer by 18.2x. For language modeling, Lite Transformer achieves 1.8
+lower perplexity than the transformer at around 500M MACs. Notably, Lite
+Transformer outperforms the AutoML-based Evolved Transformer by 0.5 higher BLEU
+for the mobile NLP setting without the costly architecture search that requires
+more than 250 GPU years. Code has been made available at
+https://github.com/mit-han-lab/lite-transformer.",http://arxiv.org/pdf/2004.11886v1
+9,arxiv,"Transformers: ""The End of History"" for NLP?","Anton Chernyavskiy,Dmitry Ilvovsky,Preslav Nakov",2021-04-09 08:29:42+00:00,ECML-2021,"Recent advances in neural architectures, such as the Transformer, coupled
+with the emergence of large-scale pre-trained models such as BERT, have
+revolutionized the field of Natural Language Processing (NLP), pushing the
+state of the art for a number of NLP tasks. A rich family of variations of
+these models has been proposed, such as RoBERTa, ALBERT, and XLNet, but
+fundamentally, they all remain limited in their ability to model certain kinds
+of information, and they cannot cope with certain information sources, which
+was easy for pre-existing models. Thus, here we aim to shed light on some
+important theoretical limitations of pre-trained BERT-style models that are
+inherent in the general Transformer architecture. First, we demonstrate in
+practice on two general types of tasks -- segmentation and segment labeling --
+and on four datasets that these limitations are indeed harmful and that
+addressing them, even in some very simple and naive ways, can yield sizable
+improvements over vanilla RoBERTa and XLNet models. Then, we offer a more
+general discussion on desiderata for future additions to the Transformer
+architecture that would increase its expressiveness, which we hope could help
+in the design of the next generation of deep NLP architectures.",http://arxiv.org/pdf/2105.00813v2
+10,arxiv,Tea: Program Repair Using Neural Network Based on Program Information Attention Matrix,"Wenshuo Wang,Chen Wu,Liang Cheng,Yang Zhang",2021-07-17 15:49:22+00:00,,"The advance in machine learning (ML)-driven natural language process (NLP)
+points a promising direction for automatic bug fixing for software programs, as
+fixing a buggy program can be transformed to a translation task. While software
+programs contain much richer information than one-dimensional natural language
+documents, pioneering work on using ML-driven NLP techniques for automatic
+program repair only considered a limited set of such information. We
+hypothesize that more comprehensive information of software programs, if
+appropriately utilized, can improve the effectiveness of ML-driven NLP
+approaches in repairing software programs. As the first step towards proving
+this hypothesis, we propose a unified representation to capture the syntax,
+data flow, and control flow aspects of software programs, and devise a method
+to use such a representation to guide the transformer model from NLP in better
+understanding and fixing buggy programs. Our preliminary experiment confirms
+that the more comprehensive information of software programs used, the better
+ML-driven NLP techniques can perform in fixing bugs in these programs.",http://arxiv.org/pdf/2107.08262v1
+11,arxiv,White-box Testing of NLP models with Mask Neuron Coverage,"Arshdeep Sekhon,Yangfeng Ji,Matthew B. Dwyer,Yanjun Qi",2022-05-10 17:07:23+00:00,Findings of NAACL 2022,"Recent literature has seen growing interest in using black-box strategies
+like CheckList for testing the behavior of NLP models. Research on white-box
+testing has developed a number of methods for evaluating how thoroughly the
+internal behavior of deep models is tested, but they are not applicable to NLP
+models. We propose a set of white-box testing methods that are customized for
+transformer-based NLP models. These include Mask Neuron Coverage (MNCOVER) that
+measures how thoroughly the attention layers in models are exercised during
+testing. We show that MNCOVER can refine testing suites generated by CheckList
+by substantially reduce them in size, for more than 60\% on average, while
+retaining failing tests -- thereby concentrating the fault detection power of
+the test suite. Further we show how MNCOVER can be used to guide CheckList
+input generation, evaluate alternative NLP testing methods, and drive data
+augmentation to improve accuracy.",http://arxiv.org/pdf/2205.05050v1
+12,arxiv,PowerNorm: Rethinking Batch Normalization in Transformers,"Sheng Shen,Zhewei Yao,Amir Gholami,Michael W. Mahoney,Kurt Keutzer",2020-03-17 17:50:26+00:00,ICML 2020,"The standard normalization method for neural network (NN) models used in
+Natural Language Processing (NLP) is layer normalization (LN). This is
+different than batch normalization (BN), which is widely-adopted in Computer
+Vision. The preferred use of LN in NLP is principally due to the empirical
+observation that a (naive/vanilla) use of BN leads to significant performance
+degradation for NLP tasks; however, a thorough understanding of the underlying
+reasons for this is not always evident. In this paper, we perform a systematic
+study of NLP transformer models to understand why BN has a poor performance, as
+compared to LN. We find that the statistics of NLP data across the batch
+dimension exhibit large fluctuations throughout training. This results in
+instability, if BN is naively implemented. To address this, we propose Power
+Normalization (PN), a novel normalization scheme that resolves this issue by
+(i) relaxing zero-mean normalization in BN, (ii) incorporating a running
+quadratic mean instead of per batch statistics to stabilize fluctuations, and
+(iii) using an approximate backpropagation for incorporating the running
+statistics in the forward pass. We show theoretically, under mild assumptions,
+that PN leads to a smaller Lipschitz constant for the loss, compared with BN.
+Furthermore, we prove that the approximate backpropagation scheme leads to
+bounded gradients. We extensively test PN for transformers on a range of NLP
+tasks, and we show that it significantly outperforms both LN and BN. In
+particular, PN outperforms LN by 0.4/0.6 BLEU on IWSLT14/WMT14 and 5.6/3.0 PPL
+on PTB/WikiText-103. We make our code publicly available at
+\url{https://github.com/sIncerass/powernorm}.",http://arxiv.org/pdf/2003.07845v2
+13,arxiv,HUBERT Untangles BERT to Improve Transfer across NLP Tasks,"Mehrad Moradshahi,Hamid Palangi,Monica S. Lam,Paul Smolensky,Jianfeng Gao",2019-10-25 06:25:25+00:00,,"We introduce HUBERT which combines the structured-representational power of
+Tensor-Product Representations (TPRs) and BERT, a pre-trained bidirectional
+Transformer language model. We show that there is shared structure between
+different NLP datasets that HUBERT, but not BERT, is able to learn and
+leverage. We validate the effectiveness of our model on the GLUE benchmark and
+HANS dataset. Our experiment results show that untangling data-specific
+semantics from general language structure is key for better transfer among NLP
+tasks.",http://arxiv.org/pdf/1910.12647v2
+14,arxiv,Ontology-Driven Self-Supervision for Adverse Childhood Experiences Identification Using Social Media Datasets,"Jinge Wu,Rowena Smith,Honghan Wu",2022-08-24 12:23:01+00:00,,"Adverse Childhood Experiences (ACEs) are defined as a collection of highly
+stressful, and potentially traumatic, events or circumstances that occur
+throughout childhood and/or adolescence. They have been shown to be associated
+with increased risks of mental health diseases or other abnormal behaviours in
+later lives. However, the identification of ACEs from textual data with Natural
+Language Processing (NLP) is challenging because (a) there are no NLP ready ACE
+ontologies; (b) there are few resources available for machine learning,
+necessitating the data annotation from clinical experts; (c) costly annotations
+by domain experts and large number of documents for supporting large machine
+learning models. In this paper, we present an ontology-driven self-supervised
+approach (derive concept embeddings using an auto-encoder from baseline NLP
+results) for producing a publicly available resource that would support
+large-scale machine learning (e.g., training transformer based large language
+models) on social media corpus. This resource as well as the proposed approach
+are aimed to facilitate the community in training transferable NLP models for
+effectively surfacing ACEs in low-resource scenarios like NLP on clinical notes
+within Electronic Health Records. The resource including a list of ACE ontology
+terms, ACE concept embeddings and the NLP annotated corpus is available at
+https://github.com/knowlab/ACE-NLP.",http://arxiv.org/pdf/2208.11701v1
+15,arxiv,Graph Neural Networks for Natural Language Processing: A Survey,"Lingfei Wu,Yu Chen,Kai Shen,Xiaojie Guo,Hanning Gao,Shucheng Li,Jian Pei,Bo Long",2021-06-10 23:59:26+00:00,,"Deep learning has become the dominant approach in coping with various tasks
+in Natural LanguageProcessing (NLP). Although text inputs are typically
+represented as a sequence of tokens, there isa rich variety of NLP problems
+that can be best expressed with a graph structure. As a result, thereis a surge
+of interests in developing new deep learning techniques on graphs for a large
+numberof NLP tasks. In this survey, we present a comprehensive overview onGraph
+Neural Networks(GNNs) for Natural Language Processing. We propose a new
+taxonomy of GNNs for NLP, whichsystematically organizes existing research of
+GNNs for NLP along three axes: graph construction,graph representation
+learning, and graph based encoder-decoder models. We further introducea large
+number of NLP applications that are exploiting the power of GNNs and summarize
+thecorresponding benchmark datasets, evaluation metrics, and open-source codes.
+Finally, we discussvarious outstanding challenges for making the full use of
+GNNs for NLP as well as future researchdirections. To the best of our
+knowledge, this is the first comprehensive overview of Graph NeuralNetworks for
+Natural Language Processing.",http://arxiv.org/pdf/2106.06090v1
+17,arxiv,Model Explainability in Deep Learning Based Natural Language Processing,"Shafie Gholizadeh,Nengfeng Zhou",2021-06-14 13:23:20+00:00,,"Machine learning (ML) model explainability has received growing attention,
+especially in the area related to model risk and regulations. In this paper, we
+reviewed and compared some popular ML model explainability methodologies,
+especially those related to Natural Language Processing (NLP) models. We then
+applied one of the NLP explainability methods Layer-wise Relevance Propagation
+(LRP) to a NLP classification model. We used the LRP method to derive a
+relevance score for each word in an instance, which is a local explainability.
+The relevance scores are then aggregated together to achieve global variable
+importance of the model. Through the case study, we also demonstrated how to
+apply the local explainability method to false positive and false negative
+instances to discover the weakness of a NLP model. These analysis can help us
+to understand NLP models better and reduce the risk due to the black-box nature
+of NLP models. We also identified some common issues due to the special natures
+of NLP models and discussed how explainability analysis can act as a control to
+detect these issues after the model has been trained.",http://arxiv.org/pdf/2106.07410v1
+18,arxiv,Towards Improving Adversarial Training of NLP Models,"Jin Yong Yoo,Yanjun Qi",2021-09-01 17:14:26+00:00,,"Adversarial training, a method for learning robust deep neural networks,
+constructs adversarial examples during training. However, recent methods for
+generating NLP adversarial examples involve combinatorial search and expensive
+sentence encoders for constraining the generated instances. As a result, it
+remains challenging to use vanilla adversarial training to improve NLP models'
+performance, and the benefits are mainly uninvestigated. This paper proposes a
+simple and improved vanilla adversarial training process for NLP models, which
+we name Attacking to Training (A2T). The core part of A2T is a new and cheaper
+word substitution attack optimized for vanilla adversarial training. We use A2T
+to train BERT and RoBERTa models on IMDB, Rotten Tomatoes, Yelp, and SNLI
+datasets. Our results empirically show that it is possible to train robust NLP
+models using a much cheaper adversary. We demonstrate that vanilla adversarial
+training with A2T can improve an NLP model's robustness to the attack it was
+originally trained with and also defend the model against other types of word
+substitution attacks. Furthermore, we show that A2T can improve NLP models'
+standard accuracy, cross-domain generalization, and interpretability. Code is
+available at https://github.com/QData/Textattack-A2T .",http://arxiv.org/pdf/2109.00544v2
+19,arxiv,Large-Scale News Classification using BERT Language Model: Spark NLP Approach,"Kuncahyo Setyo Nugroho,Anantha Yullian Sukmadewa,Novanto Yudistira",2021-07-14 15:42:15+00:00,"SIET '21: 6th International Conference on Sustainable Information
+  Engineering and Technology 2021","The rise of big data analytics on top of NLP increases the computational
+burden for text processing at scale. The problems faced in NLP are very high
+dimensional text, so it takes a high computation resource. The MapReduce allows
+parallelization of large computations and can improve the efficiency of text
+processing. This research aims to study the effect of big data processing on
+NLP tasks based on a deep learning approach. We classify a big text of news
+topics with fine-tuning BERT used pre-trained models. Five pre-trained models
+with a different number of parameters were used in this study. To measure the
+efficiency of this method, we compared the performance of the BERT with the
+pipelines from Spark NLP. The result shows that BERT without Spark NLP gives
+higher accuracy compared to BERT with Spark NLP. The accuracy average and
+training time of all models using BERT is 0.9187 and 35 minutes while using
+BERT with Spark NLP pipeline is 0.8444 and 9 minutes. The bigger model will
+take more computation resources and need a longer time to complete the tasks.
+However, the accuracy of BERT with Spark NLP only decreased by an average of
+5.7%, while the training time was reduced significantly by 62.9% compared to
+BERT without Spark NLP.",http://arxiv.org/pdf/2107.06785v2
+20,arxiv,Natural Language Processing with Deep Learning for Medical Adverse Event Detection from Free-Text Medical Narratives: A Case Study of Detecting Total Hip Replacement Dislocation,"Alireza Borjali,Martin Magneli,David Shin,Henrik Malchau,Orhun K. Muratoglu,Kartik M. Varadarajan",2020-04-17 16:25:36+00:00,,"Accurate and timely detection of medical adverse events (AEs) from free-text
+medical narratives is challenging. Natural language processing (NLP) with deep
+learning has already shown great potential for analyzing free-text data, but
+its application for medical AE detection has been limited. In this study we
+proposed deep learning based NLP (DL-NLP) models for efficient and accurate hip
+dislocation AE detection following total hip replacement from standard
+(radiology notes) and non-standard (follow-up telephone notes) free-text
+medical narratives. We benchmarked these proposed models with a wide variety of
+traditional machine learning based NLP (ML-NLP) models, and also assessed the
+accuracy of International Classification of Diseases (ICD) and Current
+Procedural Terminology (CPT) codes in capturing these hip dislocation AEs in a
+multi-center orthopaedic registry. All DL-NLP models out-performed all of the
+ML-NLP models, with a convolutional neural network (CNN) model achieving the
+best overall performance (Kappa = 0.97 for radiology notes, and Kappa = 1.00
+for follow-up telephone notes). On the other hand, the ICD/CPT codes of the
+patients who sustained a hip dislocation AE were only 75.24% accurate, showing
+the potential of the proposed model to be used in largescale orthopaedic
+registries for accurate and efficient hip dislocation AE detection to improve
+the quality of care and patient outcome.",http://arxiv.org/pdf/2004.08333v2
+21,arxiv,Few-Shot Learning for Clinical Natural Language Processing Using Siamese Neural Networks,"David Oniani,Sonish Sivarajkumar,Yanshan Wang",2022-08-31 15:36:27+00:00,,"Clinical Natural Language Processing (NLP) has become an emerging technology
+in healthcare that leverages a large amount of free-text data in electronic
+health records (EHRs) to improve patient care, support clinical decisions, and
+facilitate clinical and translational science research. Deep learning has
+achieved state-of-the-art performance in many clinical NLP tasks. However,
+training deep learning models usually require large annotated datasets, which
+are normally not publicly available and can be time-consuming to build in
+clinical domains. Working with smaller annotated datasets is typical in
+clinical NLP and therefore, ensuring that deep learning models perform well is
+crucial for the models to be used in real-world applications. A widely adopted
+approach is fine-tuning existing Pre-trained Language Models (PLMs), but these
+attempts fall short when the training dataset contains only a few annotated
+samples. Few-Shot Learning (FSL) has recently been investigated to tackle this
+problem. Siamese Neural Network (SNN) has been widely utilized as an FSL
+approach in computer vision, but has not been studied well in NLP. Furthermore,
+the literature on its applications in clinical domains is scarce. In this
+paper, we propose two SNN-based FSL approaches for clinical NLP, including
+pre-trained SNN (PT-SNN) and SNN with second-order embeddings (SOE-SNN). We
+evaluated the proposed approaches on two clinical tasks, namely clinical text
+classification and clinical named entity recognition. We tested three few-shot
+settings including 4-shot, 8-shot, and 16-shot learning. Both clinical NLP
+tasks were benchmarked using three PLMs, including BERT, BioBERT, and
+BioClinicalBERT. The experimental results verified the effectiveness of the
+proposed SNN-based FSL approaches in both clinical NLP tasks.",http://arxiv.org/pdf/2208.14923v1
+22,arxiv,A Survey of Methods for Addressing Class Imbalance in Deep-Learning Based Natural Language Processing,"Sophie Henning,William H. Beluch,Alexander Fraser,Annemarie Friedrich",2022-10-10 13:26:40+00:00,,"Many natural language processing (NLP) tasks are naturally imbalanced, as
+some target categories occur much more frequently than others in the real
+world. In such scenarios, current NLP models still tend to perform poorly on
+less frequent classes. Addressing class imbalance in NLP is an active research
+topic, yet, finding a good approach for a particular task and imbalance
+scenario is difficult.
+  With this survey, the first overview on class imbalance in deep-learning
+based NLP, we provide guidance for NLP researchers and practitioners dealing
+with imbalanced data. We first discuss various types of controlled and
+real-world class imbalance. Our survey then covers approaches that have been
+explicitly proposed for class-imbalanced NLP tasks or, originating in the
+computer vision community, have been evaluated on them. We organize the methods
+by whether they are based on sampling, data augmentation, choice of loss
+function, staged learning, or model design. Finally, we discuss open problems
+such as dealing with multi-label scenarios, and propose systematic benchmarking
+and reporting in order to move forward on this problem as a community.",http://arxiv.org/pdf/2210.04675v1
+23,arxiv,Identifying beneficial task relations for multi-task learning in deep neural networks,"Joachim Bingel,Anders Søgaard",2017-02-27 14:37:21+00:00,,"Multi-task learning (MTL) in deep neural networks for NLP has recently
+received increasing interest due to some compelling benefits, including its
+potential to efficiently regularize models and to reduce the need for labeled
+data. While it has brought significant improvements in a number of NLP tasks,
+mixed results have been reported, and little is known about the conditions
+under which MTL leads to gains in NLP. This paper sheds light on the specific
+task relations that can lead to gains from MTL models over single-task setups.",http://arxiv.org/pdf/1702.08303v1
+24,arxiv,Notes on Deep Learning for NLP,Antoine J. -P. Tixier,2018-08-29 12:58:45+00:00,,My notes on Deep Learning for NLP.,http://arxiv.org/pdf/1808.09772v2
+25,arxiv,Natural Language Processing Advancements By Deep Learning: A Survey,"Amirsina Torfi,Rouzbeh A. Shirvani,Yaser Keneshloo,Nader Tavaf,Edward A. Fox",2020-03-02 21:32:05+00:00,,"Natural Language Processing (NLP) helps empower intelligent machines by
+enhancing a better understanding of the human language for linguistic-based
+human-computer communication. Recent developments in computational power and
+the advent of large amounts of linguistic data have heightened the need and
+demand for automating semantic analysis using data-driven approaches. The
+utilization of data-driven strategies is pervasive now due to the significant
+improvements demonstrated through the usage of deep learning methods in areas
+such as Computer Vision, Automatic Speech Recognition, and in particular, NLP.
+This survey categorizes and addresses the different aspects and applications of
+NLP that have benefited from deep learning. It covers core NLP tasks and
+applications and describes how deep learning methods and models advance these
+areas. We further analyze and compare different approaches and state-of-the-art
+models.",http://arxiv.org/pdf/2003.01200v4
+26,arxiv,Order-sensitive Shapley Values for Evaluating Conceptual Soundness of NLP Models,"Kaiji Lu,Anupam Datta",2022-06-01 02:30:12+00:00,,"Previous works show that deep NLP models are not always conceptually sound:
+they do not always learn the correct linguistic concepts. Specifically, they
+can be insensitive to word order. In order to systematically evaluate models
+for their conceptual soundness with respect to word order, we introduce a new
+explanation method for sequential data: Order-sensitive Shapley Values (OSV).
+We conduct an extensive empirical evaluation to validate the method and surface
+how well various deep NLP models learn word order. Using synthetic data, we
+first show that OSV is more faithful in explaining model behavior than
+gradient-based methods. Second, applying to the HANS dataset, we discover that
+the BERT-based NLI model uses only the word occurrences without word orders.
+Although simple data augmentation improves accuracy on HANS, OSV shows that the
+augmented model does not fundamentally improve the model's learning of order.
+Third, we discover that not all sentiment analysis models learn negation
+properly: some fail to capture the correct syntax of the negation construct.
+Finally, we show that pretrained language models such as BERT may rely on the
+absolute positions of subject words to learn long-range Subject-Verb Agreement.
+With each NLP task, we also demonstrate how OSV can be leveraged to generate
+adversarial examples.",http://arxiv.org/pdf/2206.00192v1
+27,arxiv,Multi-Task Learning in Natural Language Processing: An Overview,"Shijie Chen,Yu Zhang,Qiang Yang",2021-09-19 14:51:51+00:00,,"Deep learning approaches have achieved great success in the field of Natural
+Language Processing (NLP). However, deep neural models often suffer from
+overfitting and data scarcity problems that are pervasive in NLP tasks. In
+recent years, Multi-Task Learning (MTL), which can leverage useful information
+of related tasks to achieve simultaneous performance improvement on multiple
+related tasks, has been used to handle these problems. In this paper, we give
+an overview of the use of MTL in NLP tasks. We first review MTL architectures
+used in NLP tasks and categorize them into four classes, including the parallel
+architecture, hierarchical architecture, modular architecture, and generative
+adversarial architecture. Then we present optimization techniques on loss
+construction, data sampling, and task scheduling to properly train a multi-task
+model. After presenting applications of MTL in a variety of NLP tasks, we
+introduce some benchmark datasets. Finally, we make a conclusion and discuss
+several possible research directions in this field.",http://arxiv.org/pdf/2109.09138v1
+28,arxiv,TextAttack: Lessons learned in designing Python frameworks for NLP,"John X. Morris,Jin Yong Yoo,Yanjun Qi",2020-10-05 00:23:00+00:00,,"TextAttack is an open-source Python toolkit for adversarial attacks,
+adversarial training, and data augmentation in NLP. TextAttack unites 15+
+papers from the NLP adversarial attack literature into a single framework, with
+many components reused across attacks. This framework allows both researchers
+and developers to test and study the weaknesses of their NLP models. To build
+such an open-source NLP toolkit requires solving some common problems: How do
+we enable users to supply models from different deep learning frameworks? How
+can we build tools to support as many different datasets as possible? We share
+our insights into developing a well-written, well-documented NLP Python
+framework in hope that they can aid future development of similar packages.",http://arxiv.org/pdf/2010.01724v1
+29,arxiv,How transfer learning impacts linguistic knowledge in deep NLP models?,"Nadir Durrani,Hassan Sajjad,Fahim Dalvi",2021-05-31 17:43:57+00:00,,"Transfer learning from pre-trained neural language models towards downstream
+tasks has been a predominant theme in NLP recently. Several researchers have
+shown that deep NLP models learn non-trivial amount of linguistic knowledge,
+captured at different layers of the model. We investigate how fine-tuning
+towards downstream NLP tasks impacts the learned linguistic knowledge. We carry
+out a study across popular pre-trained models BERT, RoBERTa and XLNet using
+layer and neuron-level diagnostic classifiers. We found that for some GLUE
+tasks, the network relies on the core linguistic information and preserve it
+deeper in the network, while for others it forgets. Linguistic information is
+distributed in the pre-trained language models but becomes localized to the
+lower layers post fine-tuning, reserving higher layers for the task specific
+knowledge. The pattern varies across architectures, with BERT retaining
+linguistic information relatively deeper in the network compared to RoBERTa and
+XLNet, where it is predominantly delegated to the lower layers.",http://arxiv.org/pdf/2105.15179v1
+31,arxiv,Evaluation of BERT and ALBERT Sentence Embedding Performance on Downstream NLP Tasks,"Hyunjin Choi,Judong Kim,Seongho Joe,Youngjune Gwon",2021-01-26 09:14:06+00:00,,"Contextualized representations from a pre-trained language model are central
+to achieve a high performance on downstream NLP task. The pre-trained BERT and
+A Lite BERT (ALBERT) models can be fine-tuned to give state-ofthe-art results
+in sentence-pair regressions such as semantic textual similarity (STS) and
+natural language inference (NLI). Although BERT-based models yield the [CLS]
+token vector as a reasonable sentence embedding, the search for an optimal
+sentence embedding scheme remains an active research area in computational
+linguistics. This paper explores on sentence embedding models for BERT and
+ALBERT. In particular, we take a modified BERT network with siamese and triplet
+network structures called Sentence-BERT (SBERT) and replace BERT with ALBERT to
+create Sentence-ALBERT (SALBERT). We also experiment with an outer CNN
+sentence-embedding network for SBERT and SALBERT. We evaluate performances of
+all sentence-embedding models considered using the STS and NLI datasets. The
+empirical results indicate that our CNN architecture improves ALBERT models
+substantially more than BERT models for STS benchmark. Despite significantly
+fewer model parameters, ALBERT sentence embedding is highly competitive to BERT
+in downstream NLP evaluations.",http://arxiv.org/pdf/2101.10642v1
+32,arxiv,Comparing BERT against traditional machine learning text classification,"Santiago González-Carvajal,Eduardo C. Garrido-Merchán",2020-05-26 20:14:39+00:00,,"The BERT model has arisen as a popular state-of-the-art machine learning
+model in the recent years that is able to cope with multiple NLP tasks such as
+supervised text classification without human supervision. Its flexibility to
+cope with any type of corpus delivering great results has make this approach
+very popular not only in academia but also in the industry. Although, there are
+lots of different approaches that have been used throughout the years with
+success. In this work, we first present BERT and include a little review on
+classical NLP approaches. Then, we empirically test with a suite of experiments
+dealing different scenarios the behaviour of BERT against the traditional
+TF-IDF vocabulary fed to machine learning algorithms. Our purpose of this work
+is to add empirical evidence to support or refuse the use of BERT as a default
+on NLP tasks. Experiments show the superiority of BERT and its independence of
+features of the NLP problem such as the language of the text adding empirical
+evidence to use BERT as a default technique to be used in NLP problems.",http://arxiv.org/pdf/2005.13012v2
+33,arxiv,Clinical Trial Information Extraction with BERT,"Xiong Liu,Greg L. Hersch,Iya Khalil,Murthy Devarakonda",2021-09-11 17:15:10+00:00,,"Natural language processing (NLP) of clinical trial documents can be useful
+in new trial design. Here we identify entity types relevant to clinical trial
+design and propose a framework called CT-BERT for information extraction from
+clinical trial text. We trained named entity recognition (NER) models to
+extract eligibility criteria entities by fine-tuning a set of pre-trained BERT
+models. We then compared the performance of CT-BERT with recent baseline
+methods including attention-based BiLSTM and Criteria2Query. The results
+demonstrate the superiority of CT-BERT in clinical trial NLP.",http://arxiv.org/pdf/2110.10027v1
+34,arxiv,Comparing the Performance of NLP Toolkits and Evaluation measures in Legal Tech,Muhammad Zohaib Khan,2021-03-12 11:06:32+00:00,,"Recent developments in Natural Language Processing have led to the
+introduction of state-of-the-art Neural Language Models, enabled with
+unsupervised transferable learning, using different pretraining objectives.
+While these models achieve excellent results on the downstream NLP tasks,
+various domain adaptation techniques can improve their performance on
+domain-specific tasks. We compare and analyze the pretrained Neural Language
+Models, XLNet (autoregressive), and BERT (autoencoder) on the Legal Tasks.
+Results show that XLNet Model performs better on our Sequence Classification
+task of Legal Opinions Classification, whereas BERT produces better results on
+the NER task. We use domain-specific pretraining and additional legal
+vocabulary to adapt BERT Model further to the Legal Domain. We prepared
+multiple variants of the BERT Model, using both methods and their combination.
+Comparing our variants of the BERT Model, specializing in the Legal Domain, we
+conclude that both additional pretraining and vocabulary techniques enhance the
+BERT model's performance on the Legal Opinions Classification task. Additional
+legal vocabulary improves BERT's performance on the NER task. Combining the
+pretraining and vocabulary techniques further improves the final results. Our
+Legal-Vocab-BERT Model gives the best results on the Legal Opinions Task,
+outperforming the larger pretrained general Language Models, i.e., BERT-Base
+and XLNet-Base.",http://arxiv.org/pdf/2103.11792v1
+35,arxiv,GREEK-BERT: The Greeks visiting Sesame Street,"John Koutsikakis,Ilias Chalkidis,Prodromos Malakasiotis,Ion Androutsopoulos",2020-08-27 09:36:14+00:00,,"Transformer-based language models, such as BERT and its variants, have
+achieved state-of-the-art performance in several downstream natural language
+processing (NLP) tasks on generic benchmark datasets (e.g., GLUE, SQUAD, RACE).
+However, these models have mostly been applied to the resource-rich English
+language. In this paper, we present GREEK-BERT, a monolingual BERT-based
+language model for modern Greek. We evaluate its performance in three NLP
+tasks, i.e., part-of-speech tagging, named entity recognition, and natural
+language inference, obtaining state-of-the-art performance. Interestingly, in
+two of the benchmarks GREEK-BERT outperforms two multilingual Transformer-based
+models (M-BERT, XLM-R), as well as shallower neural baselines operating on
+pre-trained word embeddings, by a large margin (5%-10%). Most importantly, we
+make both GREEK-BERT and our training code publicly available, along with code
+illustrating how GREEK-BERT can be fine-tuned for downstream NLP tasks. We
+expect these resources to boost NLP research and applications for modern Greek.",http://arxiv.org/pdf/2008.12014v2
+36,arxiv,Evaluating Multilingual BERT for Estonian,"Claudia Kittask,Kirill Milintsevich,Kairit Sirts",2020-10-01 14:48:31+00:00,,"Recently, large pre-trained language models, such as BERT, have reached
+state-of-the-art performance in many natural language processing tasks, but for
+many languages, including Estonian, BERT models are not yet available. However,
+there exist several multilingual BERT models that can handle multiple languages
+simultaneously and that have been trained also on Estonian data. In this paper,
+we evaluate four multilingual models -- multilingual BERT, multilingual
+distilled BERT, XLM and XLM-RoBERTa -- on several NLP tasks including POS and
+morphological tagging, NER and text classification. Our aim is to establish a
+comparison between these multilingual BERT models and the existing baseline
+neural models for these tasks. Our results show that multilingual BERT models
+can generalise well on different Estonian NLP tasks outperforming all baselines
+models for POS and morphological tagging and text classification, and reaching
+the comparable level with the best baseline for NER, with XLM-RoBERTa achieving
+the highest results compared with other multilingual models.",http://arxiv.org/pdf/2010.00454v2
+37,arxiv,Breaking BERT: Understanding its Vulnerabilities for Named Entity Recognition through Adversarial Attack,"Anne Dirkson,Suzan Verberne,Wessel Kraaij",2021-09-23 11:47:27+00:00,,"Both generic and domain-specific BERT models are widely used for natural
+language processing (NLP) tasks. In this paper we investigate the vulnerability
+of BERT models to variation in input data for Named Entity Recognition (NER)
+through adversarial attack. Experimental results show that BERT models are
+vulnerable to variation in the entity context with 20.2 to 45.0% of entities
+predicted completely wrong and another 29.3 to 53.3% of entities predicted
+wrong partially. BERT models seem most vulnerable to changes in the local
+context of entities and often a single change is sufficient to fool the model.
+The domain-specific BERT model trained from scratch (SciBERT) is more
+vulnerable than the original BERT model or the domain-specific model that
+retains the BERT vocabulary (BioBERT). We also find that BERT models are
+particularly vulnerable to emergent entities. Our results chart the
+vulnerabilities of BERT models for NER and emphasize the importance of further
+research into uncovering and reducing these weaknesses.",http://arxiv.org/pdf/2109.11308v3
+38,arxiv,Towards Non-task-specific Distillation of BERT via Sentence Representation Approximation,"Bowen Wu,Huan Zhang,Mengyuan Li,Zongsheng Wang,Qihang Feng,Junhong Huang,Baoxun Wang",2020-04-07 03:03:00+00:00,,"Recently, BERT has become an essential ingredient of various NLP deep models
+due to its effectiveness and universal-usability. However, the online
+deployment of BERT is often blocked by its large-scale parameters and high
+computational cost. There are plenty of studies showing that the knowledge
+distillation is efficient in transferring the knowledge from BERT into the
+model with a smaller size of parameters. Nevertheless, current BERT
+distillation approaches mainly focus on task-specified distillation, such
+methodologies lead to the loss of the general semantic knowledge of BERT for
+universal-usability. In this paper, we propose a sentence representation
+approximating oriented distillation framework that can distill the pre-trained
+BERT into a simple LSTM based model without specifying tasks. Consistent with
+BERT, our distilled model is able to perform transfer learning via fine-tuning
+to adapt to any sentence-level downstream task. Besides, our model can further
+cooperate with task-specific distillation procedures. The experimental results
+on multiple NLP tasks from the GLUE benchmark show that our approach
+outperforms other task-specific distillation methods or even much larger
+models, i.e., ELMO, with efficiency well-improved.",http://arxiv.org/pdf/2004.03097v1
+40,arxiv,BoostingBERT:Integrating Multi-Class Boosting into BERT for NLP Tasks,"Tongwen Huang,Qingyun She,Junlin Zhang",2020-09-13 09:07:14+00:00,,"As a pre-trained Transformer model, BERT (Bidirectional Encoder
+Representations from Transformers) has achieved ground-breaking performance on
+multiple NLP tasks. On the other hand, Boosting is a popular ensemble learning
+technique which combines many base classifiers and has been demonstrated to
+yield better generalization performance in many machine learning tasks. Some
+works have indicated that ensemble of BERT can further improve the application
+performance. However, current ensemble approaches focus on bagging or stacking
+and there has not been much effort on exploring the boosting. In this work, we
+proposed a novel Boosting BERT model to integrate multi-class boosting into the
+BERT. Our proposed model uses the pre-trained Transformer as the base
+classifier to choose harder training sets to fine-tune and gains the benefits
+of both the pre-training language knowledge and boosting ensemble in NLP tasks.
+We evaluate the proposed model on the GLUE dataset and 3 popular Chinese NLU
+benchmarks. Experimental results demonstrate that our proposed model
+significantly outperforms BERT on all datasets and proves its effectiveness in
+many NLP tasks. Replacing the BERT base with RoBERTa as base classifier,
+BoostingBERT achieves new state-of-the-art results in several NLP Tasks. We
+also use knowledge distillation within the ""teacher-student"" framework to
+reduce the computational overhead and model storage of BoostingBERT while
+keeping its performance for practical application.",http://arxiv.org/pdf/2009.05959v1
+41,arxiv,LEGAL-BERT: The Muppets straight out of Law School,"Ilias Chalkidis,Manos Fergadiotis,Prodromos Malakasiotis,Nikolaos Aletras,Ion Androutsopoulos",2020-10-06 09:06:07+00:00,,"BERT has achieved impressive performance in several NLP tasks. However, there
+has been limited investigation on its adaptation guidelines in specialised
+domains. Here we focus on the legal domain, where we explore several approaches
+for applying BERT models to downstream legal tasks, evaluating on multiple
+datasets. Our findings indicate that the previous guidelines for pre-training
+and fine-tuning, often blindly followed, do not always generalize well in the
+legal domain. Thus we propose a systematic investigation of the available
+strategies when applying BERT in specialised domains. These are: (a) use the
+original BERT out of the box, (b) adapt BERT by additional pre-training on
+domain-specific corpora, and (c) pre-train BERT from scratch on domain-specific
+corpora. We also propose a broader hyper-parameter search space when
+fine-tuning for downstream tasks and we release LEGAL-BERT, a family of BERT
+models intended to assist legal NLP research, computational law, and legal
+technology applications.",http://arxiv.org/pdf/2010.02559v1
+42,arxiv,The Topological BERT: Transforming Attention into Topology for Natural Language Processing,"Ilan Perez,Raphael Reinauer",2022-06-30 11:25:31+00:00,,"In recent years, the introduction of the Transformer models sparked a
+revolution in natural language processing (NLP). BERT was one of the first text
+encoders using only the attention mechanism without any recurrent parts to
+achieve state-of-the-art results on many NLP tasks.
+  This paper introduces a text classifier using topological data analysis. We
+use BERT's attention maps transformed into attention graphs as the only input
+to that classifier. The model can solve tasks such as distinguishing spam from
+ham messages, recognizing whether a sentence is grammatically correct, or
+evaluating a movie review as negative or positive. It performs comparably to
+the BERT baseline and outperforms it on some tasks.
+  Additionally, we propose a new method to reduce the number of BERT's
+attention heads considered by the topological classifier, which allows us to
+prune the number of heads from 144 down to as few as ten with no reduction in
+performance. Our work also shows that the topological model displays higher
+robustness against adversarial attacks than the original BERT model, which is
+maintained during the pruning process. To the best of our knowledge, this work
+is the first to confront topological-based models with adversarial attacks in
+the context of NLP.",http://arxiv.org/pdf/2206.15195v1
+43,arxiv,Distilling BERT for low complexity network training,Bansidhar Mangalwedhekar,2021-05-13 19:09:22+00:00,,"This paper studies the efficiency of transferring BERT learnings to low
+complexity models like BiLSTM, BiLSTM with attention and shallow CNNs using
+sentiment analysis on SST-2 dataset. It also compares the complexity of
+inference of the BERT model with these lower complexity models and underlines
+the importance of these techniques in enabling high performance NLP models on
+edge devices like mobiles, tablets and MCU development boards like Raspberry Pi
+etc. and enabling exciting new applications.",http://arxiv.org/pdf/2105.06514v1
+44,arxiv,Does Dialog Length matter for Next Response Selection task? An Empirical Study,"Jatin Ganhotra,Sachindra Joshi",2021-01-24 05:39:36+00:00,,"In the last few years, the release of BERT, a multilingual transformer based
+model, has taken the NLP community by storm. BERT-based models have achieved
+state-of-the-art results on various NLP tasks, including dialog tasks. One of
+the limitation of BERT is the lack of ability to handle long text sequence. By
+default, BERT has a maximum wordpiece token sequence length of 512. Recently,
+there has been renewed interest to tackle the BERT limitation to handle long
+text sequences with the addition of new self-attention based architectures.
+However, there has been little to no research on the impact of this limitation
+with respect to dialog tasks. Dialog tasks are inherently different from other
+NLP tasks due to: a) the presence of multiple utterances from multiple
+speakers, which may be interlinked to each other across different turns and b)
+longer length of dialogs. In this work, we empirically evaluate the impact of
+dialog length on the performance of BERT model for the Next Response Selection
+dialog task on four publicly available and one internal multi-turn dialog
+datasets. We observe that there is little impact on performance with long
+dialogs and even the simplest approach of truncating input works really well.",http://arxiv.org/pdf/2101.09647v1
+45,arxiv,Attention Interpretability Across NLP Tasks,"Shikhar Vashishth,Shyam Upadhyay,Gaurav Singh Tomar,Manaal Faruqui",2019-09-24 22:58:44+00:00,,"The attention layer in a neural network model provides insights into the
+model's reasoning behind its prediction, which are usually criticized for being
+opaque. Recently, seemingly contradictory viewpoints have emerged about the
+interpretability of attention weights (Jain & Wallace, 2019; Vig & Belinkov,
+2019). Amid such confusion arises the need to understand attention mechanism
+more systematically. In this work, we attempt to fill this gap by giving a
+comprehensive explanation which justifies both kinds of observations (i.e.,
+when is attention interpretable and when it is not). Through a series of
+experiments on diverse NLP tasks, we validate our observations and reinforce
+our claim of interpretability of attention through manual evaluation.",http://arxiv.org/pdf/1909.11218v1
+47,arxiv,Meta Learning for Natural Language Processing: A Survey,"Hung-yi Lee,Shang-Wen Li,Ngoc Thang Vu",2022-05-03 13:58:38+00:00,,"Deep learning has been the mainstream technique in natural language
+processing (NLP) area. However, the techniques require many labeled data and
+are less generalizable across domains. Meta-learning is an arising field in
+machine learning studying approaches to learn better learning algorithms.
+Approaches aim at improving algorithms in various aspects, including data
+efficiency and generalizability. Efficacy of approaches has been shown in many
+NLP tasks, but there is no systematic survey of these approaches in NLP, which
+hinders more researchers from joining the field. Our goal with this survey
+paper is to offer researchers pointers to relevant meta-learning works in NLP
+and attract more attention from the NLP community to drive future innovation.
+This paper first introduces the general concepts of meta-learning and the
+common approaches. Then we summarize task construction settings and application
+of meta-learning for various NLP problems and review the development of
+meta-learning in NLP community.",http://arxiv.org/pdf/2205.01500v2
+48,arxiv,"Natural Language Processing: State of The Art, Current Trends and Challenges","Diksha Khurana,Aditya Koli,Kiran Khatter,Sukhdev Singh",2017-08-17 06:42:03+00:00,Multimed Tools Appl (2022),"Natural language processing (NLP) has recently gained much attention for
+representing and analysing human language computationally. It has spread its
+applications in various fields such as machine translation, email spam
+detection, information extraction, summarization, medical, and question
+answering etc. The paper distinguishes four phases by discussing different
+levels of NLP and components of Natural Language Generation (NLG) followed by
+presenting the history and evolution of NLP, state of the art presenting the
+various applications of NLP and current trends and challenges.",http://arxiv.org/pdf/1708.05148v1
+49,arxiv,Data-Informed Global Sparseness in Attention Mechanisms for Deep Neural Networks,"Ileana Rugina,Rumen Dangovski,Li Jing,Preslav Nakov,Marin Soljačić",2020-11-20 13:58:21+00:00,,"The attention mechanism is a key component of the neural revolution in
+Natural Language Processing (NLP). As the size of attention-based models has
+been scaling with the available computational resources, a number of pruning
+techniques have been developed to detect and to exploit sparseness in such
+models in order to make them more efficient. The majority of such efforts have
+focused on looking for attention patterns and then hard-coding them to achieve
+sparseness, or pruning the weights of the attention mechanisms based on
+statistical information from the training data. Here, we marry these two lines
+of research by proposing Attention Pruning (AP): a novel pruning framework that
+collects observations about the attention patterns in a fixed dataset and then
+induces a global sparseness mask for the model. This can save 90% of the
+attention computation for language modelling and about 50% for machine
+translation and for solving GLUE tasks, while maintaining the quality of the
+results. Moreover, using our method, we discovered important distinctions
+between self- and cross-attention patterns, which could guide future NLP
+research in attention-based modelling. Our framework can in principle speed up
+any model that uses attention mechanism, thus helping develop better models for
+existing or for new NLP applications. Our implementation is available at
+https://github.com/irugina/AP.",http://arxiv.org/pdf/2012.02030v2
+50,arxiv,Attention Flows: Analyzing and Comparing Attention Mechanisms in Language Models,"Joseph F DeRose,Jiayao Wang,Matthew Berger",2020-09-03 19:56:30+00:00,,"Advances in language modeling have led to the development of deep
+attention-based models that are performant across a wide variety of natural
+language processing (NLP) problems. These language models are typified by a
+pre-training process on large unlabeled text corpora and subsequently
+fine-tuned for specific tasks. Although considerable work has been devoted to
+understanding the attention mechanisms of pre-trained models, it is less
+understood how a model's attention mechanisms change when trained for a target
+NLP task. In this paper, we propose a visual analytics approach to
+understanding fine-tuning in attention-based language models. Our
+visualization, Attention Flows, is designed to support users in querying,
+tracing, and comparing attention within layers, across layers, and amongst
+attention heads in Transformer-based language models. To help users gain
+insight on how a classification decision is made, our design is centered on
+depicting classification-based attention at the deepest layer and how attention
+from prior layers flows throughout words in the input. Attention Flows supports
+the analysis of a single model, as well as the visual comparison between
+pre-trained and fine-tuned models via their similarities and differences. We
+use Attention Flows to study attention mechanisms in various sentence
+understanding tasks and highlight how attention evolves to address the nuances
+of solving these tasks.",http://arxiv.org/pdf/2009.07053v1
+51,arxiv,An Introductory Survey on Attention Mechanisms in NLP Problems,Dichao Hu,2018-11-12 16:19:22+00:00,,"First derived from human intuition, later adapted to machine translation for
+automatic token alignment, attention mechanism, a simple method that can be
+used for encoding sequence data based on the importance score each element is
+assigned, has been widely applied to and attained significant improvement in
+various tasks in natural language processing, including sentiment
+classification, text summarization, question answering, dependency parsing,
+etc. In this paper, we survey through recent works and conduct an introductory
+summary of the attention mechanism in different NLP problems, aiming to provide
+our readers with basic knowledge on this widely used method, discuss its
+different variants for different tasks, explore its association with other
+techniques in machine learning, and examine methods for evaluating its
+performance.",http://arxiv.org/pdf/1811.05544v1
+52,arxiv,Human brain activity for machine attention,"Lukas Muttenthaler,Nora Hollenstein,Maria Barrett",2020-06-09 08:39:07+00:00,,"Cognitively inspired NLP leverages human-derived data to teach machines about
+language processing mechanisms. Recently, neural networks have been augmented
+with behavioral data to solve a range of NLP tasks spanning syntax and
+semantics. We are the first to exploit neuroscientific data, namely
+electroencephalography (EEG), to inform a neural attention model about language
+processing of the human brain. The challenge in working with EEG data is that
+features are exceptionally rich and need extensive pre-processing to isolate
+signals specific to text processing. We devise a method for finding such EEG
+features to supervise machine attention through combining theoretically
+motivated cropping with random forest tree splits. After this dimensionality
+reduction, the pre-processed EEG features are capable of distinguishing two
+reading tasks retrieved from a publicly available EEG corpus. We apply these
+features to regularise attention on relation classification and show that EEG
+is more informative than strong baselines. This improvement depends on both the
+cognitive load of the task and the EEG frequency domain. Hence, informing
+neural attention models with EEG signals is beneficial but requires further
+investigation to understand which dimensions are the most useful across NLP
+tasks.",http://arxiv.org/pdf/2006.05113v2
+54,arxiv,Text Classification based on Multi-granularity Attention Hybrid Neural Network,"Zhenyu Liu,Chaohong Lu,Haiwei Huang,Shengfei Lyu,Zhenchao Tao",2020-08-12 13:02:48+00:00,,"Neural network-based approaches have become the driven forces for Natural
+Language Processing (NLP) tasks. Conventionally, there are two mainstream
+neural architectures for NLP tasks: the recurrent neural network (RNN) and the
+convolution neural network (ConvNet). RNNs are good at modeling long-term
+dependencies over input texts, but preclude parallel computation. ConvNets do
+not have memory capability and it has to model sequential data as un-ordered
+features. Therefore, ConvNets fail to learn sequential dependencies over the
+input texts, but it is able to carry out high-efficient parallel computation.
+As each neural architecture, such as RNN and ConvNets, has its own pro and con,
+integration of different architectures is assumed to be able to enrich the
+semantic representation of texts, thus enhance the performance of NLP tasks.
+However, few investigation explores the reconciliation of these seemingly
+incompatible architectures. To address this issue, we propose a hybrid
+architecture based on a novel hierarchical multi-granularity attention
+mechanism, named Multi-granularity Attention-based Hybrid Neural Network
+(MahNN). The attention mechanism is to assign different weights to different
+parts of the input sequence to increase the computation efficiency and
+performance of neural models. In MahNN, two types of attentions are introduced:
+the syntactical attention and the semantical attention. The syntactical
+attention computes the importance of the syntactic elements (such as words or
+sentence) at the lower symbolic level and the semantical attention is used to
+compute the importance of the embedded space dimension corresponding to the
+upper latent semantics. We adopt the text classification as an exemplifying way
+to illustrate the ability of MahNN to understand texts.",http://arxiv.org/pdf/2008.05282v1
+55,arxiv,Attention is not Explanation,"Sarthak Jain,Byron C. Wallace",2019-02-26 19:59:15+00:00,,"Attention mechanisms have seen wide adoption in neural NLP models. In
+addition to improving predictive performance, these are often touted as
+affording transparency: models equipped with attention provide a distribution
+over attended-to input units, and this is often presented (at least implicitly)
+as communicating the relative importance of inputs. However, it is unclear what
+relationship exists between attention weights and model outputs. In this work,
+we perform extensive experiments across a variety of NLP tasks that aim to
+assess the degree to which attention weights provide meaningful `explanations'
+for predictions. We find that they largely do not. For example, learned
+attention weights are frequently uncorrelated with gradient-based measures of
+feature importance, and one can identify very different attention distributions
+that nonetheless yield equivalent predictions. Our findings show that standard
+attention modules do not provide meaningful explanations and should not be
+treated as though they do. Code for all experiments is available at
+https://github.com/successar/AttentionExplanation.",http://arxiv.org/pdf/1902.10186v3
+56,arxiv,Do Transformer Attention Heads Provide Transparency in Abstractive Summarization?,"Joris Baan,Maartje ter Hoeve,Marlies van der Wees,Anne Schuth,Maarten de Rijke",2019-07-01 06:46:43+00:00,,"Learning algorithms become more powerful, often at the cost of increased
+complexity. In response, the demand for algorithms to be transparent is
+growing. In NLP tasks, attention distributions learned by attention-based deep
+learning models are used to gain insights in the models' behavior. To which
+extent is this perspective valid for all NLP tasks? We investigate whether
+distributions calculated by different attention heads in a transformer
+architecture can be used to improve transparency in the task of abstractive
+summarization. To this end, we present both a qualitative and quantitative
+analysis to investigate the behavior of the attention heads. We show that some
+attention heads indeed specialize towards syntactically and semantically
+distinct input. We propose an approach to evaluate to which extent the
+Transformer model relies on specifically learned attention distributions. We
+also discuss what this implies for using attention distributions as a means of
+transparency.",http://arxiv.org/pdf/1907.00570v2
+57,arxiv,"Summarization, Simplification, and Generation: The Case of Patents","Silvia Casola,Alberto Lavelli",2021-04-30 09:28:29+00:00,"Expert System With Applications, 2022","We survey Natural Language Processing (NLP) approaches to summarizing,
+simplifying, and generating patents' text. While solving these tasks has
+important practical applications - given patents' centrality in the R&D process
+- patents' idiosyncrasies open peculiar challenges to the current NLP state of
+the art. This survey aims at a) describing patents' characteristics and the
+questions they raise to the current NLP systems, b) critically presenting
+previous work and its evolution, and c) drawing attention to directions of
+research in which further work is needed. To the best of our knowledge, this is
+the first survey of generative approaches in the patent domain.",http://arxiv.org/pdf/2104.14860v2
+58,arxiv,Privacy-Preserving Outsourcing of Large-Scale Nonlinear Programming to the Cloud,"Ang Li,Wei Du,Qinghua Li",2018-10-02 03:11:55+00:00,,"The increasing massive data generated by various sources has given birth to
+big data analytics. Solving large-scale nonlinear programming problems (NLPs)
+is one important big data analytics task that has applications in many domains
+such as transport and logistics. However, NLPs are usually too computationally
+expensive for resource-constrained users. Fortunately, cloud computing provides
+an alternative and economical service for resource-constrained users to
+outsource their computation tasks to the cloud. However, one major concern with
+outsourcing NLPs is the leakage of user's private information contained in NLP
+formulations and results. Although much work has been done on
+privacy-preserving outsourcing of computation tasks, little attention has been
+paid to NLPs. In this paper, we for the first time investigate secure
+outsourcing of general large-scale NLPs with nonlinear constraints. A secure
+and efficient transformation scheme at the user side is proposed to protect
+user's private information; at the cloud side, generalized reduced gradient
+method is applied to effectively solve the transformed large-scale NLPs. The
+proposed protocol is implemented on a cloud computing testbed. Experimental
+evaluations demonstrate that significant time can be saved for users and the
+proposed mechanism has the potential for practical use.",http://arxiv.org/pdf/1810.01048v1
+60,arxiv,Label-Dependencies Aware Recurrent Neural Networks,"Yoann Dupont,Marco Dinarelli,Isabelle Tellier",2017-06-06 13:10:49+00:00,,"In the last few years, Recurrent Neural Networks (RNNs) have proved effective
+on several NLP tasks. Despite such great success, their ability to model
+\emph{sequence labeling} is still limited. This lead research toward solutions
+where RNNs are combined with models which already proved effective in this
+domain, such as CRFs. In this work we propose a solution far simpler but very
+effective: an evolution of the simple Jordan RNN, where labels are re-injected
+as input into the network, and converted into embeddings, in the same way as
+words. We compare this RNN variant to all the other RNN models, Elman and
+Jordan RNN, LSTM and GRU, on two well-known tasks of Spoken Language
+Understanding (SLU). Thanks to label embeddings and their combination at the
+hidden layer, the proposed variant, which uses more parameters than Elman and
+Jordan RNNs, but far fewer than LSTM and GRU, is more effective than other
+RNNs, but also outperforms sophisticated CRF models.",http://arxiv.org/pdf/1706.01740v1
+61,arxiv,Multi-cell LSTM Based Neural Language Model,"Thomas Cherian,Akshay Badola,Vineet Padmanabhan",2018-11-15 17:09:53+00:00,,"Language models, being at the heart of many NLP problems, are always of great
+interest to researchers. Neural language models come with the advantage of
+distributed representations and long range contexts. With its particular
+dynamics that allow the cycling of information within the network, `Recurrent
+neural network' (RNN) becomes an ideal paradigm for neural language modeling.
+Long Short-Term Memory (LSTM) architecture solves the inadequacies of the
+standard RNN in modeling long-range contexts. In spite of a plethora of RNN
+variants, possibility to add multiple memory cells in LSTM nodes was seldom
+explored. Here we propose a multi-cell node architecture for LSTMs and study
+its applicability for neural language modeling. The proposed multi-cell LSTM
+language models outperform the state-of-the-art results on well-known Penn
+Treebank (PTB) setup.",http://arxiv.org/pdf/1811.06477v1
+62,arxiv,Empirical Evaluation of RNN Architectures on Sentence Classification Task,"Lei Shen,Junlin Zhang",2016-09-29 01:53:08+00:00,,"Recurrent Neural Networks have achieved state-of-the-art results for many
+problems in NLP and two most popular RNN architectures are Tail Model and
+Pooling Model. In this paper, a hybrid architecture is proposed and we present
+the first empirical study using LSTMs to compare performance of the three RNN
+structures on sentence classification task. Experimental results show that the
+Max Pooling Model or Hybrid Max Pooling Model achieves the best performance on
+most datasets, while Tail Model does not outperform other models.",http://arxiv.org/pdf/1609.09171v2
+63,arxiv,Leap-LSTM: Enhancing Long Short-Term Memory for Text Categorization,"Ting Huang,Gehui Shen,Zhi-Hong Deng",2019-05-28 01:15:11+00:00,,"Recurrent Neural Networks (RNNs) are widely used in the field of natural
+language processing (NLP), ranging from text categorization to question
+answering and machine translation. However, RNNs generally read the whole text
+from beginning to end or vice versa sometimes, which makes it inefficient to
+process long texts. When reading a long document for a categorization task,
+such as topic categorization, large quantities of words are irrelevant and can
+be skipped. To this end, we propose Leap-LSTM, an LSTM-enhanced model which
+dynamically leaps between words while reading texts. At each step, we utilize
+several feature encoders to extract messages from preceding texts, following
+texts and the current word, and then determine whether to skip the current
+word. We evaluate Leap-LSTM on several text categorization tasks: sentiment
+analysis, news categorization, ontology classification and topic
+classification, with five benchmark data sets. The experimental results show
+that our model reads faster and predicts better than standard LSTM. Compared to
+previous models which can also skip words, our model achieves better trade-offs
+between performance and efficiency.",http://arxiv.org/pdf/1905.11558v1
+64,arxiv,Densely Connected Bidirectional LSTM with Applications to Sentence Classification,"Zixiang Ding,Rui Xia,Jianfei Yu,Xiang Li,Jian Yang",2018-02-03 01:40:20+00:00,,"Deep neural networks have recently been shown to achieve highly competitive
+performance in many computer vision tasks due to their abilities of exploring
+in a much larger hypothesis space. However, since most deep architectures like
+stacked RNNs tend to suffer from the vanishing-gradient and overfitting
+problems, their effects are still understudied in many NLP tasks. Inspired by
+this, we propose a novel multi-layer RNN model called densely connected
+bidirectional long short-term memory (DC-Bi-LSTM) in this paper, which
+essentially represents each layer by the concatenation of its hidden state and
+all preceding layers' hidden states, followed by recursively passing each
+layer's representation to all subsequent layers. We evaluate our proposed model
+on five benchmark datasets of sentence classification. DC-Bi-LSTM with depth up
+to 20 can be successfully trained and obtain significant improvements over the
+traditional Bi-LSTM with the same or even less parameters. Moreover, our model
+has promising performance compared with the state-of-the-art approaches.",http://arxiv.org/pdf/1802.00889v1
+65,arxiv,A Convolutional Neural Network for Aspect Sentiment Classification,"Yongping Xing,Chuangbai Xiao,Yifei Wu,Ziming Ding",2018-07-04 09:07:34+00:00,,"With the development of the Internet, natural language processing (NLP), in
+which sentiment analysis is an important task, became vital in information
+processing.Sentiment analysis includes aspect sentiment classification. Aspect
+sentiment can provide complete and in-depth results with increased attention on
+aspect-level. Different context words in a sentence influence the sentiment
+polarity of a sentence variably, and polarity varies based on the different
+aspects in a sentence. Take the sentence, 'I bought a new camera. The picture
+quality is amazing but the battery life is too short.'as an example. If the
+aspect is picture quality, then the expected sentiment polarity is 'positive',
+if the battery life aspect is considered, then the sentiment polarity should be
+'negative'; therefore, aspect is important to consider when we explore aspect
+sentiment in the sentence. Recurrent neural network (RNN) is regarded as a good
+model to deal with natural language processing, and RNNs has get good
+performance on aspect sentiment classification including Target-Dependent LSTM
+(TD-LSTM) ,Target-Connection LSTM (TC-LSTM) (Tang, 2015a, b), AE-LSTM, AT-LSTM,
+AEAT-LSTM (Wang et al., 2016).There are also extensive literatures on sentiment
+classification utilizing convolutional neural network, but there is little
+literature on aspect sentiment classification using convolutional neural
+network. In our paper, we develop attention-based input layers in which aspect
+information is considered by input layer. We then incorporate attention-based
+input layers into convolutional neural network (CNN) to introduce context words
+information. In our experiment, incorporating aspect information into CNN
+improves the latter's aspect sentiment classification performance without using
+syntactic parser or external sentiment lexicons in a benchmark dataset from
+Twitter but get better performance compared with other models.",http://arxiv.org/pdf/1807.01704v1
+66,arxiv,Context-Free Transductions with Neural Stacks,"Yiding Hao,William Merrill,Dana Angluin,Robert Frank,Noah Amsel,Andrew Benz,Simon Mendelsohn",2018-09-08 17:04:53+00:00,,"This paper analyzes the behavior of stack-augmented recurrent neural network
+(RNN) models. Due to the architectural similarity between stack RNNs and
+pushdown transducers, we train stack RNN models on a number of tasks, including
+string reversal, context-free language modelling, and cumulative XOR
+evaluation. Examining the behavior of our networks, we show that
+stack-augmented RNNs can discover intuitive stack-based strategies for solving
+our tasks. However, stack RNNs are more difficult to train than classical
+architectures such as LSTMs. Rather than employ stack-based strategies, more
+complex networks often find approximate solutions by using the stack as
+unstructured memory.",http://arxiv.org/pdf/1809.02836v1
+67,arxiv,Recurrent Neural Network Language Model Adaptation Derived Document Vector,"Wei Li,Brian Kan Wing Mak",2016-11-01 12:14:02+00:00,,"In many natural language processing (NLP) tasks, a document is commonly
+modeled as a bag of words using the term frequency-inverse document frequency
+(TF-IDF) vector. One major shortcoming of the frequency-based TF-IDF feature
+vector is that it ignores word orders that carry syntactic and semantic
+relationships among the words in a document, and they can be important in some
+NLP tasks such as genre classification. This paper proposes a novel distributed
+vector representation of a document: a simple recurrent-neural-network language
+model (RNN-LM) or a long short-term memory RNN language model (LSTM-LM) is
+first created from all documents in a task; some of the LM parameters are then
+adapted by each document, and the adapted parameters are vectorized to
+represent the document. The new document vectors are labeled as DV-RNN and
+DV-LSTM respectively. We believe that our new document vectors can capture some
+high-level sequential information in the documents, which other current
+document representations fail to capture. The new document vectors were
+evaluated in the genre classification of documents in three corpora: the Brown
+Corpus, the BNC Baby Corpus and an artificially created Penn Treebank dataset.
+Their classification performances are compared with the performance of TF-IDF
+vector and the state-of-the-art distributed memory model of paragraph vector
+(PV-DM). The results show that DV-LSTM significantly outperforms TF-IDF and
+PV-DM in most cases, and combinations of the proposed document vectors with
+TF-IDF or PV-DM may further improve performance.",http://arxiv.org/pdf/1611.00196v1
+68,arxiv,Adaptive Noise Injection: A Structure-Expanding Regularization for RNN,"Rui Li,Kai Shuang,Mengyu Gu,Sen Su",2019-07-25 07:58:08+00:00,,"The vanilla LSTM has become one of the most potential architectures in
+word-level language modeling, like other recurrent neural networks, overfitting
+is always a key barrier for its effectiveness. The existing noise-injected
+regularizations introduce the random noises of fixation intensity, which
+inhibits the learning of the RNN throughout the training process. In this
+paper, we propose a new structure-expanding regularization method called
+Adjective Noise Injection (ANI), which considers the output of an extra RNN
+branch as a kind of adaptive noises and injects it into the main-branch RNN
+output. Due to the adaptive noises can be improved as the training processes,
+its negative effects can be weakened and even transformed into a positive
+effect to further improve the expressiveness of the main-branch RNN. As a
+result, ANI can regularize the RNN in the early stage of training and further
+promoting its training performance in the later stage. We conduct experiments
+on three widely-used corpora: PTB, WT2, and WT103, whose results verify both
+the regularization and promoting the training performance functions of ANI.
+Furthermore, we design a series simulation experiments to explore the reasons
+that may lead to the regularization effect of ANI, and we find that in training
+process, the robustness against the parameter update errors can be strengthened
+when the LSTM equipped with ANI.",http://arxiv.org/pdf/1907.10885v2
+69,arxiv,Modeling the spatio-temporal dynamics of land use change with recurrent neural networks,"Guodong Du,Liang Yuan,Kong Joo Shin,Shunsuke Managi",2018-03-29 03:27:50+00:00,,"This study applies recurrent neural networks (RNNs), which are known for its
+ability to process sequential information, to model the spatio-temporal
+dynamics of land use change (LUC) and to forecast annual land use maps of the
+city of Tsukuba, Japan. We develop two categories of RNN models: 1) simple RNN,
+which is the basic RNN variant, 2) three RNN variants with advanced gated
+architecture: long short-term memory (LSTM), LSTM with peephole connection
+(LSTM-peephole), and gated recurrent unit (GRU) models. The four models are
+developed using spatio-temporal data with high temporal resolution, annual data
+for the periods 2000 to 2010, 2011 and 2012 to 2016 are used for training,
+validation and testing, respectively. The predictive performances are evaluated
+using classification metrics (accuracy and F1 score) and the map comparison
+metrics (Kappa simulation and fuzzy Kappa simulation). The results show that
+all RNN models achieve F1 scores higher than 0.55, and Kappa simulations higher
+than 0.47. Out of the four RNN models, LSTM and LSTM-peephole models
+significantly outperform the other two RNN models. Furthermore, LSTM-peephole
+model slightly outperforms the LSTM model. In addition, the results indicate
+that the RNN models with gated architecture, which have better ability to model
+longer temporal dependency, significantly outperform the simple RNN model.
+Moreover, the predictive performance of LSTM-peephole model gradually decreases
+with the decrease of temporal sequential length of the training set. These
+results demonstrate the benefit of taking temporal dependency into account to
+model the LUC process with RNNs.",http://arxiv.org/pdf/1803.10915v2
+70,arxiv,Bi-directional LSTM Recurrent Neural Network for Chinese Word Segmentation,"Yushi Yao,Zheng Huang",2016-02-16 00:45:19+00:00,,"Recurrent neural network(RNN) has been broadly applied to natural language
+processing(NLP) problems. This kind of neural network is designed for modeling
+sequential data and has been testified to be quite efficient in sequential
+tagging tasks. In this paper, we propose to use bi-directional RNN with long
+short-term memory(LSTM) units for Chinese word segmentation, which is a crucial
+preprocess task for modeling Chinese sentences and articles. Classical methods
+focus on designing and combining hand-craft features from context, whereas
+bi-directional LSTM network(BLSTM) does not need any prior knowledge or
+pre-designing, and it is expert in keeping the contextual information in both
+directions. Experiment result shows that our approach gets state-of-the-art
+performance in word segmentation on both traditional Chinese datasets and
+simplified Chinese datasets.",http://arxiv.org/pdf/1602.04874v1
+71,arxiv,"Structured in Space, Randomized in Time: Leveraging Dropout in RNNs for Efficient Training","Anup Sarma,Sonali Singh,Huaipan Jiang,Rui Zhang,Mahmut T Kandemir,Chita R Das",2021-06-22 22:44:32+00:00,,"Recurrent Neural Networks (RNNs), more specifically their Long Short-Term
+Memory (LSTM) variants, have been widely used as a deep learning tool for
+tackling sequence-based learning tasks in text and speech. Training of such
+LSTM applications is computationally intensive due to the recurrent nature of
+hidden state computation that repeats for each time step. While sparsity in
+Deep Neural Nets has been widely seen as an opportunity for reducing
+computation time in both training and inference phases, the usage of non-ReLU
+activation in LSTM RNNs renders the opportunities for such dynamic sparsity
+associated with neuron activation and gradient values to be limited or
+non-existent. In this work, we identify dropout induced sparsity for LSTMs as a
+suitable mode of computation reduction. Dropout is a widely used regularization
+mechanism, which randomly drops computed neuron values during each iteration of
+training. We propose to structure dropout patterns, by dropping out the same
+set of physical neurons within a batch, resulting in column (row) level hidden
+state sparsity, which are well amenable to computation reduction at run-time in
+general-purpose SIMD hardware as well as systolic arrays. We conduct our
+experiments for three representative NLP tasks: language modelling on the PTB
+dataset, OpenNMT based machine translation using the IWSLT De-En and En-Vi
+datasets, and named entity recognition sequence labelling using the CoNLL-2003
+shared task. We demonstrate that our proposed approach can be used to translate
+dropout-based computation reduction into reduced training time, with
+improvement ranging from 1.23x to 1.64x, without sacrificing the target metric.",http://arxiv.org/pdf/2106.12089v1
+72,arxiv,Advanced LSTM: A Study about Better Time Dependency Modeling in Emotion Recognition,"Fei Tao,Gang Liu",2017-10-27 15:29:09+00:00,,"Long short-term memory (LSTM) is normally used in recurrent neural network
+(RNN) as basic recurrent unit. However,conventional LSTM assumes that the state
+at current time step depends on previous time step. This assumption constraints
+the time dependency modeling capability. In this study, we propose a new
+variation of LSTM, advanced LSTM (A-LSTM), for better temporal context
+modeling. We employ A-LSTM in weighted pooling RNN for emotion recognition. The
+A-LSTM outperforms the conventional LSTM by 5.5% relatively. The A-LSTM based
+weighted pooling RNN can also complement the state-of-the-art emotion
+classification framework. This shows the advantage of A-LSTM.",http://arxiv.org/pdf/1710.10197v1
+73,arxiv,Comparative Study of CNN and RNN for Natural Language Processing,"Wenpeng Yin,Katharina Kann,Mo Yu,Hinrich Schütze",2017-02-07 08:33:35+00:00,,"Deep neural networks (DNN) have revolutionized the field of natural language
+processing (NLP). Convolutional neural network (CNN) and recurrent neural
+network (RNN), the two main types of DNN architectures, are widely explored to
+handle various NLP tasks. CNN is supposed to be good at extracting
+position-invariant features and RNN at modeling units in sequence. The state of
+the art on many NLP tasks often switches due to the battle between CNNs and
+RNNs. This work is the first systematic comparison of CNN and RNN on a wide
+range of representative NLP tasks, aiming to give basic guidance for DNN
+selection.",http://arxiv.org/pdf/1702.01923v1
+74,arxiv,Attend and Diagnose: Clinical Time Series Analysis using Attention Models,"Huan Song,Deepta Rajan,Jayaraman J. Thiagarajan,Andreas Spanias",2017-11-10 16:26:14+00:00,,"With widespread adoption of electronic health records, there is an increased
+emphasis for predictive models that can effectively deal with clinical
+time-series data. Powered by Recurrent Neural Network (RNN) architectures with
+Long Short-Term Memory (LSTM) units, deep neural networks have achieved
+state-of-the-art results in several clinical prediction tasks. Despite the
+success of RNNs, its sequential nature prohibits parallelized computing, thus
+making it inefficient particularly when processing long sequences. Recently,
+architectures which are based solely on attention mechanisms have shown
+remarkable success in transduction tasks in NLP, while being computationally
+superior. In this paper, for the first time, we utilize attention models for
+clinical time-series modeling, thereby dispensing recurrence entirely. We
+develop the \textit{SAnD} (Simply Attend and Diagnose) architecture, which
+employs a masked, self-attention mechanism, and uses positional encoding and
+dense interpolation strategies for incorporating temporal order. Furthermore,
+we develop a multi-task variant of \textit{SAnD} to jointly infer models with
+multiple diagnosis tasks. Using the recent MIMIC-III benchmark datasets, we
+demonstrate that the proposed approach achieves state-of-the-art performance in
+all tasks, outperforming LSTM models and classical baselines with
+hand-engineered features.",http://arxiv.org/pdf/1711.03905v2
+75,arxiv,BERT-JAM: Boosting BERT-Enhanced Neural Machine Translation with Joint Attention,"Zhebin Zhang,Sai Wu,Dawei Jiang,Gang Chen",2020-11-09 09:30:37+00:00,,"BERT-enhanced neural machine translation (NMT) aims at leveraging
+BERT-encoded representations for translation tasks. A recently proposed
+approach uses attention mechanisms to fuse Transformer's encoder and decoder
+layers with BERT's last-layer representation and shows enhanced performance.
+However, their method doesn't allow for the flexible distribution of attention
+between the BERT representation and the encoder/decoder representation. In this
+work, we propose a novel BERT-enhanced NMT model called BERT-JAM which improves
+upon existing models from two aspects: 1) BERT-JAM uses joint-attention modules
+to allow the encoder/decoder layers to dynamically allocate attention between
+different representations, and 2) BERT-JAM allows the encoder/decoder layers to
+make use of BERT's intermediate representations by composing them using a gated
+linear unit (GLU). We train BERT-JAM with a novel three-phase optimization
+strategy that progressively unfreezes different components of BERT-JAM. Our
+experiments show that BERT-JAM achieves SOTA BLEU scores on multiple
+translation tasks.",http://arxiv.org/pdf/2011.04266v1
+76,arxiv,BERT-DRE: BERT with Deep Recursive Encoder for Natural Language Sentence Matching,"Ehsan Tavan,Ali Rahmati,Maryam Najafi,Saeed Bibak,Zahed Rahmati",2021-11-03 12:56:13+00:00,,"This paper presents a deep neural architecture, for Natural Language Sentence
+Matching (NLSM) by adding a deep recursive encoder to BERT so called BERT with
+Deep Recursive Encoder (BERT-DRE). Our analysis of model behavior shows that
+BERT still does not capture the full complexity of text, so a deep recursive
+encoder is applied on top of BERT. Three Bi-LSTM layers with residual
+connection are used to design a recursive encoder and an attention module is
+used on top of this encoder. To obtain the final vector, a pooling layer
+consisting of average and maximum pooling is used. We experiment our model on
+four benchmarks, SNLI, FarsTail, MultiNLI, SciTail, and a novel Persian
+religious questions dataset. This paper focuses on improving the BERT results
+in the NLSM task. In this regard, comparisons between BERT-DRE and BERT are
+conducted, and it is shown that in all cases, BERT-DRE outperforms BERT. The
+BERT algorithm on the religious dataset achieved an accuracy of 89.70%, and
+BERT-DRE architectures improved to 90.29% using the same dataset.",http://arxiv.org/pdf/2111.02188v2
+79,arxiv,Segmented Graph-Bert for Graph Instance Modeling,Jiawei Zhang,2020-02-09 04:55:07+00:00,,"In graph instance representation learning, both the diverse graph instance
+sizes and the graph node orderless property have been the major obstacles that
+render existing representation learning models fail to work. In this paper, we
+will examine the effectiveness of GRAPH-BERT on graph instance representation
+learning, which was designed for node representation learning tasks originally.
+To adapt GRAPH-BERT to the new problem settings, we re-design it with a
+segmented architecture instead, which is also named as SEG-BERT (Segmented
+GRAPH-BERT) for reference simplicity in this paper. SEG-BERT involves no
+node-order-variant inputs or functional components anymore, and it can handle
+the graph node orderless property naturally. What's more, SEG-BERT has a
+segmented architecture and introduces three different strategies to unify the
+graph instance sizes, i.e., full-input, padding/pruning and segment shifting,
+respectively. SEG-BERT is pre-trainable in an unsupervised manner, which can be
+further transferred to new tasks directly or with necessary fine-tuning. We
+have tested the effectiveness of SEG-BERT with experiments on seven graph
+instance benchmark datasets, and SEG-BERT can out-perform the comparison
+methods on six out of them with significant performance advantages.",http://arxiv.org/pdf/2002.03283v1
+80,arxiv,Incorporating BERT into Neural Machine Translation,"Jinhua Zhu,Yingce Xia,Lijun Wu,Di He,Tao Qin,Wengang Zhou,Houqiang Li,Tie-Yan Liu",2020-02-17 08:13:36+00:00,,"The recently proposed BERT has shown great power on a variety of natural
+language understanding tasks, such as text classification, reading
+comprehension, etc. However, how to effectively apply BERT to neural machine
+translation (NMT) lacks enough exploration. While BERT is more commonly used as
+fine-tuning instead of contextual embedding for downstream language
+understanding tasks, in NMT, our preliminary exploration of using BERT as
+contextual embedding is better than using for fine-tuning. This motivates us to
+think how to better leverage BERT for NMT along this direction. We propose a
+new algorithm named BERT-fused model, in which we first use BERT to extract
+representations for an input sequence, and then the representations are fused
+with each layer of the encoder and decoder of the NMT model through attention
+mechanisms. We conduct experiments on supervised (including sentence-level and
+document-level translations), semi-supervised and unsupervised machine
+translation, and achieve state-of-the-art results on seven benchmark datasets.
+Our code is available at \url{https://github.com/bert-nmt/bert-nmt}.",http://arxiv.org/pdf/2002.06823v1
+82,arxiv,"BERT has a Mouth, and It Must Speak: BERT as a Markov Random Field Language Model","Alex Wang,Kyunghyun Cho",2019-02-11 19:02:27+00:00,,"We show that BERT (Devlin et al., 2018) is a Markov random field language
+model. This formulation gives way to a natural procedure to sample sentences
+from BERT. We generate from BERT and find that it can produce high-quality,
+fluent generations. Compared to the generations of a traditional left-to-right
+language model, BERT generates sentences that are more diverse but of slightly
+worse quality.",http://arxiv.org/pdf/1902.04094v2
+83,arxiv,Multi-passage BERT: A Globally Normalized BERT Model for Open-domain Question Answering,"Zhiguo Wang,Patrick Ng,Xiaofei Ma,Ramesh Nallapati,Bing Xiang",2019-08-22 02:00:53+00:00,,"BERT model has been successfully applied to open-domain QA tasks. However,
+previous work trains BERT by viewing passages corresponding to the same
+question as independent training instances, which may cause incomparable scores
+for answers from different passages. To tackle this issue, we propose a
+multi-passage BERT model to globally normalize answer scores across all
+passages of the same question, and this change enables our QA model find better
+answers by utilizing more passages. In addition, we find that splitting
+articles into passages with the length of 100 words by sliding window improves
+performance by 4%. By leveraging a passage ranker to select high-quality
+passages, multi-passage BERT gains additional 2%. Experiments on four standard
+benchmarks showed that our multi-passage BERT outperforms all state-of-the-art
+models on all benchmarks. In particular, on the OpenSQuAD dataset, our model
+gains 21.4% EM and 21.5% $F_1$ over all non-BERT models, and 5.8% EM and 6.5%
+$F_1$ over BERT-based models.",http://arxiv.org/pdf/1908.08167v2
+84,arxiv,Multi-CLS BERT: An Efficient Alternative to Traditional Ensembling,"Haw-Shiuan Chang,Ruei-Yao Sun,Kathryn Ricci,Andrew McCallum",2022-10-10 23:15:17+00:00,,"Ensembling BERT models often significantly improves accuracy, but at the cost
+of significantly more computation and memory footprint. In this work, we
+propose Multi-CLS BERT, a novel ensembling method for CLS-based prediction
+tasks that is almost as efficient as a single BERT model. Multi-CLS BERT uses
+multiple CLS tokens with a parameterization and objective that encourages their
+diversity. Thus instead of fine-tuning each BERT model in an ensemble (and
+running them all at test time), we need only fine-tune our single Multi-CLS
+BERT model (and run the one model at test time, ensembling just the multiple
+final CLS embeddings). To test its effectiveness, we build Multi-CLS BERT on
+top of a state-of-the-art pretraining method for BERT (Aroca-Ouellette and
+Rudzicz, 2020). In experiments on GLUE and SuperGLUE we show that our Multi-CLS
+BERT reliably improves both overall accuracy and confidence estimation. When
+only 100 training samples are available in GLUE, the Multi-CLS BERT_Base model
+can even outperform the corresponding BERT_Large model. We analyze the behavior
+of our Multi-CLS BERT, showing that it has many of the same characteristics and
+behavior as a typical BERT 5-way ensemble, but with nearly 4-times less
+computation and memory.",http://arxiv.org/pdf/2210.05043v1
+85,arxiv,"FoundationLayerNorm: Scaling BERT and GPT to 1,000 Layers",Dezhou Shen,2022-04-09 14:03:28+00:00,,"The mainstream BERT/GPT model contains only 10 to 20 layers, and there is
+little literature to discuss the training of deep BERT/GPT. This paper proposes
+a simple yet effective method to stabilize BERT and GPT training. We
+successfully scale up BERT and GPT to 1,000 layers, which is an order of
+magnitude deeper than previous BERT and GPT. The proposed method
+FoundationLayerNormalization enables efficient training of deep neural networks
+and is validated at the 1000-layer scale.",http://arxiv.org/pdf/2204.04477v1
+86,arxiv,BERT's output layer recognizes all hidden layers? Some Intriguing Phenomena and a simple way to boost BERT,"Wei-Tsung Kao,Tsung-Han Wu,Po-Han Chi,Chun-Cheng Hsieh,Hung-Yi Lee",2020-01-25 13:35:34+00:00,,"Although Bidirectional Encoder Representations from Transformers (BERT) have
+achieved tremendous success in many natural language processing (NLP) tasks, it
+remains a black box. A variety of previous works have tried to lift the veil of
+BERT and understand each layer's functionality. In this paper, we found that
+surprisingly the output layer of BERT can reconstruct the input sentence by
+directly taking each layer of BERT as input, even though the output layer has
+never seen the input other than the final hidden layer. This fact remains true
+across a wide variety of BERT-based models, even when some layers are
+duplicated. Based on this observation, we propose a quite simple method to
+boost the performance of BERT. By duplicating some layers in the BERT-based
+models to make it deeper (no extra training required in this step), they obtain
+better performance in the downstream tasks after fine-tuning.",http://arxiv.org/pdf/2001.09309v2
+88,arxiv,POS-BERT: Point Cloud One-Stage BERT Pre-Training,"Kexue Fu,Peng Gao,ShaoLei Liu,Renrui Zhang,Yu Qiao,Manning Wang",2022-04-03 04:49:39+00:00,,"Recently, the pre-training paradigm combining Transformer and masked language
+modeling has achieved tremendous success in NLP, images, and point clouds, such
+as BERT. However, directly extending BERT from NLP to point clouds requires
+training a fixed discrete Variational AutoEncoder (dVAE) before pre-training,
+which results in a complex two-stage method called Point-BERT. Inspired by BERT
+and MoCo, we propose POS-BERT, a one-stage BERT pre-training method for point
+clouds. Specifically, we use the mask patch modeling (MPM) task to perform
+point cloud pre-training, which aims to recover masked patches information
+under the supervision of the corresponding tokenizer output. Unlike Point-BERT,
+its tokenizer is extra-trained and frozen. We propose to use the dynamically
+updated momentum encoder as the tokenizer, which is updated and outputs the
+dynamic supervision signal along with the training process. Further, in order
+to learn high-level semantic representation, we combine contrastive learning to
+maximize the class token consistency between different transformation point
+clouds. Extensive experiments have demonstrated that POS-BERT can extract
+high-quality pre-training features and promote downstream tasks to improve
+performance. Using the pre-training model without any fine-tuning to extract
+features and train linear SVM on ModelNet40, POS-BERT achieves the
+state-of-the-art classification accuracy, which exceeds Point-BERT by 3.5\%. In
+addition, our approach has significantly improved many downstream tasks, such
+as fine-tuned classification, few-shot classification, part segmentation. The
+code and trained-models will be available at:
+\url{https://github.com/fukexue/POS-BERT}.",http://arxiv.org/pdf/2204.00989v1
+90,arxiv,A Survey on Recognizing Textual Entailment as an NLP Evaluation,Adam Poliak,2020-10-06 22:23:00+00:00,,"Recognizing Textual Entailment (RTE) was proposed as a unified evaluation
+framework to compare semantic understanding of different NLP systems. In this
+survey paper, we provide an overview of different approaches for evaluating and
+understanding the reasoning capabilities of NLP systems. We then focus our
+discussion on RTE by highlighting prominent RTE datasets as well as advances in
+RTE dataset that focus on specific linguistic phenomena that can be used to
+evaluate NLP systems on a fine-grained level. We conclude by arguing that when
+evaluating NLP systems, the community should utilize newly introduced RTE
+datasets that focus on specific linguistic phenomena.",http://arxiv.org/pdf/2010.03061v1
+91,arxiv,NusaCrowd: A Call for Open and Reproducible NLP Research in Indonesian Languages,"Samuel Cahyawijaya,Alham Fikri Aji,Holy Lovenia,Genta Indra Winata,Bryan Wilie,Rahmad Mahendra,Fajri Koto,David Moeljadi,Karissa Vincentio,Ade Romadhony,Ayu Purwarianti",2022-07-21 15:05:42+00:00,,"At the center of the underlying issues that halt Indonesian natural language
+processing (NLP) research advancement, we find data scarcity. Resources in
+Indonesian languages, especially the local ones, are extremely scarce and
+underrepresented. Many Indonesian researchers do not publish their dataset.
+Furthermore, the few public datasets that we have are scattered across
+different platforms, thus makes performing reproducible and data-centric
+research in Indonesian NLP even more arduous. Rising to this challenge, we
+initiate the first Indonesian NLP crowdsourcing effort, NusaCrowd. NusaCrowd
+strives to provide the largest datasheets aggregation with standardized data
+loading for NLP tasks in all Indonesian languages. By enabling open and
+centralized access to Indonesian NLP resources, we hope NusaCrowd can tackle
+the data scarcity problem hindering NLP progress in Indonesia and bring NLP
+practitioners to move towards collaboration.",http://arxiv.org/pdf/2207.10524v2
+93,arxiv,An Empirical Survey of Data Augmentation for Limited Data Learning in NLP,"Jiaao Chen,Derek Tam,Colin Raffel,Mohit Bansal,Diyi Yang",2021-06-14 15:27:22+00:00,,"NLP has achieved great progress in the past decade through the use of neural
+models and large labeled datasets. The dependence on abundant data prevents NLP
+models from being applied to low-resource settings or novel tasks where
+significant time, money, or expertise is required to label massive amounts of
+textual data. Recently, data augmentation methods have been explored as a means
+of improving data efficiency in NLP. To date, there has been no systematic
+empirical overview of data augmentation for NLP in the limited labeled data
+setting, making it difficult to understand which methods work in which
+settings. In this paper, we provide an empirical survey of recent progress on
+data augmentation for NLP in the limited labeled data setting, summarizing the
+landscape of methods (including token-level augmentations, sentence-level
+augmentations, adversarial augmentations, and hidden-space augmentations) and
+carrying out experiments on 11 datasets covering topics/news classification,
+inference tasks, paraphrasing tasks, and single-sentence tasks. Based on the
+results, we draw several conclusions to help practitioners choose appropriate
+augmentations in different settings and discuss the current challenges and
+future directions for limited data learning in NLP.",http://arxiv.org/pdf/2106.07499v1
+94,arxiv,A Survey on Awesome Korean NLP Datasets,Byunghyun Ban,2021-10-17 03:24:05+00:00,,"English based datasets are commonly available from Kaggle, GitHub, or
+recently published papers. Although benchmark tests with English datasets are
+sufficient to show off the performances of new models and methods, still a
+researcher need to train and validate the models on Korean based datasets to
+produce a technology or product, suitable for Korean processing. This paper
+introduces 15 popular Korean based NLP datasets with summarized details such as
+volume, license, repositories, and other research results inspired by the
+datasets. Also, I provide high-resolution instructions with sample or
+statistics of datasets. The main characteristics of datasets are presented on a
+single table to provide a rapid summarization of datasets for researchers.",http://arxiv.org/pdf/2112.01624v2
+97,arxiv,End-to-End NLP Knowledge Graph Construction,"Ishani Mondal,Yufang Hou,Charles Jochim",2021-06-02 14:03:06+00:00,,"This paper studies the end-to-end construction of an NLP Knowledge Graph (KG)
+from scientific papers. We focus on extracting four types of relations:
+evaluatedOn between tasks and datasets, evaluatedBy between tasks and
+evaluation metrics, as well as coreferent and related relations between the
+same type of entities. For instance, F1-score is coreferent with F-measure. We
+introduce novel methods for each of these relation types and apply our final
+framework (SciNLP-KG) to 30,000 NLP papers from ACL Anthology to build a
+large-scale KG, which can facilitate automatically constructing scientific
+leaderboards for the NLP community. The results of our experiments indicate
+that the resulting KG contains high-quality information.",http://arxiv.org/pdf/2106.01167v1
+98,arxiv,NLP Methods in Host-based Intrusion Detection Systems: A Systematic Review and Future Directions,"Zarrin Tasnim Sworna,Zahra Mousavi,Muhammad Ali Babar",2022-01-20 09:05:34+00:00,,"The Host-Based Intrusion Detection Systems (HIDS) are widely used for
+defending against cybersecurity attacks. An increasing number of HIDS have
+started leveraging the advances in Natural Language Processing (NLP)
+technologies that have shown promising results in precisely detecting low
+footprint, zero-day attacks and predict attacker's next steps. We conduct a
+systematic review of the literature on NLP-based HIDS in order to build a
+systematized body of knowledge. We develop an NLP-based HIDS taxonomy for
+comparing the features, techniques, attacks, datasets, and metrics found from
+the reviewed papers. We highlight the prevalent practices and the future
+research areas.",http://arxiv.org/pdf/2201.08066v1
+99,arxiv,Location-based Twitter Filtering for the Creation of Low-Resource Language Datasets in Indonesian Local Languages,"Mukhlis Amien,Chong Feng,Heyan Huang",2022-06-15 01:53:43+00:00,,"Twitter contains an abundance of linguistic data from the real world. We
+examine Twitter for user-generated content in low-resource languages such as
+local Indonesian. For NLP to work in Indonesian, it must consider local
+dialects, geographic context, and regional culture influence Indonesian
+languages. This paper identifies the problems we faced when constructing a
+Local Indonesian NLP dataset. Furthermore, we are developing a framework for
+creating, collecting, and classifying Local Indonesian datasets for NLP. Using
+twitter's geolocation tool for automatic annotating.",http://arxiv.org/pdf/2206.07238v1
+100,arxiv,Annotated Dataset Creation through General Purpose Language Models for non-English Medical NLP,"Johann Frei,Frank Kramer",2022-08-30 18:42:55+00:00,,"Obtaining text datasets with semantic annotations is an effortful process,
+yet crucial for supervised training in natural language processsing (NLP). In
+general, developing and applying new NLP pipelines in domain-specific contexts
+for tasks often requires custom designed datasets to address NLP tasks in
+supervised machine learning fashion. When operating in non-English languages
+for medical data processing, this exposes several minor and major,
+interconnected problems such as lack of task-matching datasets as well as
+task-specific pre-trained models. In our work we suggest to leverage pretrained
+language models for training data acquisition in order to retrieve sufficiently
+large datasets for training smaller and more efficient models for use-case
+specific tasks. To demonstrate the effectiveness of your approach, we create a
+custom dataset which we use to train a medical NER model for German texts,
+GPTNERMED, yet our method remains language-independent in principle. Our
+obtained dataset as well as our pre-trained models are publicly available at:
+https://github.com/frankkramer-lab/GPTNERMED",http://arxiv.org/pdf/2208.14493v1
+102,arxiv,ParaShoot: A Hebrew Question Answering Dataset,"Omri Keren,Omer Levy",2021-09-23 11:59:38+00:00,,"NLP research in Hebrew has largely focused on morphology and syntax, where
+rich annotated datasets in the spirit of Universal Dependencies are available.
+Semantic datasets, however, are in short supply, hindering crucial advances in
+the development of NLP technology in Hebrew. In this work, we present
+ParaShoot, the first question answering dataset in modern Hebrew. The dataset
+follows the format and crowdsourcing methodology of SQuAD, and contains
+approximately 3000 annotated examples, similar to other question-answering
+datasets in low-resource languages. We provide the first baseline results using
+recently-released BERT-style models for Hebrew, showing that there is
+significant room for improvement on this task.",http://arxiv.org/pdf/2109.11314v1
+105,arxiv,Attention Is All You Need,"Ashish Vaswani,Noam Shazeer,Niki Parmar,Jakob Uszkoreit,Llion Jones,Aidan N. Gomez,Lukasz Kaiser,Illia Polosukhin",2017-06-12 17:57:34+00:00,,"The dominant sequence transduction models are based on complex recurrent or
+convolutional neural networks in an encoder-decoder configuration. The best
+performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer, based
+solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to be
+superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014
+English-to-German translation task, improving over the existing best results,
+including ensembles by over 2 BLEU. On the WMT 2014 English-to-French
+translation task, our model establishes a new single-model state-of-the-art
+BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction
+of the training costs of the best models from the literature. We show that the
+Transformer generalizes well to other tasks by applying it successfully to
+English constituency parsing both with large and limited training data.",http://arxiv.org/pdf/1706.03762v5
+106,arxiv,"DistilBERT, a distilled version of BERT: smaller, faster, cheaper and lighter","Victor Sanh,Lysandre Debut,Julien Chaumond,Thomas Wolf",2019-10-02 17:56:28+00:00,,"As Transfer Learning from large-scale pre-trained models becomes more
+prevalent in Natural Language Processing (NLP), operating these large models in
+on-the-edge and/or under constrained computational training or inference
+budgets remains challenging. In this work, we propose a method to pre-train a
+smaller general-purpose language representation model, called DistilBERT, which
+can then be fine-tuned with good performances on a wide range of tasks like its
+larger counterparts. While most prior work investigated the use of distillation
+for building task-specific models, we leverage knowledge distillation during
+the pre-training phase and show that it is possible to reduce the size of a
+BERT model by 40%, while retaining 97% of its language understanding
+capabilities and being 60% faster. To leverage the inductive biases learned by
+larger models during pre-training, we introduce a triple loss combining
+language modeling, distillation and cosine-distance losses. Our smaller, faster
+and lighter model is cheaper to pre-train and we demonstrate its capabilities
+for on-device computations in a proof-of-concept experiment and a comparative
+on-device study.",http://arxiv.org/pdf/1910.01108v4
+107,arxiv,RoBERTa: A Robustly Optimized BERT Pretraining Approach,"Yinhan Liu,Myle Ott,Naman Goyal,Jingfei Du,Mandar Joshi,Danqi Chen,Omer Levy,Mike Lewis,Luke Zettlemoyer,Veselin Stoyanov",2019-07-26 17:48:29+00:00,,"Language model pretraining has led to significant performance gains but
+careful comparison between different approaches is challenging. Training is
+computationally expensive, often done on private datasets of different sizes,
+and, as we will show, hyperparameter choices have significant impact on the
+final results. We present a replication study of BERT pretraining (Devlin et
+al., 2019) that carefully measures the impact of many key hyperparameters and
+training data size. We find that BERT was significantly undertrained, and can
+match or exceed the performance of every model published after it. Our best
+model achieves state-of-the-art results on GLUE, RACE and SQuAD. These results
+highlight the importance of previously overlooked design choices, and raise
+questions about the source of recently reported improvements. We release our
+models and code.",http://arxiv.org/pdf/1907.11692v1
+108,acl_anthology,BitFit: Simple Parameter-efficient Fine-tuning for Transformer-based Masked Language-models,"Elad Ben Zaken,Yoav Goldberg,Shauli Ravfogel",5/2022,ACL,"We introduce BitFit, a sparse-finetuning method where only the bias-terms of the model (or a subset of them) are being modified. We show that with small-to-medium training data, applying BitFit on pre-trained BERT models is competitive with (and sometimes better than) fine-tuning the entire model. For larger data, the method is competitive with other sparse fine-tuning methods.Besides their practical utility, these findings are relevant for the question of understanding the commonly-used process of finetuning: they support the hypothesis that finetuning is mainly about exposing knowledge induced by language-modeling training, rather than learning new task-specific linguistic knowledge.",https://aclanthology.org/2022.acl-short.1.pdf
+109,acl_anthology,Analyzing Wrap-Up Effects through an Information-Theoretic Lens,"Clara Meister,Tiago Pimentel,Thomas Clark,Ryan Cotterell,Roger Levy",5/2022,ACL,"Numerous analyses of reading time (RT) data have been undertaken in the effort to learn more about the internal processes that occur during reading comprehension. However, data measured on words at the end of a sentence–or even clause–is often omitted due to the confounding factors introduced by so-called “wrap-up effects,” which manifests as a skewed distribution of RTs for these words. Consequently, the understanding of the cognitive processes that might be involved in these effects is limited. In this work, we attempt to learn more about these processes by looking for the existence–or absence–of a link between wrap-up effects and information theoretic quantities, such as word and context information content. We find that the information distribution of prior context is often predictive of sentence- and clause-final RTs (while not of sentence-medial RTs), which lends support to several prior hypotheses about the processes involved in wrap-up effects.",https://aclanthology.org/2022.acl-short.3.pdf
+110,acl_anthology,On the probability–quality paradox in language generation,"Clara Meister,Gian Wiher,Tiago Pimentel,Ryan Cotterell",5/2022,ACL,"When generating natural language from neural probabilistic models, high probability does not always coincide with high quality: It has often been observed that mode-seeking decoding methods, i.e., those that produce high-probability text under the model, lead to unnatural language. On the other hand, the lower-probability text generated by stochastic methods is perceived as more human-like. In this note, we offer an explanation for this phenomenon by analyzing language generation through an information-theoretic lens. Specifically, we posit that human-like language should contain an amount of information (quantified as negative log-probability) that is close to the entropy of the distribution over natural strings. Further, we posit that language with substantially more (or less) information is undesirable. We provide preliminary empirical evidence in favor of this hypothesis; quality ratings of both human and machine-generated text—covering multiple tasks and common decoding strategies—suggest high-quality text has an information content significantly closer to the entropy than we would expect by chance.",https://aclanthology.org/2022.acl-short.5.pdf
+111,acl_anthology,Voxel-informed Language Grounding,"Rodolfo Corona,Shizhan Zhu,Dan Klein,Trevor Darrell",5/2022,ACL,"Natural language applied to natural 2D images describes a fundamentally 3D world. We present the Voxel-informed Language Grounder (VLG), a language grounding model that leverages 3D geometric information in the form of voxel maps derived from the visual input using a volumetric reconstruction model. We show that VLG significantly improves grounding accuracy on SNARE, an object reference game task.At the time of writing, VLG holds the top place on the SNARE leaderboard, achieving SOTA results with a 2.0% absolute improvement.",https://aclanthology.org/2022.acl-short.7.pdf
+112,acl_anthology,On Efficiently Acquiring Annotations for Multilingual Models,"Joel Moniz,Barun Patra,Matthew Gormley",5/2022,ACL,"When tasked with supporting multiple languages for a given problem, two approaches have arisen: training a model for each language with the annotation budget divided equally among them, and training on a high-resource language followed by zero-shot transfer to the remaining languages. In this work, we show that the strategy of joint learning across multiple languages using a single model performs substantially better than the aforementioned alternatives. We also demonstrate that active learning provides additional, complementary benefits. We show that this simple approach enables the model to be data efficient by allowing it to arbitrate its annotation budget to query languages it is less certain on. We illustrate the effectiveness of our proposed method on a diverse set of tasks: a classification task with 4 languages, a sequence tagging task with 4 languages and a dependency parsing task with 5 languages. Our proposed method, whilst simple, substantially outperforms the other viable alternatives for building a model in a multilingual setting under constrained budgets.",https://aclanthology.org/2022.acl-short.9.pdf
+113,acl_anthology,Does BERT Know that the IS-A Relation Is Transitive?,"Ruixi Lin,Hwee Tou Ng",5/2022,ACL,"The success of a natural language processing (NLP) system on a task does not amount to fully understanding the complexity of the task, typified by many deep learning models. One such question is: can a black-box model make logically consistent predictions for transitive relations? Recent studies suggest that pre-trained BERT can capture lexico-semantic clues from words in the context. However, to what extent BERT captures the transitive nature of some lexical relations is unclear. From a probing perspective, we examine WordNet word senses and the IS-A relation, which is a transitive relation. That is, for senses A, B, and C, A is-a B and B is-a C entail A is-a C. We aim to quantify how much BERT agrees with the transitive property of IS-A relations, via a minimalist probing setting. Our investigation reveals that BERT’s predictions do not fully obey the transitivity property of the IS-A relation.",https://aclanthology.org/2022.acl-short.11.pdf
+114,acl_anthology,Pixie: Preference in Implicit and Explicit Comparisons,"Amanul Haque,Vaibhav Garg,Hui Guo,Munindar Singh",5/2022,ACL,"We present Pixie, a manually annotated dataset for preference classification comprising 8,890 sentences drawn from app reviews. Unlike previous studies on preference classification, Pixie contains implicit (omitting an entity being compared) and indirect (lacking comparative linguistic cues) comparisons. We find that transformer-based pretrained models, finetuned on Pixie, achieve a weighted average F1 score of 83.34% and outperform the existing state-of-the-art preference classification model (73.99%).",https://aclanthology.org/2022.acl-short.13.pdf
+115,acl_anthology,Predicting Difficulty and Discrimination of Natural Language Questions,"Matthew Byrd,Shashank Srivastava",5/2022,ACL,"Item Response Theory (IRT) has been extensively used to numerically characterize question difficulty and discrimination for human subjects in domains including cognitive psychology and education (Primi et al., 2014; Downing, 2003). More recently, IRT has been used to similarly characterize item difficulty and discrimination for natural language models across various datasets (Lalor et al., 2019; Vania et al., 2021; Rodriguez et al., 2021). In this work, we explore predictive models for directly estimating and explaining these traits for natural language questions in a question-answering context. We use HotpotQA for illustration. Our experiments show that it is possible to predict both difficulty and discrimination parameters for new questions, and these traits are correlated with features of questions, answers, and associated contexts. Our findings can have significant implications for the creation of new datasets and tests on the one hand and strategies such as active learning and curriculum learning on the other.",https://aclanthology.org/2022.acl-short.15.pdf
+116,acl_anthology,The Power of Prompt Tuning for Low-Resource Semantic Parsing,"Nathan Schucher,Siva Reddy,Harm de Vries",5/2022,ACL,"Prompt tuning has recently emerged as an effective method for adapting pre-trained language models to a number of language understanding and generation tasks. In this paper, we investigate prompt tuning for semantic parsing—the task of mapping natural language utterances onto formal meaning representations. On the low-resource splits of Overnight and TOPv2, we find that a prompt tuned T5-xl significantly outperforms its fine-tuned counterpart, as well as strong GPT-3 and BART baselines. We also conduct ablation studies across different model scales and target representations, finding that, with increasing model scale, prompt tuned T5 models improve at generating target representations that are far from the pre-training distribution.",https://aclanthology.org/2022.acl-short.17.pdf
+117,acl_anthology,Detecting Annotation Errors in Morphological Data with the Transformer,"Ling Liu,Mans Hulden",5/2022,ACL,"Annotation errors that stem from various sources are usually unavoidable when performing large-scale annotation of linguistic data. In this paper, we evaluate the feasibility of using the Transformer model to detect various types of annotator errors in morphological data sets that contain inflected word forms. We evaluate our error detection model on four languages by introducing three different types of artificial errors in the data: (1) typographic errors, where single characters in the data are inserted, replaced, or deleted; (2) linguistic confusion errors where two inflected forms are systematically swapped; and (3) self-adversarial errors where the Transformer model itself is used to generate plausible-looking, but erroneous forms by retrieving high-scoring predictions from the search beam. Results show that the Transformer model can with perfect, or near-perfect recall detect errors in all three scenarios, even when significant amounts of the annotated data (5%-30%) are corrupted on all languages tested. Precision varies across the languages and types of errors, but is high enough that the model can be very effectively used to flag suspicious entries in large data sets for further scrutiny by human annotators.",https://aclanthology.org/2022.acl-short.19.pdf
+118,acl_anthology,AligNART: Non-autoregressive Neural Machine Translation by Jointly Learning to Estimate Alignment and Translate,"Jongyoon Song,Sungwon Kim,Sungroh Yoon",11/2021,EMNLP,"Non-autoregressive neural machine translation (NART) models suffer from the multi-modality problem which causes translation inconsistency such as token repetition. Most recent approaches have attempted to solve this problem by implicitly modeling dependencies between outputs. In this paper, we introduce AligNART, which leverages full alignment information to explicitly reduce the modality of the target distribution. AligNART divides the machine translation task into (i) alignment estimation and (ii) translation with aligned decoder inputs, guiding the decoder to focus on simplified one-to-one translation. To alleviate the alignment estimation problem, we further propose a novel alignment decomposition method. Our experiments show that AligNART outperforms previous non-iterative NART models that focus on explicit modality reduction on WMT14 En↔De and WMT16 Ro→En. Furthermore, AligNART achieves BLEU scores comparable to those of the state-of-the-art connectionist temporal classification based models on WMT14 En↔De. We also observe that AligNART effectively addresses the token repetition problem even without sequence-level knowledge distillation.",https://aclanthology.org/2021.emnlp-main.1.pdf
+119,acl_anthology,ERNIE-M: Enhanced Multilingual Representation by Aligning Cross-lingual Semantics with Monolingual Corpora,"Xuan Ouyang,Shuohuan Wang,Chao Pang,Yu Sun,Hao Tian,Hua Wu,Haifeng Wang",11/2021,EMNLP,"Recent studies have demonstrated that pre-trained cross-lingual models achieve impressive performance in downstream cross-lingual tasks. This improvement benefits from learning a large amount of monolingual and parallel corpora. Although it is generally acknowledged that parallel corpora are critical for improving the model performance, existing methods are often constrained by the size of parallel corpora, especially for low-resource languages. In this paper, we propose Ernie-M, a new training method that encourages the model to align the representation of multiple languages with monolingual corpora, to overcome the constraint that the parallel corpus size places on the model performance. Our key insight is to integrate back-translation into the pre-training process. We generate pseudo-parallel sentence pairs on a monolingual corpus to enable the learning of semantic alignments between different languages, thereby enhancing the semantic modeling of cross-lingual models. Experimental results show that Ernie-M outperforms existing cross-lingual models and delivers new state-of-the-art results in various cross-lingual downstream tasks. The codes and pre-trained models will be made publicly available.",https://aclanthology.org/2021.emnlp-main.3.pdf
+120,acl_anthology,Translating Headers of Tabular Data: A Pilot Study of Schema Translation,"Kunrui Zhu,Yan Gao,Jiaqi Guo,Jian-Guang Lou",11/2021,EMNLP,"Schema translation is the task of automatically translating headers of tabular data from one language to another. High-quality schema translation plays an important role in cross-lingual table searching, understanding and analysis. Despite its importance, schema translation is not well studied in the community, and state-of-the-art neural machine translation models cannot work well on this task because of two intrinsic differences between plain text and tabular data: morphological difference and context difference. To facilitate the research study, we construct the first parallel dataset for schema translation, which consists of 3,158 tables with 11,979 headers written in 6 different languages, including English, Chinese, French, German, Spanish, and Japanese. Also, we propose the first schema translation model called CAST, which is a header-to-header neural machine translation model augmented with schema context. Specifically, we model a target header and its context as a directed graph to represent their entity types and relations. Then CAST encodes the graph with a relational-aware transformer and uses another transformer to decode the header in the target language. Experiments on our dataset demonstrate that CAST significantly outperforms state-of-the-art neural machine translation models. Our dataset will be released at https://github.com/microsoft/ContextualSP.",https://aclanthology.org/2021.emnlp-main.5.pdf
+121,acl_anthology,Low-Resource Dialogue Summarization with Domain-Agnostic Multi-Source Pretraining,"Yicheng Zou,Bolin Zhu,Xingwu Hu,Tao Gui,Qi Zhang",11/2021,EMNLP,"With the rapid increase in the volume of dialogue data from daily life, there is a growing demand for dialogue summarization. Unfortunately, training a large summarization model is generally infeasible due to the inadequacy of dialogue data with annotated summaries. Most existing works for low-resource dialogue summarization directly pretrain models in other domains, e.g., the news domain, but they generally neglect the huge difference between dialogues and conventional articles. To bridge the gap between out-of-domain pretraining and in-domain fine-tuning, in this work, we propose a multi-source pretraining paradigm to better leverage the external summary data. Specifically, we exploit large-scale in-domain non-summary data to separately pretrain the dialogue encoder and the summary decoder. The combined encoder-decoder model is then pretrained on the out-of-domain summary data using adversarial critics, aiming to facilitate domain-agnostic summarization. The experimental results on two public datasets show that with only limited training data, our approach achieves competitive performance and generalizes well in different dialogue scenarios.",https://aclanthology.org/2021.emnlp-main.7.pdf
+122,acl_anthology,Fine-grained Factual Consistency Assessment for Abstractive Summarization Models,"Sen Zhang,Jianwei Niu,Chuyuan Wei",11/2021,EMNLP,"Factual inconsistencies existed in the output of abstractive summarization models with original documents are frequently presented. Fact consistency assessment requires the reasoning capability to find subtle clues to identify whether a model-generated summary is consistent with the original document. This paper proposes a fine-grained two-stage Fact Consistency assessment framework for Summarization models (SumFC). Given a document and a summary sentence, in the first stage, SumFC selects the top-K most relevant sentences with the summary sentence from the document. In the second stage, the model performs fine-grained consistency reasoning at the sentence level, and then aggregates all sentences’ consistency scores to obtain the final assessment result. We get the training data pairs by data synthesis and adopt contrastive loss of data pairs to help the model identify subtle cues. Experiment results show that SumFC has made a significant improvement over the previous state-of-the-art methods. Our experiments also indicate that SumFC distinguishes detailed differences better.",https://aclanthology.org/2021.emnlp-main.9.pdf
+123,acl_anthology,Multiplex Graph Neural Network for Extractive Text Summarization,"Baoyu Jing,Zeyu You,Tao Yang,Wei Fan,Hanghang Tong",11/2021,EMNLP,"Extractive text summarization aims at extracting the most representative sentences from a given document as its summary. To extract a good summary from a long text document, sentence embedding plays an important role. Recent studies have leveraged graph neural networks to capture the inter-sentential relationship (e.g., the discourse graph) within the documents to learn contextual sentence embedding. However, those approaches neither consider multiple types of inter-sentential relationships (e.g., semantic similarity and natural connection relationships), nor model intra-sentential relationships (e.g, semantic similarity and syntactic relationship among words). To address these problems, we propose a novel Multiplex Graph Convolutional Network (Multi-GCN) to jointly model different types of relationships among sentences and words. Based on Multi-GCN, we propose a Multiplex Graph Summarization (Multi-GraS) model for extractive text summarization. Finally, we evaluate the proposed models on the CNN/DailyMail benchmark dataset to demonstrate effectiveness of our method.",https://aclanthology.org/2021.emnlp-main.11.pdf
+124,acl_anthology,HETFORMER: Heterogeneous Transformer with Sparse Attention for Long-Text Extractive Summarization,"Ye Liu,Jianguo Zhang,Yao Wan,Congying Xia,Lifang He,Philip Yu",11/2021,EMNLP,"To capture the semantic graph structure from raw text, most existing summarization approaches are built on GNNs with a pre-trained model. However, these methods suffer from cumbersome procedures and inefficient computations for long-text documents. To mitigate these issues, this paper proposes HetFormer, a Transformer-based pre-trained model with multi-granularity sparse attentions for long-text extractive summarization. Specifically, we model different types of semantic nodes in raw text as a potential heterogeneous graph and directly learn heterogeneous relationships (edges) among nodes by Transformer. Extensive experiments on both single- and multi-document summarization tasks show that HetFormer achieves state-of-the-art performance in Rouge F1 while using less memory and fewer parameters.",https://aclanthology.org/2021.emnlp-main.13.pdf
+125,acl_anthology,Distantly Supervised Relation Extraction using Multi-Layer Revision Network and Confidence-based Multi-Instance Learning,"Xiangyu Lin,Tianyi Liu,Weijia Jia,Zhiguo Gong",11/2021,EMNLP,"Distantly supervised relation extraction is widely used in the construction of knowledge bases due to its high efficiency. However, the automatically obtained instances are of low quality with numerous irrelevant words. In addition, the strong assumption of distant supervision leads to the existence of noisy sentences in the sentence bags. In this paper, we propose a novel Multi-Layer Revision Network (MLRN) which alleviates the effects of word-level noise by emphasizing inner-sentence correlations before extracting relevant information within sentences. Then, we devise a balanced and noise-resistant Confidence-based Multi-Instance Learning (CMIL) method to filter out noisy sentences as well as assign proper weights to relevant ones. Extensive experiments on two New York Times (NYT) datasets demonstrate that our approach achieves significant improvements over the baselines.",https://aclanthology.org/2021.emnlp-main.15.pdf
+126,acl_anthology,A Partition Filter Network for Joint Entity and Relation Extraction,"Zhiheng Yan,Chong Zhang,Jinlan Fu,Qi Zhang,Zhongyu Wei",11/2021,EMNLP,"In joint entity and relation extraction, existing work either sequentially encode task-specific features, leading to an imbalance in inter-task feature interaction where features extracted later have no direct contact with those that come first. Or they encode entity features and relation features in a parallel manner, meaning that feature representation learning for each task is largely independent of each other except for input sharing. We propose a partition filter network to model two-way interaction between tasks properly, where feature encoding is decomposed into two steps: partition and filter. In our encoder, we leverage two gates: entity and relation gate, to segment neurons into two task partitions and one shared partition. The shared partition represents inter-task information valuable to both tasks and is evenly shared across two tasks to ensure proper two-way interaction. The task partitions represent intra-task information and are formed through concerted efforts of both gates, making sure that encoding of task-specific features is dependent upon each other. Experiment results on six public datasets show that our model performs significantly better than previous approaches. In addition, contrary to what previous work has claimed, our auxiliary experiments suggest that relation prediction is contributory to named entity prediction in a non-negligible way. The source code can be found at https://github.com/Coopercoppers/PFN.",https://aclanthology.org/2021.emnlp-main.17.pdf
+127,acl_anthology,Beta Distribution Guided Aspect-aware Graph for Aspect Category Sentiment Analysis with Affective Knowledge,"Bin Liang,Hang Su,Rongdi Yin,Lin Gui,Min Yang,Qin Zhao,Xiaoqi Yu,Ruifeng Xu",11/2021,EMNLP,"In this paper, we investigate the Aspect Category Sentiment Analysis (ACSA) task from a novel perspective by exploring a Beta Distribution guided aspect-aware graph construction based on external knowledge. That is, we are no longer entangled about how to laboriously search the sentiment clues for coarse-grained aspects from the context, but how to preferably find the words highly related to the aspects in the context and determine their importance based on the public knowledge base. In this way, the contextual sentiment clues can be explicitly tracked in ACSA for the aspects in the light of these aspect-related words. To be specific, we first regard each aspect as a pivot to derive aspect-aware words that are highly related to the aspect from external affective commonsense knowledge. Then, we employ Beta Distribution to educe the aspect-aware weight, which reflects the importance to the aspect, for each aspect-aware word. Afterward, the aspect-aware words are served as the substitutes of the coarse-grained aspect to construct graphs for leveraging the aspect-related contextual sentiment dependencies in ACSA. Experiments on 6 benchmark datasets show that our approach significantly outperforms the state-of-the-art baseline methods.",https://aclanthology.org/2021.emnlp-main.19.pdf
+128,acl_anthology,Social Norms Guide Reference Resolution,"Mitchell Abrams,Matthias Scheutz",7/2022,NAACL,"Humans use natural language, vision, and context to resolve referents in their environment. While some situated reference resolution is trivial, ambiguous cases arise when the language is underspecified or there are multiple candidate referents. This study investigates howpragmatic modulators external to the linguistic content are critical for the correct interpretation of referents in these scenarios. Inparticular, we demonstrate in a human subjects experiment how the social norms applicable in the given context influence theinterpretation of referring expressions. Additionally, we highlight how current coreference tools in natural language processing fail tohandle these ambiguous cases. We also briefly discuss the implications of this work for assistive robots which will routinely need to resolve referents in their environment.",https://aclanthology.org/2022.naacl-main.1.pdf
+129,acl_anthology,Language Model Augmented Monotonic Attention for Simultaneous Translation,"Sathish Reddy Indurthi,Mohd Abbas Zaidi,Beomseok Lee,Nikhil Kumar Lakumarapu,Sangha Kim",7/2022,NAACL,"The state-of-the-art adaptive policies for Simultaneous Neural Machine Translation (SNMT) use monotonic attention to perform read/write decisions based on the partial source and target sequences. The lack of sufficient information might cause the monotonic attention to take poor read/write decisions, which in turn negatively affects the performance of the SNMT model. On the other hand, human translators make better read/write decisions since they can anticipate the immediate future words using linguistic information and domain knowledge. In this work, we propose a framework to aid monotonic attention with an external language model to improve its decisions. Experiments on MuST-C English-German and English-French speech-to-text translation tasks show the future information from the language model improves the state-of-the-art monotonic multi-head attention model further.",https://aclanthology.org/2022.naacl-main.3.pdf
+130,acl_anthology,ErAConD: Error Annotated Conversational Dialog Dataset for Grammatical Error Correction,"Xun Yuan,Derek Pham,Sam Davidson,Zhou Yu",7/2022,NAACL,"Currently available grammatical error correction (GEC) datasets are compiled using essays or other long-form text written by language learners, limiting the applicability of these datasets to other domains such as informal writing and conversational dialog. In this paper, we present a novel GEC dataset consisting of parallel original and corrected utterances drawn from open-domain chatbot conversations; this dataset is, to our knowledge, the first GEC dataset targeted to a human-machine conversational setting. We also present a detailed annotation scheme which ranks errors by perceived impact on comprehension, making our dataset more representative of real-world language learning applications. To demonstrate the utility of the dataset, we use our annotated data to fine-tune a state-of-the-art GEC model. Experimental results show the effectiveness of our data in improving GEC model performance in a conversational scenario.",https://aclanthology.org/2022.naacl-main.5.pdf
+131,acl_anthology,LEA: Meta Knowledge-Driven Self-Attentive Document Embedding for Few-Shot Text Classification,"S. K. Hong,Tae Young Jang",7/2022,NAACL,"Text classification has achieved great success with the prosperity of deep learning and pre-trained language models. However, we often encounter labeled data deficiency problems in real-world text-classification tasks. To overcome such challenging scenarios, interest in few-shot learning has increased, whereas most few-shot text classification studies suffer from a difficulty of utilizing pre-trained language models. In the study, we propose a novel learning method for learning how to attend, called LEA, through which meta-level attention aspects are derived based on our meta-learning strategy. This enables the generation of task-specific document embedding with leveraging pre-trained language models even though a few labeled data instances are given. We evaluate our proposed learning method on five benchmark datasets. The results show that the novel method robustly provides the competitive performance compared to recent few-shot learning methods for all the datasets.",https://aclanthology.org/2022.naacl-main.7.pdf
+132,acl_anthology,Batch-Softmax Contrastive Loss for Pairwise Sentence Scoring Tasks,"Anton Chernyavskiy,Dmitry Ilvovsky,Pavel Kalinin,Preslav Nakov",7/2022,NAACL,"The use of contrastive loss for representation learning has become prominent in computer vision, and it is now getting attention in Natural Language Processing (NLP).Here, we explore the idea of using a batch-softmax contrastive loss when fine-tuning large-scale pre-trained transformer models to learn better task-specific sentence embeddings for pairwise sentence scoring tasks.We introduce and study a number of variations in the calculation of the loss as well as in the overall training procedure; in particular, we find that a special data shuffling can be quite important.Our experimental results show sizable improvements on a number of datasets and pairwise sentence scoring tasks including classification, ranking, and regression.Finally, we offer detailed analysis and discussion, which should be useful for researchers aiming to explore the utility of contrastive loss in NLP.",https://aclanthology.org/2022.naacl-main.9.pdf
+133,acl_anthology,Putting the Con in Context: Identifying Deceptive Actors in the Game of Mafia,"Samee Ibraheem,Gaoyue Zhou,John DeNero",7/2022,NAACL,"While neural networks demonstrate a remarkable ability to model linguistic content, capturing contextual information related to a speaker’s conversational role is an open area of research. In this work, we analyze the effect of speaker role on language use through the game of Mafia, in which participants are assigned either an honest or a deceptive role. In addition to building a framework to collect a dataset of Mafia game records, we demonstrate that there are differences in the language produced by players with different roles. We confirm that classification models are able to rank deceptive players as more suspicious than honest ones based only on their use of language. Furthermore, we show that training models on two auxiliary tasks outperforms a standard BERT-based text classification approach. We also present methods for using our trained models to identify features that distinguish between player roles, which could be used to assist players during the Mafia game.",https://aclanthology.org/2022.naacl-main.11.pdf
+134,acl_anthology,Two Contrasting Data Annotation Paradigms for Subjective NLP Tasks,"Paul Rottger,Bertie Vidgen,Dirk Hovy,Janet Pierrehumbert",7/2022,NAACL,"Labelled data is the foundation of most natural language processing tasks. However, labelling data is difficult and there often are diverse valid beliefs about what the correct data labels should be. So far, dataset creators have acknowledged annotator subjectivity, but rarely actively managed it in the annotation process. This has led to partly-subjective datasets that fail to serve a clear downstream use. To address this issue, we propose two contrasting paradigms for data annotation. The descriptive paradigm encourages annotator subjectivity, whereas the prescriptive paradigm discourages it. Descriptive annotation allows for the surveying and modelling of different beliefs, whereas prescriptive annotation enables the training of models that consistently apply one belief. We discuss benefits and challenges in implementing both paradigms, and argue that dataset creators should explicitly aim for one or the other to facilitate the intended use of their dataset. Lastly, we conduct an annotation experiment using hate speech data that illustrates the contrast between the two paradigms.",https://aclanthology.org/2022.naacl-main.13.pdf
+135,acl_anthology,Knowledge-Grounded Dialogue Generation with a Unified Knowledge Representation,"Yu Li,Baolin Peng,Yelong Shen,Yi Mao,Lars Liden,Zhou Yu,Jianfeng Gao",7/2022,NAACL,"Knowledge-grounded dialogue systems are challenging to build due to the lack of training data and heterogeneous knowledge sources. Existing systems perform poorly on unseen topics due to limited topics covered in the training data. In addition, it is challenging to generalize to the domains that require different types of knowledge sources. To address the above challenges, we present PLUG, a language model that homogenizes different knowledge sources to a unified knowledge representation for knowledge-grounded dialogue generation tasks. We first retrieve relevant information from heterogeneous knowledge sources (e.g., wiki, dictionary, or knowledge graph); Then the retrieved knowledge is transformed into text and concatenated with dialogue history to feed into the language model for generating responses. PLUG is pre-trained on a large-scale knowledge-grounded dialogue corpus. The empirical evaluation on two benchmarks shows that PLUG generalizes well across different knowledge-grounded dialogue tasks. It achieves comparable performance with state-of-the-art methods in the fully-supervised setting and significantly outperforms other approaches in zero-shot and few-shot settings.",https://aclanthology.org/2022.naacl-main.15.pdf
+136,acl_anthology,Political Ideology and Polarization: A Multi-dimensional Approach,"Barea Sinno,Bernardo Oviedo,Katherine Atwell,Malihe Alikhani,Junyi Jessy Li",7/2022,NAACL,"Analyzing ideology and polarization is of critical importance in advancing our grasp of modern politics. Recent research has made great strides towards understanding the ideological bias (i.e., stance) of news media along the left-right spectrum. In this work, we instead take a novel and more nuanced approach for the study of ideology based on its left or right positions on the issue being discussed. Aligned with the theoretical accounts in political science, we treat ideology as a multi-dimensional construct, and introduce the first diachronic dataset of news articles whose ideological positions are annotated by trained political scientists and linguists at the paragraph level. We showcase that, by controlling for the author’s stance, our method allows for the quantitative and temporal measurement and analysis of polarization as a multidimensional ideological distance. We further present baseline models for ideology prediction, outlining a challenging task distinct from stance detection.",https://aclanthology.org/2022.naacl-main.17.pdf
+137,acl_anthology,GlobEnc: Quantifying Global Token Attribution by Incorporating the Whole Encoder Layer in Transformers,"Ali Modarressi,Mohsen Fayyaz,Yadollah Yaghoobzadeh,Mohammad Taher Pilehvar",7/2022,NAACL,"There has been a growing interest in interpreting the underlying dynamics of Transformers. While self-attention patterns were initially deemed as the primary option, recent studies have shown that integrating other components can yield more accurate explanations. This paper introduces a novel token attribution analysis method that incorporates all the components in the encoder block and aggregates this throughout layers. Through extensive quantitative and qualitative experiments, we demonstrate that our method can produce faithful and meaningful global token attributions. Our experiments reveal that incorporating almost every encoder component results in increasingly more accurate analysis in both local (single layer) and global (the whole model) settings. Our global attribution analysis significantly outperforms previous methods on various tasks regarding correlation with gradient-based saliency scores. Our code is freely available at https://github.com/mohsenfayyaz/GlobEnc.",https://aclanthology.org/2022.naacl-main.19.pdf
