@@ -3,3 +3,5 @@ arxiv==1.4.2
 beautifulsoup4==4.11.1
 spacy==3.4.1
 git+https://github.com/titipata/scipdf_parser
+pandas==1.4.4
+numpy==1.23.3
