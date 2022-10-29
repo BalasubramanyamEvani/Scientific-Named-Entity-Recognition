@@ -99,4 +99,4 @@ if __name__ == "__main__":
 
     df = pd.DataFrame.from_dict(res)
     df = df.drop_duplicates()
-    df.to_csv("ner_task_data.csv")
+    df.to_csv("ner_task_pdf_links.csv")
