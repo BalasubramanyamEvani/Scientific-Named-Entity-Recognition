@@ -1,0 +1,193 @@
+Recent studies have demonstrated that pretrained cross-lingual models achieve impressive performance in downstream cross-lingual tasks.
+This improvement benefits from learning a large amount of monolingual and parallel corpora.
+Although it is generally acknowledged that parallel corpora are critical for improving the model performance, existing methods are often constrained by the size of parallel corpora, especially for lowresource languages.
+In this paper, we propose ERNIE-M, a new training method that encourages the model to align the representation of multiple languages with monolingual corpora, to overcome the constraint that the parallel corpus size places on the model performance.
+Our key insight is to integrate back-translation into the pre-training process.
+We generate pseudo-parallel sentence pairs on a monolingual corpus to enable the learning of semantic alignments between different languages, thereby enhancing the semantic modeling of cross-lingual models.
+Experimental results show that ERNIE-M outperforms existing cross-lingual models and delivers new state-of-the-art results in various cross-lingual downstream tasks.
+1    Recent studies have demonstrated that the pretraining of cross-lingual language models can significantly improve their performance in crosslingual natural language processing tasks (Devlin et al., 2018;Lample and Conneau, 2019;.
+Existing pretraining methods include multilingual masked language modeling (MMLM; Devlin et al. 2018) and translation language modeling (TLM; Lample and Conneau 2019), of which the key point is to learn a shared language-invariant feature space among multiple languages.
+MMLM implicitly models the semantic representation of each language in a unified feature space by learning them separately.
+TLM is an extension of MMLM that is trained with a parallel corpus and captures semantic alignment by learning a pair of parallel sentences simultaneously.
+This study shows that the use of parallel corpora can significantly improve the performance in downstream cross-lingual understanding and generation tasks.
+However, the sizes of parallel corpora are limited (Tran et al., 2020), restricting the performance of the cross-lingual language model.
+To overcome the constraint of the parallel corpus size on the model performance, we propose ERNIE-M, a novel cross-lingual pre-training method to learn semantic alignment among multiple languages on monolingual corpora.
+Specifically, we propose cross-attention masked language modeling (CAMLM) to improve the cross-lingual transferability of the model on parallel corpora, and it trains the model to predict the tokens of one language by using another language.
+Then, we utilize the transferability learned from parallel corpora to enhance multilingual representation.
+We propose back-translation masked language modeling (BTMLM) to train the model, and this helps the model to learn sentence alignment from monolingual corpora.
+In BTMLM, a part of the tokens in the input monolingual sentences is predicted into the tokens of another language.
+We then concatenate the predicted tokens and the input sentences as pseudo-parallel sentences to train the model.
+In this way, the model can learn sentence alignment with only monolingual corpora and overcome the constraint of the parallel corpus size while improving the model performance.
+ERNIE-M is implemented on the basis of XLM-R , and we evaluate its performance on five widely used cross-lingual benchmarks:
+XNLI (Conneau et al., 2018) for crosslingual natural language inference, MLQA (Lewis et al., 2019) for cross-lingual question answering, CoNLL (Sang and De Meulder, 2003) for named entity recognition, cross-lingual paraphrase adversaries from word scrambling (PAWS-X)  for cross-lingual paraphrase identification, and Tatoeba  for cross-lingual retrieval.
+The experimental results demonstrate that ERNIE-M outperforms existing cross-lingual models and achieves new state-of-the-art (SoTA) results.
+2 Related Work Existing multilingual language models can be classified into two main categories: (1) discriminative models; (2) generative models.
+In the first category, a multilingual bidirectional encoder representation from transformers (mBERT; Devlin et al. 2018) is pre-trained using MMLM on a monolingual corpus, which learns a shared language-invariant feature space among multiple languages.
+The evaluation results show that the mBERT achieves significant performance in downstream tasks (Wu and Dredze, 2019).
+XLM (Lample and  is extended on the basis of mBERT using TLM, which enables the model to learn cross-lingual token alignment from parallel corpora.
+XLM-R  demonstrates the effects of models when trained on a large-scale corpus.
+It used 2.5T data extracted from Common Crawl  that involves 100 languages for MMLM training.
+The results show that a large-scale training corpus can significantly improve the performance of the cross-lingual model.
+Unicoder (Huang et al., 2019) achieves gains on downstream tasks by employing a multitask learning framework to learn cross-lingual semantic representations with monolingual and parallel corpora.
+ALM (Yang et al., 2020) improves the model's transferability by enabling the model to learn cross-lingual code-switch sentences.
+IN-FOXLM (Chi et al., 2020b) adds a contrastive learning task for cross-lingual model training.
+HICTL  learns cross-lingual semantic representation from multiple facets (at word-levels and sentence-levels) to improve the performance of cross-lingual models.
+VECO  presents a variable encoder-decoder framework to unify the understanding and generation tasks and achieves significant improvement in both downstream tasks.
+The second category includes MASS (Song et al., 2019), mBART , XNLG (Chi et al., 2020a) and mT5 (Xue et al., 2020).
+MASS (Vaswani et al., 2017) proposed a training objective for restore the input sentences in which successive token fragments are masked which improved the model's performance on machine translation.
+Similar to MASS, mBART pre-trains a denoised sequence-to-sequence model and uses an autoregressive task to train the model.
+XNLG focuses on multilingual question generation and abstractive summarization and updates the parameters of the encoder and decoder through auto-encoding and autoregressive tasks.
+mT5 uses the same model structure and pre-training method as T5 (Raffel et al., 2019), and extends the parameters of the cross-lingual model to 13B, significantly improving the performance of the cross-language downstream tasks.
+Back translation (BT) is an effective neuralnetwork-based machine translation method proposed by Sennrich et al. (2015).
+It can significantly improve the performance of both supervised and unsupervised machine translation via augment the parallel training corpus (Lample et al., 2017;Edunov et al., 2018).
+BT has been found to particularly useful when the parallel corpus is sparse (Karakanta et al., 2018).
+Predicting the token of the target language in one batch can also improve the speed of non-auto regressive machine translation (NAT; Gu et al. 2017;Wang
+et al. 2019a).
+Our work is inspired by NAT and BT.
+We generate the tokens of another language in batches and then use these in pre-training to help sentence alignment learning.
+In this section, we first introduce the general workflow of ERNIE-M and then present the details of the model training.
+To learn the alignment of cross-lingual semantic representations in parallel corpora, we propose a new pre-training objective, CAMLM.
+We denote a parallel sentence pair as <source sentence, target sentence>.
+In CAMLM, we learn the multilingual semantic representation by restoring the MASK token in the input sentences.
+When the model restores the MASK token in the source sentence, the model can only rely on the semantics of the target sentence, which means that the model has to learn how to represent the source language with the semantics of the target sentence and thus align the semantics of multiple languages.
+Figure 1 (b) and (c) show the differences between TLM (Lample and Conneau, 2019) and CAMLM.
+TLM learns the semantic alignment between languages with both the source and target sentences while CAMLM only relies on one side of the sentence to restore the MASK token.
+The advantage of CAMLM is that it avoids the information leakage that the model can attend to a pair of input sentences at the same time, which makes learning of BTMLM possible.
+The selfattention matrix of the example in Figure 1 is shown in Figure 2.
+For TLM, the prediction of the MASK token relies on the input sentence pair.
+When the model learns CAMLM, the model can only predict the MASK token based on the sentence of its corresponding parallel sentence and the MASK symbol of this sentence, which provides the position and language information.
+Thus, the probability of the MASK token M 2 is p(x 2 |M 2 , y 4 , y 5 , y 6 , y 7 ), p(y 5 |x 1 , x 2 , x 3 , M 5 ) for M 5 , and p(y Given the input in a bilingual corpus 6 |x 1 , x 2 , x 3 , M 6 ) for M 6 in CAMLM.
+M2 x 3 y 4 y7 x1 M 2 x3 y4 M 5 M 6 y7 M5 M6 x 2 y5 y6 x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 (a) MMLM x1
+M2 x 3 y 4 y7 x1 M 2 x3 y4
+M 5 M 6 y7 M5 M6 x 2 y5 y6
+x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 (b) TLM x1
+M2 x 3 y 4 y7 x1 M 2 x3 y4
+M 5 M 6 y7 M5 M6 x 2 y5 y6
+x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 x1
+M 2 x3 y4
+M 5 M 6 y7 x2 y5 y6 (c) CAMLM X src = {x 1 , x 2 , • • • , x s }, and its corresponding MASK po- sition, M src = {m 1 , m 2 , • • • , m ms }, the tar- get sentence is X tgt = {x s+1 , x s+2 , • • • , x s+t }, and its corresponding MASK position is M tgt = {m ms+1 , m ms+2 , • • • , m ms+mt }.
+In TLM, the model can attend to the tokens in the source and target sentences, so the probability of masked tokens is m∈M p(x m |X/ M ), where M = M src ∪ M tgt .
+M denotes all input tokens x in X except x in M , where X = X src ∪ X tgt .
+x m denotes the token with position m. In CAMLM, the probability of the MASK token in the source sentence is m∈Msrc p(x m |X/ M ∪Xsrc ), which means that when predicting the MASK tokens in the source sentence, we only focus on the target sentence.
+As for the target sentence, the probability of the MASK token is m∈Mtgt
+p(x m |X/ M ∪Xtgt ), which means that the MASK tokens in the target sentence will be predicted based only on the source sentence.
+Therefore, the model must learn to use the corresponding sentence to predict and learn the alignment across multiple languages.
+The pre-training loss of CAMLM in the source/target sentence is L CAM LM (src) =
+− x∈D B log m∈Msrc
+p(x m |X/ M ∪Xsrc ) L CAM LM (tgt) =
+− x∈D B log m∈Mtgt p(x m |X/ M ∪Xtgt ) where D B is the bilingual training corpus.
+The CAMLM loss is L CAM LM =
+L CAM LM (src) + L CAM LM (tgt) To overcome the constraint that the parallel corpus size places on the model performance, we propose a novel pre-training objective inspired by NAT (Gu et al., 2017;Wang et al., 2019a) and BT methods called BTMLM to align cross-lingual semantics with the monolingual corpus.
+We use BTMLM to train our model, which builds on the transferability learned through CAMLM, generating pseudoparallel sentences from the monolingual sentences and the generated pseudo-parallel sentences are then used as the input of the model to align the cross-lingual semantics, thus enhancing the multilingual representation.
+The training process for BTMLM is shown in Figure 3.
+The learning process for the BTMLM is divided into two stages.
+Stage 1 involves the generation of pseudo-parallel tokens from monolingual corpora.
+Specifically, we fill in several placeholder MASK at the end of the monolingual sentence to indicate the location and the language we want to generate, and let the model generate its corresponding parallel language token based on the original monolingual sentence and the corresponding position of the pseudo-token.
+In this way, we generate the tokens of another language from the monolingual sentence, which will be used in learning cross-lingual semantic alignment for multiple languages.
+The self-attention matrix for generating pseudotokens in Figure 3 is shown in Figure 4.
+In the pseudo-token generating process, the model can only attend to the source sentence and the placeholder MASK tokens, which indicate the language and position we want to predict by using language embedding and position embedding.
+The probability of mask token M 5 is p(y 5 |x 1 , x 2 , x 3 , x 4 , M 5 ), p(y 6 |x 1 , x 2 , x 3 , x 4 , M 6 ) for M 6 and p(y 7 |x 1 , x 2 , x 3 , x 4 , M 7 ) for M 7 .
+Stage 2 uses the pseudo-tokens generated in Stage 1 to learn the cross-lingual semantics alignment.
+The process in Stage 2 is shown in the righthand diagram of Figure 3.
+In the training process of Stage 2, the input of the model is the concatenation of the monolingual sentences and the generated pseudo-parallel tokens, and the learning objective is to restore the MASK tokens based on the original sentences and the generated pseudo-parallel tokens.
+Because the model can rely not only on the input monolingual sentence but also the generated pseudo-tokens in the process of inference MASK to-kens, the model can explicitly learn the alignment of the cross-lingual semantic representation from the monolingual sentences.
+The learning process of the BTMLM can be interpreted as follows: given the input in monolin- gual corpora X = {x 1 , x 2 , • • • , x s }, the positions of masked tokens M = {m 1 , m 2 , • • • , m m } and the position of the pseudo-token to be predicted, M pseudo = {m s+1 , m s+2 , • • • , m s+p }, we first generate pseudo-tokens P = {h s+1 , h s+2 , • • • , h s+p }, as described earlier; we then concatenate the generated pseudo-token with input monolingual sentence as a new parallel sentence pair and use it to train our model.
+Thus, the probability of the masked tokens in BTMLM is m∈M p(x m |X/ M , P ), where X/ M denotes all input tokens x in X except x in M .
+The pre-training loss of BTMLM is L BT M LM =
+− x∈D M log m∈M p(x m |X/ M , P )
+where D M is the monolingual training corpus.
+We consider five cross-lingual evaluation benchmarks: XNLI for cross-lingual natural language inference, MLQA for cross-lingual question answering, CoNLL for cross-lingual named entity recognition, PAWS-X for cross-lingual paraphrase identification, and Tatoeba for cross-lingual retrieval.
+Next, we first describe the data and pre-training details and then compare the ERNIE-M with the existing state-of-the-art models.
+ERNIE-M is trained with monolingual and parallel corpora that involved 96 languages.
+For the monolingual corpus, we extract it from CC-100 according to ; .
+For the bilingual corpus, we use the same corpus as INFOXLM (Chi et al., 2020b), including MultiUN (Ziemski et al., 2016), IIT Bombay (Kunchukuttan et al., 2017), OPUS (Tiedemann, 2012), and WikiMatrix  We use a transformer-encoder (Vaswani et al., 2017) as the backbone of the model.
+For the ERNIE-M BASE model, we adopt a structure with 12 layers, 768 hidden units, 12 heads.
+For ERNIE-M LARGE model , we adopt a structure with 24 layers, 1024 hidden units, 16 heads.
+The activation function used is GeLU (Hendrycks and Gimpel, 2016).
+Following Chi et al. 2020b and, we initialize the parameters of ERNIE-M with XLM-R. We use the Adam optimizer (Kingma and Ba, 2014) to train ERNIE-M; the learning rate is scheduled with a linear decay with 10K warm-up steps, and the peak learning rate is 2e − 4 for the base model and 1e
+− 4 for the large model.
+We conduct the pre-training experiments using 64 Nvidia V100-32GB GPUs with 2048 batch size and 512 max length.
+Cross-lingual Natural Language Inference.
+The cross-lingual natural language inference (XNLI; Conneau et al. 2018) task is a multilingual language inference task.
+The goal of XNLI is to determine the relationship between the two input sentences.
+We evaluate ERNIE-M in (1) cross-lingual transfer (Conneau et al., 2018) setting: fine-tune the model with an English training set and evaluate the foreign language XNLI test and
+(2) translatetrain-all (Huang et al., 2019) setting: fine-tune the model on the concatenation of all other languages and evaluate on each language test set.
+Table 1 shows the results of ERNIE-M in XNLI task.
+The result shows that ERNIE-M outperforms all baseline models including XLM (Lample and Conneau, 2019) Named Entity Recognition.
+For the namedentity-recognition task, we evaluate ERNIE-M on the CoNLL-2002and CoNLL-2003datasets (Sang and De Meulder, 2003, which is a cross-lingual named-entity-recognition task including English, Dutch, Spanish and German.
+We consider ERNIE-M in the following setting: (1) fine-tune on the    , and (Wu and Dredze, 2019), respectively.
+English dataset and evaluate on each cross-lingual dataset to evaluate cross-lingual transfer and (2) fine-tune on all training datasets to evaluate crosslingual learning.
+For each setting, we reported the F1 score for each language.
+Table 2 shows the results of ERNIE-M, XLM-R, and mBERT on CoNLL-2002 andCoNLL-2003.
+The results of XLM-R and mBERT are reported from .
+ERNIE-M model yields SoTA performance on both settings and outperforms XLM-R by 0.45 F1 when trained on English and 0.70 F1 when trained on all languages in the base model.
+Similar to the performance in the XNLI task, ERNIE-M shows better performance on low-resource languages.
+For large models and finetune in all languages setting, ERNIE-M is 2.21 F1 higher than SoTA in Dutch (nl) and 1.6 F1 higher than SoTA in German (de).
+Cross-lingual Question Answering.
+For the question answering task, we use a multilingual question answering (MLQA) dataset to evaluate ERNIE-M. MLQA has the same format as SQuAD v1.1 (Rajpurkar et al., 2016) and is a multilingual language question answering task composed of seven languages.
+We fine-tune ERNIE-M by training on English data and evaluating on seven crosslingual datasets.
+The fine-tune method is the same as in Lewis et al. (2019), which concatenates the question-passage pair as the input.
+Table 3 presents a comparison of ERNIE-M and several baseline models on MLQA.
+We report the F1 and extract match (EM) scores based on the average over five runs.
+The performance of ERNIE-M in MLQA is significantly better than the previous models, and it achieves a SoTA score.
+We outperform INFOXLM 0.8 in F1 and 0.5 in EM.
+Cross-lingual Paraphrase Identification.
+For cross-lingual paraphrase identification task, we use the PAWS-X  dataset to evaluate our model.
+The goal of PAWS-X was to determine whether two sentences were paraphrases.
+We evaluate ERNIE-M on both the cross-lingual transfer setting and translate-train-all setting.
+Table 4 shows a comparison of ERNIE-M and various baseline models on PAWS-X.
+We report the accuracy score on each language test set based on the average over five runs.
+The results show that     and , respectively.
+Cross-lingual Sentence Retrieval.
+The goal of the cross-lingual sentence retrieval task was to extract parallel sentences from bilingual corpora.
+We used a subset of the Tatoeba  dataset, which contains 36 language pairs to evaluate ERNIE-M. Following , we used the averaged representation in the middle layer of the best XNLI model to evaluate the retrieval task.
+Table 5 shows the results of ERNIE-M in the retrieval task; XLM-R results are reported from .
+ERNIE-M achieves a score of 87.9 in the Tatoeba dataset, outperforming VECO 1.0 and obtaining new SoTA results.
+XLM-R LARGE
+To further evaluate the performance of ERNIE-M in retrieval task, we use hardest negative binary cross-entropy loss (Wang et al., 2019b;Faghri
+et al., 2017) to fine-tune ERNIE-M with the same bilingual corpus in pre-training.
+Figure 5 shows the details of accuracy on each language in Tatoeba.
+After fine-tuning, ERNIE-M shows a significant improvement in all languages, with the average accuracy in all languages increasing from 87.9 to 93.3.
+To understand the effect of aligning semantic representations of multiple languages in the training process of ERNIE-M, we conducted an ablation study as reported in Table 6.
+Comparing exp 0 and exp 1 , we can observer that there is no gain in the performance of the crosslingual model by continuing pre-training XLM-   Comparing exp 3 to exp 4 , we find that there is a 0.5 improvement on XNLI and 0.1 improvement on CoNLL after the model learns BTMLM.
+This demonstrates that our proposed BTMLM can learn cross-lingual semantic alignment and improve the performance of our model.
+To further analyze the effect of our strategy, we trained the small-sized ERNIE-M model from scratch.
+Table 8 shows the results of XNLI and CoNLL.
+Both XNLI and CoNLL results are the average of each languages.
+We observe that, ERNIE-M SMALL can outperform XLM-R SMALL by 4.4 in XNLI and 6.6 in CoNLL.
+It suggests that our models can benefit from align cross-lingual semantic representation.
+Table 7 shows the gap scores for English and other languages in the downstream task.
+This gap score is the difference between the English testset and the average performance on the testset in other languages.
+So, a smaller gap score represents a better transferability of the model.
+We can no-
+With the same computational overhead, the performance of ERNIE-M is 69.9 in XNLI and 69.7 in CoNLL, while XLM-R's performance is 67.3 in XNLI and 65.6 in CoNLL.
+The results demonstrate that ERNIE-M performs better than XLM-R even with the same computational overhead.
+In addition, we explored the effect of the number of generated pseudo-parallel tokens on the convergence of the model.
+In particular, we compare the impact on the convergence speed of the model when generating a 5%, 10%, 15%, and 20% proportion of pseudo-tokens.
+As shown in Figure 6, we can find that the perplexity (PPL) of the model decreases as the proportion of generated tokens increases, which indicates that the generated pseudo-parallel tokens are helpful for model convergence.
+To overcome the constraint that the parallel corpus size places on the cross-lingual models performance, we propose a new cross-lingual model, ERNIE-M, which is trained using both monolingual and parallel corpora.
+The contribution of ERNIE-M is to propose two training objectives.
+The first objective is to enhance the multilingual representation on parallel corpora by applying CAMLM, and the second objective is to help the model to align cross-lingual semantic representations from a monolingual corpus by using BTMLM.
+Experiments show that ERNIE-M achieves SoTA results in various downstream tasks on the XNLI, MLQA, CoNLL, PAWS-X, and Tatoeba datasets.
+We follow        Tables 12 and 13 list the fine-tuning parameters on XNLI, MLQA, CoNLL and PAWS-X. For each task, we select the model with the best performance on the validation set, and the test set score is the average of five runs with different random seeds.
+Tables 14 list the fine-tuning parameters on Tatoeba.
+To better evaluate the performance of ERNIE-M, we train the ERNIE-M-15 model for 15 languages.
+The languages of training corpora is the same as that of HICTL .
+We evaluate ERNIE-M-15 on the XNLI dataset.
+Table 15 shows the results of 15 languages models.
+The ERNIE-M-15 model outperforms the current best 15-language cross-lingual model on the XNLI task, achieving a score of 77.5 in the cross-lingual transfer setting, outperforming HICTL 0.2 and a score of 80.7 in the translate-train-all setting, outperforming HICTL 0.7.
+Table 16 shows the details of accuracy on each language in the cross-lingual retrieval task.
+For a fair comparison with VECO, we use the averaged representation in the middle layer of best XNLI model for cross-lingual retrieval task.
+ERNIE-M outperforms VECO in most languages and achieves state-of-the-art results.
+We also proposed a new method for cross-lingual retrieval.
+We use hardest negative binary cross-entropy loss (Wang et al., 2019b;Faghri et al., 2017) to fine-tune ERNIE-M with the same bilingual corpora in pre-training.

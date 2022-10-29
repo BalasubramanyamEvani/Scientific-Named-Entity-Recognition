@@ -1,0 +1,366 @@
+Transformer-based models have pushed state of the art in many areas of NLP, but our understanding of what is behind their success is still limited.
+This paper is the first survey of over 150 studies of the popular BERT model.
+We review the current state of knowledge about how BERT works, what kind of information it learns and how it is represented, common modifications to its training objectives and architecture, the overparameterization issue and approaches to compression.
+We then outline directions for future research.
+Since their introduction in 2017, Transformers (Vaswani et al., 2017) have taken NLP by storm, offering enhanced parallelization and better modeling of long-range dependencies.
+The best known Transformer-based model is BERT (Devlin et al., 2019); it obtained state-of-the-art results in numerous benchmarks and is still a must-have baseline.
+While it is clear that BERT works remarkably well, it is less clear why, which limits further hypothesis-driven improvement of the architecture.
+Unlike CNNs, the Transformers have little cognitive motivation, and the size of these models limits our ability to experiment with pre-training and perform ablation studies.
+This explains a large number of studies over the past year that attempted to understand the reasons behind BERT's performance.
+In this paper, we provide an overview of what has been learned to date, highlighting the questions which are still unresolved.
+We first consider the linguistic aspects of it, i.e., the current evidence regarding the types of linguistic and world knowledge learned by BERT, as well as where and how this knowledge may be stored in the model.
+We then turn to the technical aspects of the model and provide an overview of the current proposals to improve BERT's architecture, pre-training and finetuning.
+We conclude by discussing the issue of overparameterization, the approaches to compressing BERT, and the nascent area of pruning as a model analysis technique.
+Fundamentally, BERT is a stack of Transformer encoder layers (Vaswani et al., 2017) which consist of multiple self-attention "heads".
+For every input token in a sequence, each head computes key, value and query vectors, used to create a weighted representation.
+The outputs of all heads in the same layer are combined and run through a fully-connected layer.
+Each layer is wrapped with a skip connection and followed by layer normalization.
+The conventional workflow for BERT consists of two stages: pre-training and fine-tuning.
+Pretraining uses two self-supervised tasks: masked language modeling (MLM, prediction of randomly masked input tokens) and next sentence prediction (NSP, predicting if two input sentences are adjacent to each other).
+In fine-tuning for downstream applications, one or more fully-connected layers are typically added on top of the final encoder layer.
+The input representations are computed as follows: each word in the input is first tokenized into wordpieces (Wu et al., 2016), and then three embedding layers (token, position, and segment) are combined to obtain a fixed-length vector.
+Special token [CLS] is used for classification predictions, and [SEP] separates input segments.
+Google 1 and HuggingFace (Wolf et al., 2020) provide many variants of BERT, including the original "base" and "large" versions.
+They vary in the number of heads, layers, and hidden state size.
+What knowledge does BERT have?
+A number of studies have looked at the knowledge encoded in BERT weights.
+The popular approaches include fill-in-the-gap probes of MLM, analysis of self-attention weights, and probing classifiers with different BERT representations as inputs.
+3.1 Syntactic knowledge  showed that BERT representations are hierarchical rather than linear, i.e. there is something akin to syntactic tree structure in addition to the word order information.
+Tenney et al. (2019b) and  also showed that BERT embeddings encode information about parts of speech, syntactic chunks and roles.
+Enough syntactic information seems to be captured in the token embeddings themselves to recover syntactic trees (Vilares et al., 2020;Kim et al., 2020;Rosa and Mareček, 2019), although probing classifiers could not recover the labels of distant parent nodes in the syntactic tree .
+Warstadt and Bowman (2020) report evidence of hierarchical structure in three out of four probing tasks.
+As far as how syntax is represented, it seems that syntactic structure is not directly encoded in self-attention weights.
+Htut et al. (2019) were unable to extract full parse trees from BERT heads even with the gold annotations for the root.
+Jawahar et al. (2019) include a brief illustration of a dependency tree extracted directly from self-attention weights, but provide no quantitative evaluation.
+However, syntactic information can be recovered from BERT token representations.
+Hewitt and Manning (2019) were able to learn transformation matrices that successfully recovered syntactic dependencies in PennTreebank data from BERT's token embeddings (see also .
+Jawahar et al. (2019) experimented with transformations of the [CLS] token using Tensor Product Decomposition Networks (McCoy et al., 2019a), concluding that dependency trees are the best match among 5 decomposition schemes (although the reported MSE differences are very small).
+Miaschi and Dell'Orletta (2020) performs a range of syntactic probing experiments with concatenated token representations as input.
+Note that all these approaches look for the evidence of gold-standard linguistic structures, and add some amount of extra knowledge to the probe.
+Most recently,  proposed a 4168 3 Visualization with Impact Maps Before we discuss specific syntactic phenomena, let us first analyze some example impact matrices derived from sample sentences.
+We visualize an impact matrix of a sentence by displaying a heatmap.
+We use the term "impact map" to refer to a heatmap of an impact matrix.
+We extract impact matrices by feeding BERT with 1,000 sentences from the English Parallel Universal Dependencies (PUD) treebank of the CoNLL 2017 Shared Task (Zeman et al., 2017).
+We follow the setup and pre-processing steps employed in pre-training BERT.
+An example impact map is shown in Figure 1.
+We notice that the impact map contains many stripes, which are short series of vertical/horizontal cells, typically located along the diagonal.
+Take the word "different" as an example (which is illustrated by the second-to-last column in the impact matrix).
+We observe a clear vertical stripe above the main diagonal.
+The interpretation is that this particular occurrence of the word "different" strongly affects the occurrences of those words before it.
+These strong influences are shown by the darker-colored pixels seen in the second last column of the impact map.
+This observation agrees with the ground-truth dependency tree, which selects "different" as the head of all remaining words in the phrase "this will be a little different."
+We also observe similar patterns on "transitions" and "Hill".
+Such correlations lead us to explore the idea of extracting dependency trees from the matrices (see Section 4.1).
+3 Visualization with Impact Maps Before we discuss specific syntactic phenomena, let us first analyze some example impact matrices derived from sample sentences.
+We visualize an impact matrix of a sentence by displaying a heatmap.
+We use the term "impact map" to refer to a heatmap of an impact matrix.
+We extract impact matrices by feeding BERT with 1,000 sentences from the English Parallel Universal Dependencies (PUD) treebank of the CoNLL 2017 Shared Task (Zeman et al., 2017).
+We follow the setup and pre-processing steps employed in pre-training BERT.
+An example impact map is shown in Figure 1.
+We notice that the impact map contains many stripes, which are short series of vertical/horizontal cells, typically located along the diagonal.
+Take the word "different" as an example (which is illustrated by the second-to-last column in the impact matrix).
+We observe a clear vertical stripe above the main diagonal.
+The interpretation is that this particular occurrence of the word "different" strongly affects the occurrences of those words before it.
+These strong influences are shown by the darker-colored pixels seen in the second last column of the impact map.
+This observation agrees with the ground-truth dependency tree, which selects "different" as the head of all remaining words in the phrase "this will be a little different."
+We also observe similar patterns on "transitions" and "Hill".
+Such correlations lead us to explore the idea of extracting dependency trees from the matrices (see Section 4.1).
+Figure 2 shows part of the constituency tree of our example sentence generated by Stanford CoreNLP (Manning et al., 2014).
+In this sentence, "media" and "on" are two words that are adjacent to "transitions".
+From the tree, however, we see that "media" is closer to "transitions" than "on" is in terms of syntactic distance.
+If a model is syntactically uninformed, we would expect "media" and "on" to have comparable impacts on the prediction of "transitions", and vice versa.
+However, we observe a far greater impact (darker color) between "media" and "transitions" than that between "on" and "transitions".
+We will further support this observation with empirical experiments in Section 4.2.
+Other Structures.
+Along the diagonal of the impact map, we see that words are grouped into four contiguous chunks that have specific intents (e.g., a noun phrase -on Capitol Hill).
+We also observe that the two middle chunks have relatively strong inter-chunk word impacts and thus a bonding that groups them together, forming a larger verb phrase.
+This observation suggest that BERT may capture the compositionality of the language.
+In the following sections we quantitatively evaluate these observations.
+We start with two syntactic probes -dependency probe and constituency probe.
+With the goal of exploring the extent dependency relations are captured in BERT, we set out to answer the following question: Can BERT outperform linguistically uninformed baselines in unsupervised dependency parsing?
+If so, to what extent?
+We begin by using the token-level perturbed masking technique to extract an impact matrix F for each sentence.
+We then utilize graph-based algorithms to induce a dependency tree from F, and compare it against ground-truth whose annotations Figure 1: Parameter-free probe for syntactic knowledge: words sharing syntactic subtrees have larger impact on each other in the MLM prediction  parameter-free approach based on measuring the impact that one word has on predicting another word within a sequence in the MLM task (Figure 1).
+They concluded that BERT "naturally" learns some syntactic information, although it is not very similar to linguistic annotated resources.
+The fill-in-the-gap probes of MLM showed that BERT takes subject-predicate agreement into account when performing the cloze task (Goldberg, 2019;van Schijndel et al., 2019), even for meaningless sentences and sentences with distractor clauses between the subject and the verb (Goldberg, 2019).
+A study of negative polarity items (NPIs) by Warstadt et al. (2019) showed that BERT is better able to detect the presence of NPIs (e.g. "ever") and the words that allow their use (e.g. "whether") than scope violations.
+The above claims of syntactic knowledge are belied by the evidence that BERT does not "understand" negation and is insensitive to malformed input.
+In particular, its predictions were not altered 2 even with shuffled word order, truncated sentences, removed subjects and objects (Ettinger, 2019).
+This could mean that either BERT's syntactic knowledge is incomplete, or it does not need to rely on it for solving its tasks.
+The latter seems more likely, since Glavaš and Vulić (2020) report that an intermediate fine-tuning step with supervised parsing does not make much difference for downstream task performance.
+To date, more studies have been devoted to BERT's knowledge of syntactic rather than semantic phenomena.
+However, we do have evidence from an MLM probing study that BERT has some knowledge of semantic roles (Ettinger, 2019).
+BERT even displays some preference for the incorrect fillers for semantic roles that are semantically related to the correct ones, as opposed to those that are unrelated (e.g. "to tip a chef" is better than "to tip a robin", but worse than "to tip a waiter").
+Tenney et al. (2019b) showed that BERT encodes information about entity types, relations, semantic roles, and proto-roles, since this information can be detected with probing classifiers.
+BERT struggles with representations of numbers.
+Addition and number decoding tasks showed that BERT does not form good representations for floating point numbers and fails to generalize away from the training data (Wallace et al., 2019b).
+A part of the problem is BERT's wordpiece tokenization, since numbers of similar values can be divided up into substantially different word chunks.
+Out-of-the-box BERT is surprisingly brittle to named entity replacements: e.g. replacing names in the coreference task changes 85% of predictions (Balasubramanian et al., 2020).
+This suggests that the model does not actually form a generic idea of named entities, although its F1 scores on NER probing tasks are high (Tenney et al., 2019a).
+Broscheit (2019) find that fine-tuning BERT on Wikipedia entity linking "teaches" it additional entity knowledge, which would suggest that it did not absorb all the relevant entity information during pre-training on Wikipedia.
+The bulk of evidence about commonsense knowledge captured in BERT comes from practitioners using it to extract such knowledge.
+One direct probing study of BERT reports that BERT struggles with pragmatic inference and role-based event knowledge (Ettinger, 2019).
+BERT also struggles with abstract attributes of objects, as well as visual and perceptual properties that are likely to be assumed rather than mentioned (Da and Kasai, 2019).
+The MLM component of BERT is easy to adapt for knowledge induction by filling in the Recent progress in pretraining language models on large textual corpora led to a surge of improvements for downstream NLP tasks.
+Whilst learning linguistic knowledge, these models may also be storing relational knowledge present in the training data, and may be able to answer queries structured as "fillin-the-blank" cloze statements.
+Language models have many advantages over structured knowledge bases: they require no schema engineering, allow practitioners to query about an open class of relations, are easy to extend to more data, and require no human supervision to train.
+We present an in-depth analysis of the relational knowledge already present (without fine-tuning) in a wide range of state-of-theart pretrained language models.
+We find that (i) without fine-tuning, BERT contains relational knowledge competitive with traditional NLP methods that have some access to oracle knowledge, (ii) BERT also does remarkably well on open-domain question answering against a supervised baseline, and (iii) certain types of factual knowledge are learned much more readily than others by standard language model pretraining approaches.
+The surprisingly strong ability of these models to recall factual knowledge without any fine-tuning demonstrates their potential as unsupervised open-domain QA systems.
+The code to reproduce our analysis is available at https: //github.com/facebookresearch/LAMA.
+Recently, pretrained high-capacity language models such as ELMo (Peters et al., 2018a) and BERT (Devlin et al., 2018a) have become increasingly important in NLP.
+They are optimised to either predict the next word in a sequence or some masked word anywhere in a given sequence (e.g. "Dante was born in [Mask] in the year 1265.").
+The parameters of these models appear to store vast amounts of linguistic knowledge (Peters et al., 2018b;Goldberg, 2019;Tenney et al., 2019) useful for downstream tasks.
+This knowledge is usually accessed either by conditioning on latent context representations produced by the original model or by using the original model weights to initialize a task-specific model which is then further fine-tuned.
+This type of knowledge transfer is crucial for current state-of-the-art results on a wide range of tasks.
+In contrast, knowledge bases are effective solutions for accessing annotated gold-standard relational data by enabling queries such as (Dante, born-in, X).
+However, in practice we often need to extract relational data from text or other modalities to populate these knowledge bases.
+This requires complex NLP pipelines involving entity extraction, coreference resolution, entity linking and relation extraction (Surdeanu and Ji, 2014)components that often need supervised data and fixed schemas.
+Moreover, errors can easily propagate and accumulate throughout the pipeline.
+Instead, we could attempt to query neural language models for relational data by asking them to fill in masked tokens in sequences like "Dante was born arXiv:1909.01066v2
+[cs.CL] 4 Sep 2019  (Petroni et al., 2019) blanks (e.g. "Cats like to chase [___]").
+Petroni et al. (2019) showed that, for some relation types, vanilla BERT is competitive with methods relying on knowledge bases (Figure 2), and Roberts et al. (2020) show the same for open-domain QA using T5 model (Raffel et al., 2019).
+Davison et al. (2019) suggest that it generalizes better to unseen data.
+In order to retrieve BERT's knowledge, we need good template sentences, and there is work on their automatic extraction and augmentation (Bouraoui et al., 2019;.
+However, BERT cannot reason based on its world knowledge.
+Forbes et al. (2019) show that BERT can "guess" the affordances and properties of many objects, but can not reason about the relationship between properties and affordances.
+For example, it "knows" that people can walk into houses, and that houses are big, but it cannot infer that houses are bigger than people.
+and Richardson and Sabharwal (2019) also show that the performance drops with the number of necessary inference steps.
+Some of BERT's world knowledge success comes from learning stereotypical associations (Poerner et al., 2019), e.g., a person with an Italian-sounding name is predicted to be Italian, even when it is incorrect.
+Multiple probing studies in section 3 and section 4 report that BERT possesses a surprising amount of syntactic, semantic, and world knowledge.
+However, Tenney et al. (2019a) remarks, "the fact that a linguistic pattern is not observed by our probing classifier does not guarantee that it is not there, and the observation of a pattern does not tell us how it is used."
+There is also the issue of how complex a probe should be allowed to be .
+If a more complex probe recovers more information, to what extent are we still relying on the original model?
+Furthermore, different probing methods may lead to complementary or even contradictory conclusions, which makes a single test (as in most stud-   (Kovaleva et al., 2019) ies) insufficient (Warstadt et al., 2019).
+A given method might also favor one model over another, e.g., RoBERTa trails BERT with one tree extraction method, but leads with another (Htut et al., 2019).
+The choice of linguistic formalism also matters (Kuznetsov and Gurevych, 2020).
+In view of all that, the alternative is to focus on identifying what BERT actually relies on at inference time.
+This direction is currently pursued both at the level of architecture blocks (to be discussed in detail in subsection 6.3), and at the level of information encoded in model weights.
+Amnesic probing (Elazar et al., 2020) aims to specifically remove certain information from the model and see how it changes performance, finding, for example, that language modeling does rely on part-of-speech information.
+Another direction is information-theoretic probing.
+Pimentel et al. (2020) operationalize probing as estimating mutual information between the learned representation and a given linguistic property, which highlights that the focus should be not on the amount of information contained in a representation, but rather on how easily it can be extracted from it.
+Voita and Titov (2020) quantify the amount of effort needed to extract information from a given representation as minimum description length needed to communicate both the probe size and the amount of data required for it to do well on a task.
+In studies of BERT, the term "embedding" refers to the output of a Transformer layer (typically, the final one).
+Both conventional static embeddings (Mikolov et al., 2013) and BERT-style embeddings can be viewed in terms of mutual information maximization , but the latter are contextualized.
+Every token is represented by a vector dependent on the particular context of occurrence, and contains at least some information about that context (Miaschi and Dell'Orletta, 2020).
+Several studies reported that distilled contextualized embeddings better encode lexical semantic information (i.e. they are better at traditional word-level tasks such as word similarity).
+The methods to distill a contextualized representation into static include aggregating the information across multiple contexts (Akbik et al., 2019;Bommasani et al., 2020), encoding "semantically bleached" sentences that rely almost exclusively on the meaning of a given word (e.g. "This is <>") (May et al., 2019), and even using contextualized embeddings to train static embeddings (Wang et al., 2020d).
+But this is not to say that there is no room for improvement.
+Ethayarajh (2019) measure how similar the embeddings for identical words are in every layer, reporting that later BERT layers produce more context-specific representations 3 .
+They also find that BERT embeddings occupy a narrow cone in the vector space, and this effect increases from the earlier to later layers.
+That is, two random words will on average have a much higher cosine similarity than expected if embeddings were directionally uniform (isotropic).
+Since isotropy was shown to be beneficial for static word embeddings (Mu and Viswanath, 2018), this might be a fruitful direction to explore for BERT.
+Since BERT embeddings are contextualized, an interesting question is to what extent they capture phenomena like polysemy and homonymy.
+There is indeed evidence that BERT's contextualized embeddings form distinct clusters corresponding to word senses (Wiedemann et al., 2019;Schmidt and Hofmann, 2020), making BERT successful at word sense disambiguation task.
+However, Mickus et al. (2019) note that the representations of the same word depend on the position of the sentence in which it occurs, likely due to the NSP objective.
+This is not desirable from the linguistic point of view, and could be a promising avenue for future work.
+The above discussion concerns token embeddings, but BERT is typically used as a sentence or text encoder.
+The standard way to generate sentence or text representations for classification is to use the [CLS] token, but alternatives are also being discussed, including concatenation of token representations (Tanaka et al., 2020), normalized mean (Tanaka et al., 2020), and layer activations .
+See Toshniwal et al. (2020) for a systematic comparison of several methods across tasks and sentence encoders.
+Several studies proposed classification of attention head types.
+Raganato and Tiedemann (2018) discuss attending to the token itself, previous/next tokens and the sentence end.
+Clark et al. (2019) distinguish between attending to previous/next tokens, [CLS], [SEP], punctuation, and "attending broadly" over the sequence.
+Kovaleva et al. (2019) propose 5 patterns shown in Figure 3.
+The "heterogeneous" attention pattern shown in Figure 3 could potentially be linguistically interpretable, and a number of studies focused on identifying the functions of self-attention heads.
+In particular, some BERT heads seem to specialize in certain types of syntactic relations.
+Htut et al. (2019) and Clark et al.
+(2019) report that there are BERT heads that attended significantly more than a random baseline to words in certain syntactic positions.
+The datasets and methods used in these studies differ, but they both find that there are heads that attend to words in obj role more than the positional baseline.
+The evidence for nsubj, advmod, and amod varies between these two studies.
+The overall conclusion is also supported by Voita et al. (2019b)'s study of the base Transformer in machine translation context.
+Hoover et al. (2019) hypothesize that even complex dependencies like dobj are encoded by a combination of heads rather than a single head, but this work is limited to qualitative analysis.
+Zhao and Bethard (2020) looked specifically for the heads encoding negation scope.
+Both Clark et al. (2019) and Htut et al. (2019) conclude that no single head has the complete syntactic tree information, in line with evidence of partial knowledge of syntax (cf. subsection 3.1).
+However, Clark et al. (2019) identify a BERT head that can be directly used as a classifier to perform coreference resolution on par with a rule-based system, which by itself would seem to require quite a lot of syntactic knowledge.
+present evidence that attention weights are weak indicators of subjectverb agreement and reflexive anaphora.
+Instead of serving as strong pointers between tokens that should be related, BERT's self-attention weights were close to a uniform attention baseline, but there was some sensitivity to different types of distractors coherent with psycholinguistic data.
+This is consistent with conclusions by Ettinger (2019).
+To our knowledge, morphological information in BERT heads has not been addressed, but with the sparse attention variant by Correia et al. (2019) in the base Transformer, some attention heads appear to merge BPE-tokenized words.
+For semantic relations, there are reports of self-attention heads encoding core frame-semantic relations (Kovaleva et al., 2019), as well as lexicographic and commonsense relations .
+The overall popularity of self-attention as an interpretability mechanism is due to the idea that "attention weight has a clear meaning: how much a particular word will be weighted when computing the next representation for the current word" (Clark et al., 2019).
+This view is currently debated (Jain and Wallace, 2019;Serrano and Smith, 2019;Wiegreffe and Pinter, 2019;Brunner et al., 2020), and in a multi-layer model where attention is followed by non-linear transformations, the patterns in individual heads do not provide a full picture.
+Also, while many current papers are accompanied by attention visualizations, and there is a growing number of visualization tools (Vig, 2019;Hoover et al., 2019), the visualization is typically limited to qualitative analysis (often with cherry-picked examples) (Belinkov and Glass, 2019), and should not be interpreted as definitive evidence.
+Kovaleva et al. (2019) show that most selfattention heads do not directly encode any nontrivial linguistic information, at least when finetuned on GLUE (Wang et al., 2018), since only less than 50% of heads exhibit the "heterogeneous" pattern.
+Much of the model produced the vertical pattern (attention to [CLS], [SEP], and punctuation tokens), consistent with the observations by Clark et al. (2019).
+This redundancy is likely related to the overparameterization issue (see section 6).
+More recently, Kobayashi et al. (2020) showed that the norms of attention-weighted input vectors, which yield a more intuitive interpretation of self-attention, reduce the attention to special tokens.
+However, even when the attention weights are normed, it is still not the case that most heads that do the "heavy lifting" are even potentially interpretable (Prasanna et al., 2020).
+One methodological choice in in many studies of attention is to focus on inter-word attention and simply exclude special tokens (e.g.  and Htut et al. ( 2019)).
+However, if attention to special tokens actually matters at inference time, drawing conclusions purely from inter-word attention patterns does not seem warranted.
+The functions of special tokens are not yet well understood.
+[CLS] is typically viewed as an aggregated sentence-level representation (although all token representations also contain at least some sentence-level information, as discussed in subsection 4.1); in that case, we may not see e.g. full syntactic trees in inter-word attention because part of that information is actually packed in [CLS].
+Clark et al. (2019) experiment with encoding Wikipedia paragraphs with base BERT to consider specifically the attention to special tokens, noting that heads in early layers attend more to [CLS], in middle layers to [SEP], and in final layers to periods and commas.
+They hypothesize that its function might be one of "no-op", a signal to ignore the head if its pattern is not applicable to the current case.
+As a result, for example, [SEP] gets increased attention starting in layer 5, but its importance for prediction drops.
+However, after fine-tuning both [SEP] and [CLS] get a lot of attention, depending on the task (Kovaleva et al., 2019).
+Interestingly, BERT also pays a lot of attention to punctuation, which Clark et al. (2019) explain by the fact that periods and commas are simply almost as frequent as the special tokens, and so the model might learn to rely on them for the same reasons.
+The first layer of BERT receives as input a combination of token, segment, and positional embeddings.
+It stands to reason that the lower layers have the most information about linear word order.
+report a decrease in the knowledge of linear word order around layer 4 in BERT-base.
+This is accompanied by an increased knowledge textualizers.
+Furthermore, the ELMo-based models facilitate a controlled comparison-they only differ in the contextualizer architecture used.
+We evaluate how well CWR features perform the pretraining task-bidirectional language modeling.
+Specifically, we take the pretrained representations for each layer and relearn the language model softmax classifiers used to predict the next and previous token.
+The ELMo models are trained on the Billion Word Benchmark, so we retrain the softmax classifier on similar data to mitigate any possible effects from domain shift.
+We split the held-out portion of the Billion Word Benchmark into train (80%, 6.2M tokens) and evaluation (20%, 1.6M tokens) sets and use this data to retrain and evaluate the softmax classifiers.
+We expect that biLM perplexity will be lower when training the softmax classifiers on representations from layers that capture more information about the pretraining task.
+Figure 4 presents the performance of softmax classifiers trained to perform the bidirectional language modeling task, given just the CWRs as input.
+We notice that higher layers in recurrent models consistently achieve lower perplexities.
+Inter-is the vector ori during pretrain ing performanc tations that are ing are also tho performance (F alizer layers tr and task-specifi These result layerwise beha moving up the specific repres hold for transf differences bet an active area o
+et al.  of hierarchical sentence structure, as detected by the probing tasks of predicting the token index, the main auxiliary verb and the sentence subject.
+There is a wide consensus in studies with different tasks, datasets and methodologies that syntactic information is most prominent in the middle layers of BERT.
+4 Hewitt and Manning (2019) had the most success reconstructing syntactic tree depth from the middle BERT layers (6-9 for base-BERT, 14-19 for BERT-large).
+Goldberg (2019) reports the best subject-verb agreement around layers 8-9, and the performance on syntactic probing tasks used by Jawahar et al. (2019) also seems to peak around the middle of the model.
+The prominence of syntactic information in the middle BERT layers is related to 's observation that the middle layers of Transformers are best-performing overall and the most transferable across tasks (see Figure 4).
+There is conflicting evidence about syntactic chunks.
+Tenney et al. (2019a) conclude that "the basic syntactic information appears earlier in the network while high-level semantic features appear at the higher layers", drawing parallels between this order and the order of components in a typical NLP pipeline -from POS-tagging to dependency parsing to semantic role labeling.
+Jawahar et al. (2019) also report that the lower layers were more useful for chunking, while middle layers were more useful for parsing.
+At the same time, the probing experiments by  find the opposite: both POS-tagging and chunking were performed best at the middle layers, in both BERT-base and BERT-large.
+However, all three studies use different suites of probing tasks.
+The final layers of BERT are the most taskspecific.
+In pre-training, this means specificity to the MLM task, which explains why the middle layers are more transferable .
+In fine-tuning, it explains why the final layers change the most (Kovaleva et al., 2019), and why restoring the weights of lower layers of fine-tuned BERT to their original values does not dramatically hurt the model performance (Hao et al., 2019).
+Tenney et al. (2019a) suggest that while syntactic information appears early in the model and can be localized, semantics is spread across the entire model, which explains why certain non-trivial examples get solved incorrectly at first but correctly at the later layers.
+This is rather to be expected: semantics permeates all language, and linguists debate whether meaningless structures can exist at all (Goldberg, 2006, p.166-182).
+But this raises the question of what stacking more Transformer layers in BERT actually achieves in terms of the spread of semantic knowledge, and whether that is beneficial.
+Tenney et al.
+compared BERT-base and BERT-large, and found that the overall pattern of cumulative score gains is the same, only more spread out in the larger model.
+Note that Tenney et al. (2019a)'s experiments concern sentence-level semantic relations;  report that the encoding of ConceptNet semantic relations is the worst in the early layers and increases towards the top.
+Jawahar et al. (2019) place "surface features in lower layers, syntactic features in middle layers and semantic features in higher layers", but their conclusion is surprising, given that only one semantic task in this study actually topped at the last layer, and three others peaked around the middle and then considerably degraded by the final layers.
+This section reviews the proposals to optimize the training and architecture of the original BERT.
+To date, the most systematic study of BERT architecture was performed by , who experimented with the number of layers, heads, and model parameters, varying one option and freezing the others.
+They concluded that the number of heads was not as significant as the number of layers.
+That is consistent with the findings of Voita et al. (2019b) and Michel et al. (2019) (section 6), and also the observation by  that the middle layers were the most transferable.
+Larger hidden representation size was con-sistently better, but the gains varied by setting.
+All in all, changes in the number of heads and layers appear to perform different functions.
+The issue of model depth must be related to the information flow from the most task-specific layers closer to the classifier , to the initial layers which appear to be the most task-invariant (Hao et al., 2019), and where the tokens resemble the input tokens the most (Brunner et al., 2020) (see subsection 4.3).
+If that is the case, a deeper model has more capacity to encode information that is not task-specific.
+On the other head, many self-attention heads in vanilla BERT seem to naturally learn the same patterns (Kovaleva et al., 2019).
+This explains why pruning them does not have too much impact.
+The question that arises from this is how far we could get with intentionally encouraging diverse self-attention patterns: theoretically, this would mean increasing the amount of information in the model with the same number of weights.
+Raganato et al. (2020) show for Transformer-based machine translation we can simply pre-set the patterns that we already know the model would learn, instead of learning them from scratch.
+Vanilla BERT is symmetric and balanced in terms of self-attention and feed-forward layers, but it may not have to be.
+For the base Transformer, Press et al.
+(2020) report benefits from more selfattention sublayers at the bottom and more feedforward sublayers at the top.
+Gong et al. (2019) note that, since self-attention patterns in higher and lower layers are similar, the model training can be done in a recursive manner, where the shallower version is trained first and then the trained parameters are copied to deeper layers.
+Such a "warm-start" can lead to a 25% faster training without sacrificing performance.
+The original BERT is a bidirectional Transformer pre-trained on two tasks: next sentence prediction (NSP) and masked language model (MLM) (section 2).
+Multiple studies have come up with alternative training objectives to improve on BERT, which could be categorized as follows: •
+How to mask.
+Raffel et al. (2019) (Devlin et al., 2019;Cui et al., 2019).
+Similarly, we can mask spans rather than single tokens (Joshi et al., 2020), predicting how many are missing .
+Masking phrases and named entities (Sun et al., 2019b) improves representation of structured knowledge.
+• Where to mask.
+Lample and Conneau (2019) use arbitrary text streams instead of sentence pairs and subsample frequent outputs similar to Mikolov et al. (2013).
+Bao et al. (2020) combine the standard autoencoding MLM with partially autoregressive LM objective using special pseudo mask tokens.
+Alternatives to masking.
+Raffel et al. (2019) experiment with replacing and dropping spans,  explore deletion, infilling, sentence permutation and document rotation, and Sun et al. (2019c) predict whether a token is capitalized and whether it occurs in other segments of the same document.
+Yang et al. (2019) train on different permutations of word order in the input sequence, maximizing the probability of the original word order (cf.
+the n-gram word order reconstruction task ).
+detect tokens that were replaced by a generator network rather than masked.
+NSP alternatives.
+Removing NSP does not hurt or slightly improves performance (Liu et al., 2019b;Joshi et al., 2020;Clinchant et al., 2019).
+and   Another obvious source of improvement is pretraining data.
+Several studies explored the benefits of increasing the corpus volume (Liu et al., 2019b;Baevski et al., 2019) and longer training (Liu et al., 2019b).
+The data also does not have to be raw text: there is a number efforts to incorporate explicit linguistic information, both syntactic (Sundararaman et al., 2019) and semantic .
+and Kumar et al. (2020) include the label for a given sequence from an annotated task dataset.
+Schick and Schütze (2020) separately learn representations for rare words.
+Although BERT is already actively used as a source of world knowledge (see subsection 3.3), there is also work on explicitly supplying structured knowledge.
+One approach is entityenhanced models.
+For example, ;  include entity
+em- Pre-training is the most expensive part of training BERT, and it would be informative to know how much benefit it provides.
+On some tasks, a randomly initialized and fine-tuned BERT obtains competitive or higher results than the pre-trained BERT with the task classifier and frozen weights (Kovaleva et al., 2019).
+The consensus in the community is that pre-training does help in most situations, but the degree and its exact contribution requires further investigation.
+Prasanna et al. (2020) found that most weights of pre-trained BERT are useful in fine-tuning, although there are "better" and "worse" subnetworks.
+One explanation is that pre-trained weights help the fine-tuned BERT find wider and flatter areas with smaller generalization error, which makes the model more robust to overfitting (see Figure 5 from Hao et al. (2019)).
+Given the large number and variety of proposed modifications, one would wish to know how much impact each of them has.
+However, due to the overall trend towards large model sizes, systematic ablations have become expensive.
+Most new models claim superiority on standard benchmarks, but gains are often marginal, and estimates of model stability and significance testing are very rare.
+Pre-training + fine-tuning workflow is a crucial part of BERT.
+The former is supposed to provide task-independent knowledge, and the latter would presumably teach the model to rely more on the representations useful for the task at hand.
+Kovaleva et al. (2019) did not find that to be the case for BERT fine-tuned on GLUE tasks 5 : during fine-tuning, the most changes for 3 epochs occurred in the last two layers of the models, but those changes caused self-attention to focus on [SEP] rather than on linguistically interpretable patterns.
+It is understandable why fine-tuning would increase the attention to [CLS], but not [SEP].
+If Clark et al. (2019) are correct that [SEP] serves as "noop" indicator, fine-tuning basically tells BERT what to ignore.
+Several studies explored the possibilities of improving the fine-tuning of BERT: •
+Taking more layers into account: learning a complementary representation of the information in deep and output layers , using a weighted combination of all layers instead of the final one (Su and Cheng, 2019;Kondratyuk and Straka, 2019), and layer dropout (Kondratyuk and Straka, 2019).
+Two-stage fine-tuning introduces an intermediate supervised training stage between pre-training and fine-tuning Arase and Tsujii, 2019;Pruksachatkun et al., 2020;Glavaš and Vulić, 2020).
+Ben-David et al. (2020) propose a pivot-based variant of MLM to fine-tune BERT for domain adaptation.
+Adversarial token perturbations improve robustness of the model (Zhu et al., 2019).
+Adversarial regularization in combination with Bregman Proximal Point Optimization helps alleviate pre-trained knowledge forgetting and therefore prevents BERT from overfitting to downstream tasks ).
+• Mixout regularization improves the stability of BERT fine-tuning even for a small number of training examples .
+With large models, even fine-tuning becomes expensive, but Houlsby et al. (2019) show that it can be successfully approximated with adapter modules.
+They achieve competitive performance on 26 classification tasks at a fraction of the computational cost.
+Adapters in BERT were also used for multi-task learning (Stickland and Murray, 2019) and cross-lingual transfer (Artetxe et al., 2019).
+An alternative to fine-tuning is extracting features from frozen representations, but fine-tuning works better for BERT (Peters et al., 2019b).
+A big methodological challenge in the current NLP is that the reported performance improvements of new models may well be within variation induced by environment factors (Crane, 2018).
+BERT is not an exception.
+Dodge et al. (2020) report significant variation for BERT fine-tuned on GLUE tasks due to both weight initialization and training data order.
+They also propose early stopping on the less-promising seeds.
+Although we hope that the above observations may be useful for the practitioners, this section does not exhaust the current research on fine-tuning and its alternatives.
+For example, we do not cover such topics as Siamese architectures, policy gradient training, automated curriculum learning, and others.
+6 How big should BERT be?
+Transformer-based models keep growing by orders of magnitude: the 110M parameters of base BERT are now dwarfed by 17B parameters of Turing-NLG (Microsoft, 2020), which is dwarfed by 175B of GPT-3 (Brown et al., 2020).
+This trend raises concerns about computational complexity of self-attention , environmental issues (Strubell et al., 2019;Schwartz et al., 2019), fair comparison of architectures (Aßenmacher and Heumann, 2020), and reproducibility.
+Human language is incredibly complex, and would perhaps take many more parameters to describe fully, but the current models do not make good use of the parameters they already have.
+Voita et al. (2019b) showed that all but a few Transformer heads could be pruned without significant losses in performance.
+For BERT, Clark et al. (2019) observe that most heads in the same layer show similar self-attention patterns (perhaps related to the fact that the output of all self-attention heads in a layer is passed through the same MLP), which explains why Michel et al. (2019) were able to reduce most layers to a single head.
+Depending on the task, some BERT heads/layers are not only redundant , but also harmful to the downstream task performance.
+Positive effect from head disabling was reported for machine translation (Michel et al., 2019), abstractive summarization (Baan et al., 2019), and GLUE tasks (Kovaleva et al., 2019).
+Additionally, Tenney et al. (2019a) examine the cumulative gains of their structural probing classifier, observing that in 5 out of 8 probing tasks some layers cause a drop in scores (typically in the final layers).
+Gordon et al. (2020) find that 30-40% of the weights can be pruned without impact on downstream tasks.
+In general, larger BERT models perform better Roberts et al., 2020), but not always: BERT-base outperformed BERT-large on subject-verb agreement (Goldberg, 2019) and sentence subject detection .
+Given the complexity of language, and amounts of pretraining data, it is not clear why BERT ends up with redundant heads and layers.
+Clark et al. (2019) suggest that one possible reason is the use of attention dropouts, which causes some attention weights to be zeroed-out during training.
+Given the above evidence of overparameterization, it does not come as a surprise that BERT can be efficiently compressed with minimal accuracy loss, which would be highly desirable for real-world applications.
+Such efforts to date are summarized in Table 1.
+The main approaches are knowledge distillation, quantization, and pruning.
+The studies in the knowledge distillation framework (Hinton et al., 2014) use a smaller student-network trained to mimic the behavior of a larger teacher-network.
+For BERT, this has been achieved through experiments with loss functions (Sanh et al., 2019b;Jiao et al., 2019), mimicking the activation patterns of individual portions of the teacher network (Sun et al., 2019a), and knowledge transfer at the pre-training (Turc et al., 2019;Jiao et al., 2019;Sun et al., 2020) or fine-tuning stage (Jiao et al., 2019).
+McCarley et al. (2020) suggest that distillation has so far worked better for GLUE than for reading comprehension, and report good results for QA from a combination of structured pruning and task-specific distillation.
+Quantization decreases BERT's memory footprint through lowering the precision of its weights (Shen et al., 2019;Zafrir et al., 2019  this strategy often requires compatible hardware.
+As discussed in section 6, individual selfattention heads and BERT layers can be disabled without significant drop in performance (Michel et al., 2019;Kovaleva et al., 2019;Baan et al., 2019).
+Pruning is a compression technique that takes advantage of that fact, typically reducing the amount of computation via zeroing out of certain parts of the large model.
+In structured pruning, architecture blocks are dropped, as in LayerDrop .
+In unstructured, the weights in the entire model are pruned irrespective of their location, as in magnitude pruning  or movement pruning (Sanh et al., 2020).
+Prasanna et al. (2020) and  explore BERT from the perspective of the lottery ticket hypothesis (Frankle and Carbin, 2019), looking specifically at the "winning" subnetworks in pre-trained BERT.
+They independently find that such subnetworks do exist, and that transferability between subnetworks for different tasks varies.
+If the ultimate goal of training BERT is compression,  recommend training larger models and compressing them heavily rather than compressing smaller models lightly.
+Other techniques include decomposing BERT's embedding matrix into smaller matrices (Lan et al., 2020a), progressive module replacing  and dynamic elimination of intermediate encoder outputs (Goyal et al., 2020).
+See Ganesh et al. (2020) for a more detailed discussion of compression methods.
+There is a nascent discussion around pruning as a model analysis technique.
+The basic idea is that a compressed model a priori consists of elements that are useful for prediction; therefore by finding out what they do we may find out what the whole network does.
+For instance, BERT has heads that seem to encode frame-semantic relations, but disabling them might not hurt downstream task performance Kovaleva et al. (2019); this suggests that this knowledge is not actually used.
+For the base Transformer, Voita et al. (2019b) identify the functions of self-attention heads and then check which of them survive the pruning, finding that the syntactic and positional heads are the last ones to go.
+For BERT, Prasanna et al. (2020) go in the opposite direction: pruning on the basis of importance scores, and interpreting the remaining "good" subnetwork.
+With respect to self-attention heads specifically, it does not seem to be the case that only the heads that potentially encode nontrivial linguistic patterns survive the pruning.
+The models and methodology in these studies differ, so the evidence is inconclusive.
+In particular, Voita et al. (2019b) find that before pruning the majority of heads are syntactic, and Prasanna et al. (2020)
+-that the majority of heads do not have potentially non-trivial attention patterns.
+An important limitation of the current head and layer ablation studies (Michel et al., 2019;Kovaleva et al., 2019) is that they inherently assume that certain knowledge is contained in heads/layers.
+However, there is evidence of more diffuse representations spread across the full network, such as the gradual increase in accuracy on difficult semantic parsing tasks (Tenney et al., 2019a) or the absence of heads that would perform parsing "in general" (Clark et al., 2019;Htut et al., 2019).
+If so, ablating individual components harms the weightsharing mechanism.
+Conclusions from component ablations are also problematic if the same information is duplicated elsewhere in the network.
+BERTology has clearly come a long way, but it is fair to say we still have more questions than answers about how BERT works.
+In this section, we list what we believe to be the most promising directions for further research.
+Benchmarks that require verbal reasoning.
+While BERT enabled breakthroughs on many NLP benchmarks, a growing list of analysis papers are showing that its language skills are not as impressive as it seems.
+In particular, it was shown to rely on shallow heuristics in natural language inference Zellers et al., 2019;Jin et al., 2020), reading comprehension Sugawara et al., 2020;Si et al., 2019b;, argument reasoning comprehension (Niven and Kao, 2019), and text classification (Jin et al., 2020).
+Such heuristics can even be used to reconstruct a non-publiclyavailable model (Krishna et al., 2020).
+As with any optimization method, if there is a shortcut in the data, we have no reason to expect BERT to not learn it.
+But harder datasets that cannot be resolved with shallow heuristics are unlikely to emerge if their development is not as valued as modeling work.
+Benchmarks for the full range of linguistic competence.
+While the language models seem to acquire a great deal of knowledge about language, we do not currently have comprehensive stress tests for different aspects of linguistic knowledge.
+A step in this direction is the "Checklist" behavioral testing (Ribeiro et al., 2020), the best paper at ACL 2020.
+Ideally, such tests would measure not only errors, but also sensitivity (Ettinger, 2019).
+Developing methods to "teach" reasoning.
+While large pre-trained models have a lot of knowledge, they often fail if any reasoning needs to be performed on top of the facts they possess (Talmor et al., 2019, see also subsection 3.3).
+For instance, Richardson et al. (2020) propose a method to "teach" BERT quantification, conditionals, comparatives, and boolean coordination.
+Learning what happens at inference time.
+Most BERT analysis papers focus on different probes of the model, with the goal to find what the language model "knows".
+However, probing studies have limitations (subsection 3.4), and to this point, far fewer papers have focused on discovering what knowledge actually gets used.
+Several promising directions are the "amnesic probing" (Elazar et al., 2020), identifying features important for prediction for a given task (Arkhangelskaia and Dutta, 2019), and pruning the model to remove the nonimportant components (Voita et al., 2019b;Michel et
+al., 2019;Prasanna et al., 2020).
+In a little over a year, BERT has become a ubiquitous baseline in NLP experiments and inspired numerous studies analyzing the model and proposing various improvements.
+The stream of papers seems to be accelerating rather than slowing down, and we hope that this survey helps the community to focus on the biggest unresolved questions.
+We thank the anonymous reviewers for their valuable feedback.
+This work is funded in part by the NSF award number IIS-1844740 to Anna Rumshisky.
