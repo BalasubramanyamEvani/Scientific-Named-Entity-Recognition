@@ -1,0 +1,24 @@
+{
+    "os": "Darwin-21.6.0-x86_64-i386-64bit",
+    "python": "3.7.13",
+    "heartbeatAt": "2022-10-29T13:26:59.866129",
+    "startedAt": "2022-10-29T13:26:54.046235",
+    "docker": null,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/Users/neelpawar/Library/Jupyter/runtime/kernel-28e77cfc-5f87-44cc-9a2a-dae025426e2c.json"
+    ],
+    "state": "running",
+    "program": "ner-jvsc-2afda384-69a5-4afc-8e96-1273cc5e8ab38f4ac85a-1ac9-47c7-b5e7-a32c6bf6d79f.ipynb",
+    "root": "/Users/neelpawar/GitHub/anlp-repos/anlp-p2",
+    "git": {
+        "remote": "https://github.com/BalasubramanyamEvani/anlp-p2.git",
+        "commit": "a0fafac85b5969b36241eb86b2fcc0b577939b49"
+    },
+    "email": "81655816+neelpawarcmu@users.noreply.github.com",
+    "host": "Neels-MacBook-Air.local",
+    "username": "neelpawar",
+    "executable": "/Users/neelpawar/opt/anaconda3/bin/python"
+}
