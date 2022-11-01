@@ -1,3 +1,16 @@
+"""
+This script is run to fetch research papers information from Arxiv and ACL Anthology
+The following data fields are fetched for all papers
+
+from: arxiv or  acl_anthology
+title: paper title
+authors: paper authors
+published: publish data
+journal_ref: which journal it was published in - not always present
+summary: summary of the paper
+pdf_url: pdf url of the research paper
+
+"""
 from typing import List
 import arxiv
 from bs4 import BeautifulSoup
@@ -7,6 +20,15 @@ import pandas as pd
 
 
 def parse_arxiv_results(search):
+    """
+    Function to parse arxiv results
+
+    Args:
+        search: search object from arxiv package
+
+    Returns:
+        List: list of dictionaries which contain the search query results
+    """
     res = []
     for result in search.results():
         res.append(
@@ -24,6 +46,18 @@ def parse_arxiv_results(search):
 
 
 def get_arxiv_by_search_queries(query: str, max_results=15):
+    """
+    This function uses the passed in query to create a arxiv
+    Search object where the results can limited using the max_results
+    argument
+
+    Args:
+        query (str): query string - this will be used as search string in arxiv
+        max_results (int, optional): Max results we want the arxiv API to return. Defaults to 15.
+
+    Returns:
+        List[Dict]: Parsed arxiv search results
+    """
     search = arxiv.Search(
         query=query,
         max_results=max_results,
@@ -34,11 +68,34 @@ def get_arxiv_by_search_queries(query: str, max_results=15):
 
 
 def get_arxiv_by_search_ids(ids: List[str]):
+    """
+    This function uses the passed in ids to create a arxiv
+    Search object.
+
+    Only the passed in research paper ids will be fetched
+
+    Args:
+        ids (List[str]): arxiv research paper ids
+
+    Returns:
+        List[Dict]: parsed arxiv results in form of list of dictionaries 
+    """
     search = arxiv.Search(id_list=ids)
     return parse_arxiv_results(search)
 
 
 def get_acl_anthology(url: str, div_id: str):
+    """
+    This function is used to fetch papers from ACL Anthology using the
+    passed in url
+
+    Args:
+        url (str): ACL Anthology URL
+        div_id (str): Div id in HTML, the papers under this div will be fetched
+
+    Returns:
+        List[Dict]: ACL Anthology results in the form of list of dictionaries
+    """
     soup = BeautifulSoup(requests.get(url).text, "html.parser")
     div_content = soup.find("div", id=div_id)
     div_content_p = div_content.find_all("p")[1:20:2]
@@ -73,6 +130,8 @@ def get_acl_anthology(url: str, div_id: str):
 
 
 if __name__ == "__main__":
+
+    # Arxiv search queries and specific paper ids
     arxiv_queries = [
         "Transformers Models NLP",
         "Deep Learning Models NLP",
@@ -89,6 +148,7 @@ if __name__ == "__main__":
 
     res.extend(get_arxiv_by_search_ids(arxiv_ids))
 
+    # ACL Anthology URLS
     acl_anothology_urls_paper_divs = [
         ("https://aclanthology.org/events/acl-2022/", "2022-acl-short"),
         ("https://aclanthology.org/events/emnlp-2021/", "2021-emnlp-main"),
